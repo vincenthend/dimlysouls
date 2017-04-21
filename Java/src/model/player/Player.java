@@ -16,7 +16,6 @@ public abstract class Player {
   private int classId;
 
   /**
-   * /**
    * Default constructor
    */
   public Player() {
