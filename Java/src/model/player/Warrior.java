@@ -1,8 +1,7 @@
-
-import java.util.*;
+package model.player;
 
 /**
- * 
+ *
  */
 public class Warrior extends Player {
 
