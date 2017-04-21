@@ -7,7 +7,7 @@ import model.enemy.Enemy;
  */
 public final class EnemyEntity extends Entity {
 
-  private Enemy enemyType;
+  private Enemy enemy;
   private int currentHealth;
 
   /**

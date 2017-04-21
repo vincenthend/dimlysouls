@@ -10,7 +10,16 @@ public class Game {
   /**
    * Default constructor
    */
-  public Game() {
+  public Game(Player player) {
+
+  }
+
+  public void MainMenu(){
+
+  }
+
+  public void Start(){
+    //Nyalain PlayerController, EnemyController (buat tiap enemy) uhh liat di notepad aja :P
   }
 
   /**

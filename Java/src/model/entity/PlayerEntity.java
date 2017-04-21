@@ -16,7 +16,6 @@ public final class PlayerEntity extends Entity {
   public PlayerEntity() {
   }
 
-
   public int getCurrentHealth() {
     return currentHealth;
   }
