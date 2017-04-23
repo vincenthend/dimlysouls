@@ -10,13 +10,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import model.entity.PlayerEntity;
+import model.map.Map;
+
 /**
  *
  */
 public class GameInterface extends JFrame {
-
   private ActionListener[] actionListener;
   private PlayerEntity player;
+<<<<<<< HEAD
+=======
+  private StatsInterface statsInterface;
+  private MapInterface mapInterface;
+>>>>>>> 91a90187d52042e2df0441a531dab191fc33857b
 
   /**
    * Default constructor
@@ -32,7 +44,7 @@ public class GameInterface extends JFrame {
    * @param m2 mouseListener for loadGame
    */
   public void switchToMainMenu(ActionListener m1, ActionListener m2) {
-    getContentPane().removeAll();
+    removeContent();
     JPanel menuPanel = new JPanel(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
     add(menuPanel);
@@ -42,24 +54,24 @@ public class GameInterface extends JFrame {
     constraints.gridy = 0;
     constraints.fill = GridBagConstraints.HORIZONTAL;
     constraints.ipady = 40;
-    constraints.insets = new Insets(10,0,40,0);
+    constraints.insets = new Insets(10, 0, 40, 0);
 
     //Add Game Title
     JLabel gameTitle = new JLabel("Dimly Souls");
     gameTitle.setHorizontalAlignment(SwingConstants.CENTER);
-    menuPanel.add(gameTitle,constraints);
+    menuPanel.add(gameTitle, constraints);
 
     //set constraints
     constraints.gridx = 0;
     constraints.gridy = 1;
     constraints.ipady = 0;
-    constraints.insets = new Insets(10,0,10,0);
+    constraints.insets = new Insets(10, 0, 10, 0);
 
     //Add newGame button
     JButton newGame = new JButton("New Game");
     newGame.addActionListener(m1);
-    newGame.setPreferredSize(new Dimension(200,30));
-    menuPanel.add(newGame,constraints);
+    newGame.setPreferredSize(new Dimension(200, 30));
+    menuPanel.add(newGame, constraints);
 
     //set constraints
     constraints.gridy = 2;
@@ -67,18 +79,18 @@ public class GameInterface extends JFrame {
     //Add loadGame button
     JButton loadGame = new JButton("Load Game");
     loadGame.addActionListener(m2);
-    newGame.setPreferredSize(new Dimension(200,30));
-    menuPanel.add(loadGame,constraints);
+    newGame.setPreferredSize(new Dimension(200, 30));
+    menuPanel.add(loadGame, constraints);
 
     //set constraints
     constraints.gridy = 3;
 
     //Add exitGame button
     JButton exitGame = new JButton("Exit Game");
-    newGame.setPreferredSize(new Dimension(200,30));
-    menuPanel.add(exitGame,constraints);
+    newGame.setPreferredSize(new Dimension(200, 30));
+    menuPanel.add(exitGame, constraints);
 
-    setSize(500, 500);
+    setSize(800, 500);
 
     setVisible(true);
   }
@@ -89,14 +101,28 @@ public class GameInterface extends JFrame {
    * @param keyListener actionListener for keyboard input
    */
   public void switchToMap(KeyListener keyListener, Map map) {
+    removeContent();
+    setLayout(new GridBagLayout());
+    GridBagConstraints c = new GridBagConstraints();
+    c.gridx = 0;
+    c.gridy = 0;
+    c.gridwidth = 1;
+    mapInterface = new MapInterface(map);
+    add(mapInterface, c);
 
+    c.gridx++;
+    c.gridwidth = 1;
+    c.anchor = GridBagConstraints.LINE_END;
+
+    statsInterface = new StatsInterface(player);
+    add(statsInterface, c);
   }
 
   public void switchToBattle(MouseListener mouseListener) {
 
   }
 
-  public void removeContent(){
+  public void removeContent() {
     getContentPane().removeAll();
   }
 
@@ -112,8 +138,11 @@ public class GameInterface extends JFrame {
   }
   public void battleViewUpdate(EnemyEntity e) {
 
+<<<<<<< HEAD
   }
 
+=======
+>>>>>>> 91a90187d52042e2df0441a531dab191fc33857b
   public void setPlayer(PlayerEntity player) {
     this.player = player;
   }

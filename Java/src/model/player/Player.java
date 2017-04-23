@@ -4,78 +4,68 @@ package model.player;
  *
  */
 public abstract class Player {
+  protected int health;
+  protected int attack;
+  protected int defense;
+  protected int speed;
+  protected int level;
+  protected int exp;
+  protected int next;
+  protected String nama;
+  protected final int classId;
 
-  private int health;
-  private int attack;
-  private int defense;
-  private int level;
-  private int exp;
-  private int next;
-  private String nama;
-  private int classId;
+  public Player() {
+    classId = 0;
+  }
+
+  public Player(int classId, String nama) {
+    this.classId = classId;
+    this.nama = nama;
+  }
 
   /**
    * Menambah level player dan mengurangi nilai exp dengan nilai next.
    * Mengubah nilai next sesuai dengan rumus level^2 + offset
    */
-  void levelUp() {
-    // TODO implement here
+  public void levelUp() {
+    exp -= exp;
+    next = next * 3 / 2;
+    level++;
   }
 
   /**
    * Mengecek apakah player harus level up
    */
-  boolean isLeveling() {
-    // TODO implement here
-    return false;
+  public boolean isLeveling() {
+    return exp >= next;
   }
 
   public int getHealth() {
     return health;
   }
 
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
   public int getAttack() {
     return attack;
-  }
-
-  public void setAttack(int attack) {
-    this.attack = attack;
   }
 
   public int getDefense() {
     return defense;
   }
 
-  public void setDefense(int defense) {
-    this.defense = defense;
+  public int getSpeed() {
+    return speed;
   }
 
   public int getLevel() {
     return level;
   }
 
-  public void setLevel(int level) {
-    this.level = level;
-  }
-
   public int getExp() {
     return exp;
   }
 
-  public void setExp(int exp) {
-    this.exp = exp;
-  }
-
   public int getNext() {
     return next;
-  }
-
-  public void setNext(int next) {
-    this.next = next;
   }
 
   public String getNama() {
@@ -88,9 +78,5 @@ public abstract class Player {
 
   public int getClassId() {
     return classId;
-  }
-
-  public void setClassId(int classId) {
-    this.classId = classId;
   }
 }

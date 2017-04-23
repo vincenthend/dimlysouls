@@ -4,8 +4,6 @@ package model.map;
  *
  */
 public class Map {
-
-
   private int width;
   private int height;
   private String mapSeed;
@@ -14,21 +12,18 @@ public class Map {
   /**
    * Default constructor
    */
-  public Map() {
+  public Map(int width, int height) {
+    this.width = width;
+    this.height = height;
+
+    mapCell = new Cell[height][width];
   }
 
   /**
-   * Menambahkan cell pada lokasi posX dan lokasi posY
-   */
-  public void addCell(Cell cell, int posX, int posY) {
-    // TODO implement here
-  }
-
-  /**
-   * @return
+   *
    */
   public void generateMap() {
-    // TODO implement here
+    //Choose the starting point
 
   }
 
@@ -38,6 +33,13 @@ public class Map {
 
   public int getHeight() {
     return height;
+  }
+
+  /**
+   * Menambahkan cell pada lokasi posX dan lokasi posY
+   */
+  public void setMapCell(Cell cell, int posX, int posY) {
+    mapCell[posY][posX] = cell;
   }
 
   public Cell getMapCell(int i, int j) {

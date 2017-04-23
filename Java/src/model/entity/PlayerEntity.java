@@ -13,10 +13,23 @@ public final class PlayerEntity extends Entity {
   /**
    * Default constructor
    */
-  public PlayerEntity() {
+  public PlayerEntity(int x, int y, Player player) {
+    super(x, y);
+    this.player = player;
+    currentHealth = player.getHealth();
+    renderCode = "P";
+  }
+
+  public void move(int deltaX, int deltaY) {
+    locX += deltaX;
+    locX += deltaY;
   }
 
   public int getCurrentHealth() {
     return currentHealth;
+  }
+
+  public Player getPlayer() {
+    return player;
   }
 }

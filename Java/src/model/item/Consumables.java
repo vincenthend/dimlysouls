@@ -1,5 +1,7 @@
 package model.item;
 
+import model.player.Player;
+
 /**
  *
  */
@@ -16,4 +18,8 @@ public interface Consumables {
    */
   public int getStatAffected();
 
+  /**
+   *
+   */
+  public void use(Player player);
 }

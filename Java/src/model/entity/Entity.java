@@ -12,7 +12,9 @@ public abstract class Entity {
   /**
    * Default constructor
    */
-  public Entity() {
+  public Entity(int x, int y) {
+    locX = x;
+    locY = y;
   }
 
   public String getRenderCode(){

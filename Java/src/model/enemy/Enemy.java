@@ -28,11 +28,12 @@ public interface Enemy {
   /**
    * @return
    */
-  public int getLuck();
+  public int getExp();
 
   /**
    * @return
    */
-  public int getEXP();
+  public String getRenderCode();
+
 
 }
