@@ -7,6 +7,7 @@ public abstract class Entity {
 
   protected int locX;
   protected int locY;
+  protected String renderCode;
 
   /**
    * Default constructor
@@ -14,5 +15,8 @@ public abstract class Entity {
   public Entity() {
   }
 
+  public String getRenderCode(){
+    return renderCode;
+  }
 
 }

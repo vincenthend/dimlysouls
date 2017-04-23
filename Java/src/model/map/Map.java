@@ -1,7 +1,5 @@
 package model.map;
 
-import java.util.LinkedList;
-
 /**
  *
  */
@@ -10,7 +8,7 @@ public class Map {
 
   private int width;
   private int height;
-  private String mapseed;
+  private String mapSeed;
   private Cell[][] mapCell;
 
   /**
@@ -29,9 +27,20 @@ public class Map {
   /**
    * @return
    */
-  public LinkedList<Integer> generateMap() {
+  public void generateMap() {
     // TODO implement here
-    return null;
+
   }
 
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public Cell getMapCell(int i, int j) {
+    return mapCell[i][j];
+  }
 }
