@@ -1,7 +1,6 @@
 package model.entity;
 
 import model.item.Consumables;
-import model.player.Player;
 
 /**
  *
@@ -13,13 +12,9 @@ public final class ItemEntity extends Entity {
   /**
    * Default constructor
    */
-  public ItemEntity() {
-  }
-
-  /**
-   * @param player
-   */
-  public void use(Player player) {
-
+  public ItemEntity(int x, int y, Consumables c) {
+    super(x, y);
+    consumables = c;
+    renderCode = "I";
   }
 }

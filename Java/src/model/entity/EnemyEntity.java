@@ -13,11 +13,18 @@ public final class EnemyEntity extends Entity {
   /**
    * Default constructor
    */
-  public EnemyEntity() {
+  public EnemyEntity(int x, int y, Enemy e) {
+    super(x, y);
+    enemy = e;
+    renderCode = e.getRenderCode();
   }
 
 
   public int getCurrentHealth() {
     return currentHealth;
+  }
+
+  public Enemy getEnemy() {
+    return enemy;
   }
 }

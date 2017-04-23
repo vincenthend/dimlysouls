@@ -10,7 +10,14 @@ public class TerrainEntity extends Entity {
   /**
    * Default constructor
    */
-  public TerrainEntity() {
+  public TerrainEntity(int x, int y, boolean isPassable) {
+    super(x, y);
+    this.isPassable = isPassable;
+    if (isPassable) {
+      renderCode = " ";
+    } else {
+      renderCode = "#";
+    }
   }
 
 }

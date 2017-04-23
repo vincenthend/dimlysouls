@@ -9,61 +9,48 @@ public class Slime implements Enemy {
   private int attack;
   private int defense;
   private int speed;
-  private int luck;
   private int expGet;
+  private String renderCode;
 
   /**
    * Default constructor
    */
   public Slime() {
+    health = 20;
+    attack = 10;
+    defense = 10;
+    speed = 50;
+    expGet = 5;
+    renderCode = "$";
   }
 
-  /**
-   * @return
-   */
+  @Override
   public int getHealth() {
-    // TODO implement here
-    return 0;
+    return health;
   }
 
-  /**
-   * @return
-   */
+  @Override
   public int getAttack() {
-    // TODO implement here
-    return 0;
+    return attack;
   }
 
-  /**
-   * @return
-   */
+  @Override
   public int getDefense() {
-    // TODO implement here
-    return 0;
+    return defense;
   }
 
-  /**
-   * @return
-   */
+  @Override
   public int getSpeed() {
-    // TODO implement here
-    return 0;
+    return speed;
   }
 
-  /**
-   * @return
-   */
-  public int getLuck() {
-    // TODO implement here
-    return 0;
+  @Override
+  public int getExp() {
+    return expGet;
   }
 
-  /**
-   * @return
-   */
-  public int getEXP() {
-    // TODO implement here
-    return 0;
+  @Override
+  public String getRenderCode() {
+    return renderCode;
   }
-
 }

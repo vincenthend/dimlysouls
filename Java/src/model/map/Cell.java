@@ -7,15 +7,14 @@ import model.entity.Entity;
  */
 public class Cell {
 
-
   private int posX;
   private int posY;
   private Entity entity;
 
-  /**
-   * Default constructor
-   */
-  public Cell() {
+  public Cell(int x, int y, Entity e) {
+    posX = x;
+    posY = y;
+    entity = e;
   }
 
   public Entity getEntity() {
