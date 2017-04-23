@@ -1,15 +1,15 @@
 package controller;
 
-import model.enemy.Enemy;
-import model.player.Player;
+import model.entity.EnemyEntity;
+import model.entity.PlayerEntity;
 
 /**
  *
  */
 public class EnemyBattleController extends Thread {
 
-  private Player playerEntity;
-  private Enemy enemyEntity;
+  private PlayerEntity playerEntity;
+  private EnemyEntity enemyEntity;
   private boolean isRunning;
 
 
@@ -18,7 +18,7 @@ public class EnemyBattleController extends Thread {
    * @param P
    * @param E
    */
-  public EnemyBattleController(Player P, Enemy E) {
+  public EnemyBattleController(PlayerEntity P, EnemyEntity E) {
 
   }
 
