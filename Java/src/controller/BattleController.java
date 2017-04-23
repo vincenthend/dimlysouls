@@ -18,21 +18,32 @@ public class BattleController {
 
   /**
    * Konstruktor battle controller, dipanggil setiap melakukan battle
-   * @param e reference enemy yang terlibat battle
-   * @param p reference player yang terlibat battle
-   * @param g interface yang sedang berjalan
+   * @param enemy reference enemy yang terlibat battle
+   * @param player reference player yang terlibat battle
+   * @param gameInterface interface yang sedang berjalan
    */
-  public BattleController(Enemy e, Player p, GameInterface g) {
+  public BattleController(Enemy enemy, Player player, GameInterface gameInterface) {
 
   }
 
 
   /**
-   * Membuat thread EnemyBattleController, dan membuat battleInterface
-   * dengan memanggil method createBattleInterface pada gameInterface
-   * kemudian mematikan thread EnemyBattleController setelah battle berakhir
+   *
    */
   public void startBattle() {
+    //Deklarasi MouseListener
+
+    //Deklarasi EnemyBattleController & PlayerBattleController
+
+    //Set Battle GUI
+
+    //Run EBC & PBC Thread
+
+    //While not battle end
+      //Wait for mouse click
+      //On mouse click, update GUI
+
+    //Kill EBC & PBC Thread
     g.createBattleInterface(p, e);
     EnemyBattleController(e);
   }

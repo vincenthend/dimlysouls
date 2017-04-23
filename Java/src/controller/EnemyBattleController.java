@@ -1,20 +1,24 @@
 package controller;
 
-import model.entity.EnemyEntity;
-import model.entity.PlayerEntity;
+import model.enemy.Enemy;
+import model.player.Player;
 
 /**
  *
  */
-public class EnemyBattleController extends Thread{
-  private PlayerEntity P;
-  private EnemyEntity E;
+public class EnemyBattleController extends Thread {
+
+  private Player playerEntity;
+  private Enemy enemyEntity;
+  private boolean isRunning;
+
 
   /**
-   * Membuat EnemyBattleController dengan Player terlibat P
+   *
    * @param P
+   * @param E
    */
-  public EnemyBattleController(PlayerEntity P){
+  public EnemyBattleController(Player P, Enemy E) {
 
   }
 
@@ -22,8 +26,11 @@ public class EnemyBattleController extends Thread{
   /**
    * Menyerang thread jika HP > 0 tiap (600/speed) detik
    */
-  public void run(){
-
+  @Override
+  public void run() {
+    //While isRunning
+    //Sleep for ... seconds
+    //Attack
   }
 
 

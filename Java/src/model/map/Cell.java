@@ -18,5 +18,7 @@ public class Cell {
   public Cell() {
   }
 
-
+  public Entity getEntity() {
+    return entity;
+  }
 }
