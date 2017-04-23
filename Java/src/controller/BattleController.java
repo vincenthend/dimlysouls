@@ -33,7 +33,8 @@ public class BattleController {
    * kemudian mematikan thread EnemyBattleController setelah battle berakhir
    */
   public void startBattle() {
-
+    g.createBattleInterface(p, e);
+    EnemyBattleController(e);
   }
 
   /**
