@@ -1,19 +1,15 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import model.entity.EnemyEntity;
+import model.entity.PlayerEntity;
+import model.map.Map;
+import model.player.Player;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import model.map.Map;
-import model.player.Player;
 
 /**
  *
@@ -111,6 +107,9 @@ public class GameInterface extends JFrame {
   public void updateInterface() {
     revalidate();
     repaint();
+  }
+  public void createBattleInterface(PlayerEntity p, EnemyEntity e) {
+
   }
 
   public void setPlayer(Player player) {

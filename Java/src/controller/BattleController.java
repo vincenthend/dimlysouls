@@ -6,6 +6,11 @@ import model.entity.PlayerEntity;
 import model.player.Player;
 import view.GameInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 /**
  *
  */
@@ -32,20 +37,28 @@ public class BattleController {
    */
   public void startBattle() {
     //Deklarasi MouseListener
+    ActionListener Mouse = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+
+      }
+    }
+    };
 
     //Deklarasi EnemyBattleController & PlayerBattleController
+    EnemyBattleController EBC = new EnemyBattleController(p, e);
+    EBC.start();
+    PlayerBattleController PBC = new PlayerBattleController(p, e);
 
     //Set Battle GUI
 
+    g.
     //Run EBC & PBC Thread
-
     //While not battle end
       //Wait for mouse click
       //On mouse click, update GUI
 
     //Kill EBC & PBC Thread
-    g.createBattleInterface(p, e);
-    EnemyBattleController(e);
   }
 
   /**
