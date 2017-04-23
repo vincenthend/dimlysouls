@@ -8,8 +8,6 @@ import view.GameInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  *
@@ -40,24 +38,26 @@ public class BattleController {
     ActionListener Mouse = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-
+        //isi action listenernya
       }
-    }
     };
 
     //Deklarasi EnemyBattleController & PlayerBattleController
     EnemyBattleController EBC = new EnemyBattleController(p, e);
-    EBC.start();
     PlayerBattleController PBC = new PlayerBattleController(p, e);
-
     //Set Battle GUI
-
-    g.
+    g.createBattleInterface(p, e);
     //Run EBC & PBC Thread
-    //While not battle end
-      //Wait for mouse click
-      //On mouse click, update GUI
+    EBC.start();
+    PBC.start();
 
+    //While not battle end
+    boolean isBattling = true;
+    while (isBattling) {
+      if (){
+
+      }
+    }
     //Kill EBC & PBC Thread
   }
 
@@ -65,6 +65,6 @@ public class BattleController {
    * Memanggil method battleViewUpdate pada class gameInterface
    */
   public void updateBattleView() {
-
+    g.battleViewUpdate(e);
   }
 }

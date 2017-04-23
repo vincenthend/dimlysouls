@@ -3,7 +3,6 @@ package view;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
-import model.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +16,7 @@ import java.awt.event.MouseListener;
 public class GameInterface extends JFrame {
 
   private ActionListener[] actionListener;
-  private Player player;
+  private PlayerEntity player;
 
   /**
    * Default constructor
@@ -111,8 +110,11 @@ public class GameInterface extends JFrame {
   public void createBattleInterface(PlayerEntity p, EnemyEntity e) {
 
   }
+  public void battleViewUpdate(EnemyEntity e) {
 
-  public void setPlayer(Player player) {
+  }
+
+  public void setPlayer(PlayerEntity player) {
     this.player = player;
   }
 }
