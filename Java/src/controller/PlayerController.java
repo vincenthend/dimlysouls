@@ -1,7 +1,6 @@
 package controller;
 
 import model.entity.PlayerEntity;
-import model.player.Player;
 
 import java.awt.event.KeyListener;
 
@@ -10,13 +9,16 @@ public class PlayerController extends Thread {
   private KeyListener key;
   private boolean isRunning;
 
-  public PlayerController(Player player, KeyListener keyListener) {
-
+  public PlayerController(PlayerEntity player, KeyListener keyListener) {
+    key = keyListener;
+    this.player = player;
+    isRunning = true;
   }
 
   @Override
   public void run() {
-    //while isrunning
+    while (isRunning){
+    }
     //wait for keystroke
       //jalan
   }

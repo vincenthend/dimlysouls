@@ -23,6 +23,7 @@ public class EnemyBattleController extends Thread {
   public EnemyBattleController(PlayerEntity P, EnemyEntity E) {
     playerEntity = P;
     enemyEntity = E;
+    isRunning = true;
   }
 
 
