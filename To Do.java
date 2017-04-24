@@ -11,7 +11,7 @@
 	
 2. Controller							|					|
 	a. BattleController					|		-PBC		| (termasuk EBC PBC)
-	b. PlayerController					|		?			|
+	b. PlayerController					|		DONE		|
 	c. EnemyController					|		DONE		|
 	
 3. View

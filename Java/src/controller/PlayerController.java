@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
+import model.map.TransferPoint;
 import view.GameInterface;
 
 public class PlayerController implements KeyListener {
@@ -29,7 +31,7 @@ public class PlayerController implements KeyListener {
   }
 
   @Override
-  public void keyReleased(KeyEvent keyEvent) {
+  public synchronized void keyReleased(KeyEvent keyEvent) {
     int move = -1;
 
     key = keyEvent.getKeyCode();
@@ -46,6 +48,11 @@ public class PlayerController implements KeyListener {
       move = Entity.DOWN;
     }
 
+    TransferPoint tp;
+    TransferPoint tpTemp;
+    Map tempMap;
+    int x;
+    int y;
     if (move != -1) {
       if (map.inBounds(playerEntity.getPosition(move))) {
         if (map.getMapCell(playerEntity.getPosition(move)).getTerrain().isPassable()) {
@@ -55,9 +62,28 @@ public class PlayerController implements KeyListener {
         }
       }
       else {
-        //pindah map
+        //Find exit point
+          tp = map.getTransferPoint(playerEntity.getPosition());
+          if (tp.getNextMap() == null) {
+            playerEntity.move(move);
+            x = (playerEntity.getPosition().x + map.getWidth()) % map.getWidth();
+            y = (playerEntity.getPosition().y + map.getHeight()) % map.getHeight();
+            playerEntity.setPosition(new Point(x, y));
+            tp.setEntrancePoint(new Point(x, y));
+
+            tempMap = new Map(map.getWidth(), map.getHeight());
+            tempMap.generateMap(tp.getEntrancePoint());
+            tp.setNextMap(tempMap);
+
+            tpTemp = tempMap.getTransferPoint(tp.getEntrancePoint());
+            tpTemp.setNextMap(map);
+            tpTemp.setEntrancePoint(tp.getExitPoint());
+          }
+          map.getMapCell(tp.getExitPoint()).setEntity(null);
+          map = tp.getNextMap();
+          map.getMapCell(tp.getEntrancePoint()).setEntity(playerEntity);
+          playerEntity.setPosition(tp.getEntrancePoint());
       }
-      System.out.println(playerEntity.getPosition());
       gameInterface.updateMap(map);
       gameInterface.updateInterface();
     }

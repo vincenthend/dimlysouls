@@ -328,8 +328,7 @@ public class Map {
     int i = 0;
     boolean found = false;
     while (i < mapExit.size() && !found) {
-      if (p.x == mapExit.get(i).getEntrancePoint().x && p.y == mapExit.get(i)
-          .getEntrancePoint().y) {
+      if (mapExit.get(i).getExitPoint().equals(p)) {
         found = true;
       }
       else {

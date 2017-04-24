@@ -12,7 +12,6 @@ public class Cell {
   private Point location;
   private Entity entity;
   private Terrain terrain;
-  private Cell nextCell;
 
   /**
    * Konstruktor kelas cell

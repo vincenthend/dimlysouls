@@ -70,4 +70,21 @@ public class TransferPoint {
   public Point getEntrancePoint() {
     return entrancePoint;
   }
+
+  /**
+   * Memasang nilai entrancePoint pada nextmap
+   * @param entrancePoint point pertama masuk pada nextmap
+   */
+  public void setEntrancePoint(Point entrancePoint) {
+    this.entrancePoint = entrancePoint;
+  }
+
+  /**
+   * Mengembalikan nilai indeks transfer point
+   * @param location
+   * @return indeks transfer point
+   */
+  public boolean equals(Point location){
+    return (getExitPoint().equals(location));
+  }
 }
