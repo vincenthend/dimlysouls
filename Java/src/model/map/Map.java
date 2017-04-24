@@ -14,8 +14,10 @@ public class Map {
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
   private LinkedList<TransferPoint> mapExit;
-  private final int branchChance = 95;
+  //Constants
+  private final int branchChance = 5;
   private final int offset = 40;
+  private final int minExit = 1;
 
   /**
    * Membuat map dengan width dan height terspesifikasi.
@@ -62,7 +64,6 @@ public class Map {
     randomGen.setSeed(System.currentTimeMillis());
 
     //Clear starting point
-    System.out.println("StartingPoint :" + x + " ," + y);
     mapCell[y][x] = new Cell(x, y, new TerrainEntity(x, y, true));
 
     // Add to seed
@@ -76,23 +77,39 @@ public class Map {
 
     // Generate other point
     boolean finishGenerate = false;
+    boolean exitsafe;
     int pathCount = 1;
     int i;
+    int j;
     Point tempPoint;
+    Point tempPoint2;
     LinkedList<Integer> availMove;
 
     while (!finishGenerate) {
       branchHead = branchQueue.removeFirst();
-      // Generate next point
       // Check avail nodes
       availMove = new LinkedList<>();
-
+      exitsafe = true;
       for (i = 0; i < 4; i++) {
         tempPoint = nextNode(i, branchHead);
         if (inBounds(tempPoint) && !(!(pathCount >= Math.max(height, width) * offset / 10)
             && isExit(tempPoint))
             && mapCell[tempPoint.y][tempPoint.x].getEntity().getRenderCode().equals("#")) {
-          availMove.add(i);
+          //Check near exits
+          if (isExit(tempPoint)) {
+            for (j = 0; j < 4; j++) {
+              tempPoint2 = nextNode(j, tempPoint);
+              if (isExit(tempPoint2) && inBounds(tempPoint2)) {
+                if (mapCell[tempPoint2.y][tempPoint2.x].getEntity().getRenderCode().equals(" ")) {
+                  exitsafe = false;
+                }
+              }
+            }
+          }
+
+          if (exitsafe) {
+            availMove.add(i);
+          }
         }
       }
 
@@ -110,12 +127,12 @@ public class Map {
         if (!isExit(tempPoint)) {
           //Decide the need to branch
           rg = Math.abs(randomGen.nextInt(101));
-          if (rg >= branchChance) {
+          if (rg >= 100 - branchChance) {
             branchQueue.addLast(new Point(branchHead.x, branchHead.y));
           }
           branchQueue.addLast(branchHead);
         }
-        else{
+        else {
           mapExit.add(new TransferPoint(tempPoint));
         }
       }
@@ -127,14 +144,17 @@ public class Map {
       }
 
       if (branchQueue.isEmpty()) {
-        finishGenerate = true;
+        if (mapExit.size() > minExit) {
+          finishGenerate = true;
+        }
+        else {
+          do {
+            rg = randomGen.nextInt(mapSeed.size());
+            branchQueue.addLast(mapSeed.get(rg));
+          } while (isExit(branchQueue.getLast()));
+        }
       }
     }
-    System.out.println("Number of Path : " + pathCount);
-    System.out.println("Map Seed : ");
-    System.out.println(mapSeed.toString());
-    System.out.println("Exits : ");
-    System.out.println(mapExit.toString());
   }
 
   /**

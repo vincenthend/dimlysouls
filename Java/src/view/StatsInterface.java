@@ -38,6 +38,8 @@ public class StatsInterface extends JPanel {
 
     add(new JLabel("Name"), label);
     label.gridy++;
+    add(new JLabel("HP"), label);
+    label.gridy++;
     add(new JLabel("ATK"), label);
     label.gridy++;
     add(new JLabel("DEF"), label);
@@ -53,6 +55,8 @@ public class StatsInterface extends JPanel {
             Integer.toString(playerEntity.getCurrentHealth()) + "/" + Integer
                 .toString(player.getHealth())),
         stats);
+    stats.gridy++;
+    add(new JLabel(Integer.toString(player.getAttack())), stats);
     stats.gridy++;
     add(new JLabel(Integer.toString(player.getDefense())), stats);
     stats.gridy++;

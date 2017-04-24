@@ -70,5 +70,4 @@ public class TransferPoint {
   public Point getEntrancePoint() {
     return entrancePoint;
   }
-
 }
