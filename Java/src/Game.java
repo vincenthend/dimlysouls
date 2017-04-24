@@ -39,6 +39,9 @@ public class Game {
         gameInterface.setPlayer(playerEntity);
 
         //Show Interface
+        Map tempMap = new Map(41,21);
+        tempMap.generateMap();
+
         gameInterface.switchToMap(new KeyListener() {
           int key;
           @Override
@@ -67,7 +70,7 @@ public class Game {
           public void keyReleased(KeyEvent keyEvent) {
             key = -999;
           }
-        }, null);
+        }, tempMap);
         gameInterface.updateInterface();
       }
     };

@@ -3,80 +3,25 @@ package model.player;
 /**
  *
  */
-public abstract class Player {
-  protected int health;
-  protected int attack;
-  protected int defense;
-  protected int speed;
-  protected int level;
-  protected int exp;
-  protected int next;
-  protected String nama;
-  protected final int classId;
-
-  public Player() {
-    classId = 0;
-  }
-
-  public Player(int classId, String nama) {
-    this.classId = classId;
-    this.nama = nama;
-  }
-
+public interface Player {
   /**
    * Menambah level player dan mengurangi nilai exp dengan nilai next.
-   * Mengubah nilai next sesuai dengan rumus level^2 + offset
+   * Mengubah nilai next sesuai dengan rumus next * k + offset
    */
-  public void levelUp() {
-    exp -= exp;
-    next = next * 3 / 2;
-    level++;
-  }
-
+  public void levelUp();
   /**
    * Mengecek apakah player harus level up
    */
-  public boolean isLeveling() {
-    return exp >= next;
-  }
+  public boolean isLeveling();
+  // Getter & Setter
+  public int getHealth();
+  public int getAttack();
+  public int getDefense();
+  public int getSpeed();
+  public int getLevel();
+  public int getExp();
+  public int getNext();
+  public String getNama();
+  public int getClassId();
 
-  public int getHealth() {
-    return health;
-  }
-
-  public int getAttack() {
-    return attack;
-  }
-
-  public int getDefense() {
-    return defense;
-  }
-
-  public int getSpeed() {
-    return speed;
-  }
-
-  public int getLevel() {
-    return level;
-  }
-
-  public int getExp() {
-    return exp;
-  }
-
-  public int getNext() {
-    return next;
-  }
-
-  public String getNama() {
-    return nama;
-  }
-
-  public void setNama(String nama) {
-    this.nama = nama;
-  }
-
-  public int getClassId() {
-    return classId;
-  }
 }
