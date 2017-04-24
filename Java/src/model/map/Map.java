@@ -1,10 +1,11 @@
 package model.map;
 
-import java.awt.Point;
-import java.util.LinkedList;
-import java.util.Random;
 import model.enemy.EnemyGenerator;
 import model.entity.EnemyEntity;
+
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Class Map, berisi peta dan semua data peta
@@ -339,5 +340,8 @@ public class Map {
   }
   public LinkedList<EnemyEntity> getEnemyList() {
     return enemyList;
+  }
+  public boolean isInRange(Point p){
+    return (p.x >= 0 && p.x < width && p.y >= 0 && p.y < height);
   }
 }
