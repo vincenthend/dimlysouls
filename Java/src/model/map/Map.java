@@ -16,7 +16,7 @@ public class Map {
   private final int branchChance = 10;
   private final int offset = 40;
   private final int minExit = 3;
-  private final int mapToEnemy = 5;
+  private final int mapToEnemy = 2;
   private int width;
   private int height;
   private Cell[][] mapCell;

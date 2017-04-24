@@ -96,6 +96,7 @@ public class GameInterface extends JFrame {
    * @param keyListener actionListener for keyboard input
    */
   public void switchToMap(KeyListener keyListener, Map map) {
+    addKeyListener(keyListener);
     removeContent();
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();

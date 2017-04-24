@@ -40,12 +40,12 @@ public class EnemyController extends Thread {
     rand.setSeed(System.currentTimeMillis());
     Cell tempCell;
     Point tempPoint;
-
+    boolean moving;
     try {
       while (isRunning) {
-        Thread.sleep(10000 / enemyEntity.getEnemy().getSpeed());
+        Thread.sleep(15000 / enemyEntity.getEnemy().getSpeed());
         move = -1;
-        boolean moving = false;
+        moving = false;
         while (!moving) {
           move = rand.nextInt(4);
           if (isDirPassable(move)) {
@@ -55,7 +55,8 @@ public class EnemyController extends Thread {
             moving = true;
           }
         }
-        gui.getMapInterface().updateMap(map);
+
+        gui.updateMap(map);
         gui.updateInterface();
       }
     } catch (InterruptedException e) {

@@ -1,12 +1,10 @@
 import controller.EnemyController;
+import controller.PlayerController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import model.entity.EnemyEntity;
-import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.player.Berserker;
@@ -58,78 +56,23 @@ public class Game {
           player = new Ninja(name);
         }
 
-        //Set Player
-        playerEntity = new PlayerEntity(map.getMapSeed().get(map.getMapSeed().size()/2), player);
-        map.getMapCell(playerEntity.getPosition()).setEntity(playerEntity);
-        gameInterface.setPlayer(playerEntity);
-
         //Generate Map
         map = new Map(41, 21);
         map.generateMap();
         map.putEnemy();
         attachEnemyController();
 
+        /*
+        //Set Player
+        playerEntity = new PlayerEntity(0, 0, player);
+        gameInterface.setPlayer(playerEntity);*/
+
+        playerEntity = new PlayerEntity(map.getMapSeed().get(map.getMapSeed().size() / 2), player);
+        map.getMapCell(playerEntity.getPosition()).setEntity(playerEntity);
+        gameInterface.setPlayer(playerEntity);
+
         //Show Interface
-        gameInterface.switchToMap(new KeyListener() {
-          int key;
-
-          @Override
-          public void keyTyped(KeyEvent keyEvent) {
-          }
-
-          @Override
-          public void keyPressed(KeyEvent keyEvent) {
-            key = keyEvent.getKeyCode();
-            if (key == KeyEvent.VK_LEFT) {
-              if (map.inBounds(playerEntity.getPosition(Entity.LEFT))) {
-                if (map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain()
-                    .isPassable()) {
-                  playerEntity.move(Entity.LEFT);
-                }
-              }
-              else {
-                //pindah map
-              }
-            }
-            else if (key == KeyEvent.VK_RIGHT) {
-              if (map.inBounds(playerEntity.getPosition(Entity.RIGHT))) {
-                if (map.getMapCell(playerEntity.getPosition(Entity.RIGHT)).getTerrain()
-                    .isPassable()) {
-                  playerEntity.move(Entity.RIGHT);
-                }
-              }
-              else {
-                //pindah map
-              }
-            }
-            else if (key == KeyEvent.VK_UP) {
-              if (map.inBounds(playerEntity.getPosition(Entity.UP))) {
-                if (map.getMapCell(playerEntity.getPosition(Entity.UP)).getTerrain().isPassable()) {
-                  playerEntity.move(Entity.UP);
-                }
-              }
-              else {
-                //pindah map
-              }
-            }
-            else if (key == KeyEvent.VK_DOWN) {
-              if (map.inBounds(playerEntity.getPosition(Entity.DOWN))) {
-                if (map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain()
-                    .isPassable()) {
-                  playerEntity.move(Entity.DOWN);
-                }
-              }
-              else {
-                //pindah map
-              }
-            }
-          }
-
-          @Override
-          public void keyReleased(KeyEvent keyEvent) {
-            key = -999;
-          }
-        }, map);
+        gameInterface.switchToMap(new PlayerController(playerEntity, gameInterface, map), map);
         gameInterface.updateInterface();
       }
     };
