@@ -3,7 +3,7 @@ package controller;
 import view.GameInterface;
 
 /**
- * Created by vince on 24/04/2017.
+ * MASIH GATAU MAU PAKE INI APA GA.
  */
 public class GUIUpdateController extends Thread {
   private GameInterface gui;

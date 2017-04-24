@@ -1,17 +1,20 @@
 import controller.EnemyController;
-import model.entity.EnemyEntity;
-import model.entity.Entity;
-import model.entity.PlayerEntity;
-import model.map.Map;
-import model.player.*;
-import view.GameInterface;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import model.entity.EnemyEntity;
+import model.entity.Entity;
+import model.entity.PlayerEntity;
+import model.map.Map;
+import model.player.Berserker;
+import model.player.Ninja;
+import model.player.Paladin;
+import model.player.Player;
+import model.player.Warrior;
+import view.GameInterface;
 
 public class Game {
   private Player player;
@@ -139,12 +142,15 @@ public class Game {
 
     gameInterface.switchToMainMenu(newGame, loadGame);
     gameInterface.updateInterface();
+    //GUIUpdateController gupc = new GUIUpdateController(gameInterface);
+    //gupc.start();
   }
 
   public void attachEnemyController() {
     LinkedList<EnemyEntity> enemyList = map.getEnemyList();
     EnemyController enemyController;
     int i;
+    System.out.println(enemyList.size());
     for (i = 0; i < enemyList.size(); i++) {
       enemyController = new EnemyController(enemyList.get(i), map, gameInterface);
       enemyControllers.addLast(enemyController);

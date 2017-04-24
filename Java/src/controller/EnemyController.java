@@ -44,8 +44,8 @@ public class EnemyController extends Thread {
 
     try {
       while (isRunning) {
-        synchronized (enemyEntity) {
-          Thread.sleep(25000 / enemyEntity.getEnemy().getSpeed());
+        //synchronized (enemyEntity) {
+          Thread.sleep(10000 / enemyEntity.getEnemy().getSpeed());
           move = -1;
           while (move == -1) {
             move = rand.nextInt(4);
@@ -110,9 +110,9 @@ public class EnemyController extends Thread {
               }
             }
           }
-        }
+        //}
 
-        System.out.println(enemyEntity.getPosition().toString());
+        //System.out.println(enemyEntity.getPosition().toString());
         gui.getMapInterface().updateMap(map);
         gui.updateInterface();
       }
