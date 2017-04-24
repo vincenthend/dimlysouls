@@ -7,6 +7,7 @@ import model.entity.Entity;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Terrain;
+import view.GameInterface;
 
 /**
  * Class EnemyControler mengatur pergerakan musuh di map
@@ -17,6 +18,7 @@ public class EnemyController extends Thread {
   private EnemyEntity enemyEntity;
   private boolean isRunning;
   private Map map;
+  private GameInterface gui;
 
   /**
    * Konstruktor EnemyController.
@@ -24,10 +26,11 @@ public class EnemyController extends Thread {
    * @param enemyEntity musuh yang digerakkan
    * @param M peta yang digunakan untuk navigasi
    */
-  public EnemyController(EnemyEntity enemyEntity, Map M) {
+  public EnemyController(EnemyEntity enemyEntity, Map M, GameInterface gui) {
     this.enemyEntity = enemyEntity;
     map = M;
     isRunning = true;
+    this.gui = gui;
   }
 
   /**
@@ -43,7 +46,7 @@ public class EnemyController extends Thread {
     try {
       while (isRunning) {
         synchronized (enemyEntity) {
-          sleep(1000 / enemyEntity.getEnemy().getSpeed());
+          Thread.sleep(2000 / enemyEntity.getEnemy().getSpeed());
           move = -1;
           while (move == -1) {
             move = rand.nextInt(4);
@@ -110,6 +113,10 @@ public class EnemyController extends Thread {
         }
 
         System.out.println(enemyEntity.getPosition().toString());
+        synchronized (gui) {
+          gui.getMapInterface().updateMap(map);
+        }
+        gui.updateInterface();
       }
     } catch (InterruptedException e) {
       System.out.println("Interrupted");
