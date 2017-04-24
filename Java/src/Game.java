@@ -1,31 +1,44 @@
-import model.entity.Entity;
-import model.entity.PlayerEntity;
-import model.map.Map;
-import model.player.*;
-import view.GameInterface;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import model.entity.Entity;
+import model.entity.PlayerEntity;
+import model.map.Map;
+import model.player.Berserker;
+import model.player.Ninja;
+import model.player.Paladin;
+import model.player.Player;
+import model.player.Warrior;
+import view.GameInterface;
 
 public class Game {
-
   private Player player;
   private PlayerEntity playerEntity;
   private LinkedList<Map> mapList;
   private GameInterface gameInterface;
 
   /**
-   * Default constructor
+   * Konstruktor kelas game
    */
   public Game() {
     gameInterface = new GameInterface();
   }
 
-  public void MainMenu(){
+  /**
+   * @param args
+   */
+  public static void main(String[] args) {
+    Game game = new Game();
+    game.MainMenu();
+  }
+
+  /**
+   * Menampilkan Main Menu
+   */
+  public void MainMenu() {
     ActionListener newGame = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
@@ -34,17 +47,18 @@ public class Game {
         String name = JOptionPane.showInputDialog(null, "What's your name?");
         System.out.println(name);
         String[] options = new String[] {"Warrior", "Paladin", "Berserker", "Ninja"};
-        playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-        if (playerClass == 0){
+        playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection",
+            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+        if (playerClass == 0) {
           player = new Warrior(name);
         }
-        else if (playerClass == 1){
+        else if (playerClass == 1) {
           player = new Paladin(name);
         }
-        else if (playerClass == 2){
+        else if (playerClass == 2) {
           player = new Berserker(name);
         }
-        else if (playerClass == 3){
+        else if (playerClass == 3) {
           player = new Ninja(name);
         }
         System.out.println(playerClass);
@@ -56,11 +70,12 @@ public class Game {
         gameInterface.setPlayer(playerEntity);
 
         //Show Interface
-        Map tempMap = new Map(41,21);
+        Map tempMap = new Map(41, 21);
         tempMap.generateMap();
 
         gameInterface.switchToMap(new KeyListener() {
           int key;
+
           @Override
           public void keyTyped(KeyEvent keyEvent) {
           }
@@ -68,6 +83,7 @@ public class Game {
           @Override
           public void keyPressed(KeyEvent keyEvent) {
             key = keyEvent.getKeyCode();
+<<<<<<< HEAD
             if (key == KeyEvent.VK_LEFT){
               if (map.inBounds(playerEntity.getPosition(Entity.LEFT)) && map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()){
                 playerEntity.move(Entity.LEFT);
@@ -87,6 +103,20 @@ public class Game {
               if (map.inBounds(playerEntity.getPosition(Entity.DOWN)) && map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()) {
                 playerEntity.move(Entity.DOWN);
               }
+=======
+            if (key == KeyEvent.VK_LEFT) {
+              //if kirinya bisa
+              playerEntity.move(Entity.LEFT);
+            }
+            else if (key == KeyEvent.VK_RIGHT) {
+              playerEntity.move(Entity.RIGHT);
+            }
+            else if (key == KeyEvent.VK_UP) {
+              playerEntity.move(Entity.UP);
+            }
+            else if (key == KeyEvent.VK_DOWN) {
+              playerEntity.move(Entity.DOWN);
+>>>>>>> 5876874bce183771fcf07f42c322ec596736c053
             }
           }
 
@@ -110,16 +140,7 @@ public class Game {
     gameInterface.updateInterface();
   }
 
-  public void Start(){
+  public void Start() {
     //Nyalain PlayerController, EnemyController (buat tiap enemy) uhh liat di notepad aja :P
   }
-
-  /**
-   * @param args
-   */
-  public static void main(String[] args) {
-    Game game = new Game();
-    game.MainMenu();
-  }
-
 }

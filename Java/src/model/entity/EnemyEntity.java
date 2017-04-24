@@ -1,50 +1,99 @@
 package model.entity;
 
+import java.awt.Point;
 import model.enemy.Enemy;
 
 /**
- *
+ * Entity yang berisi enemy.
  */
 public final class EnemyEntity extends Entity {
-
   private Enemy enemy;
   private int currentHealth;
-  private int [] status;
+  private int[] status;
 
   /**
-   * Default constructor
+   * Konstruktor EnemyEntity.
+   * @param x absis objek enemy
+   * @param y ordinat objek enemy
+   * @param e musuh di dalam entity
    */
   public EnemyEntity(int x, int y, Enemy e) {
-    super(x, y,1);
+    super(x, y, 1);
     int i;
     enemy = e;
     renderCode = e.getRenderCode();
-    status = new int [5];
-    for (i = 0; i < 5; i++){
-      status [i] = 0;
+    status = new int[5];
+    for (i = 0; i < 5; i++) {
+      status[i] = 0;
     }
   }
 
+  /**
+   * Konstruktor EnemyEntity.
+   * @param location
+   * @param e
+   */
+  public EnemyEntity(Point location, Enemy e) {
+    super(location, 1);
+    int i;
+    enemy = e;
+    renderCode = e.getRenderCode();
+    status = new int[5];
+    for (i = 0; i < 5; i++) {
+      status[i] = 0;
+    }
+  }
+
+  /**
+   * Mengembalikan nilai health musuh.
+   * @return nilai health musuh
+   */
   public int getCurrentHealth() {
     return currentHealth;
   }
+
+  /**
+   * Mengatur nilai health musuh.
+   * @param h nilai health musuh
+   */
   public void setCurrentHealth(int h) {
     currentHealth = h;
   }
-  public void turn(){
+
+  /**
+   *
+   */
+  public void turn() {
     int i;
-    for (i = 0; i < 5; i++){
-      if (status [i] > 0){
-        status [i] = status [i] - 1;
+    for (i = 0; i < 5; i++) {
+      if (status[i] > 0) {
+        status[i] = status[i] - 1;
       }
     }
   }
-  public boolean getStatus(int n){
+
+  /**
+   *
+   * @param n
+   * @return
+   */
+  public boolean getStatus(int n) {
     return (status[n] > 0);
   }
-  public void setStatus(int n, int t){
+
+  /**
+   *
+   * @param n
+   * @param t
+   */
+  public void setStatus(int n, int t) {
     status[n] = t;
   }
+
+  /**
+   * Mengembalikan enemy yang ada di dalam entity.
+   * @return enemy di dalam entity
+   */
   public Enemy getEnemy() {
     return enemy;
   }

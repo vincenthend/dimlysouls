@@ -1,16 +1,23 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-
 /**
- *
+ * Kelas GameInterface mengatur isi interface.
+ * @author Vincent Hendryanto Halim / 13515089
  */
 public class GameInterface extends JFrame {
   private ActionListener[] actionListener;
@@ -100,14 +107,14 @@ public class GameInterface extends JFrame {
 
     c.gridx++;
     c.gridwidth = 1;
-    c.insets = new Insets(0,20,0,0);
+    c.insets = new Insets(0, 20, 0, 0);
     c.anchor = GridBagConstraints.LINE_END;
 
     statsInterface = new StatsInterface(player);
     add(statsInterface, c);
   }
 
-  public void switchToBattle(ActionListener skillListener [], EnemyEntity e) {
+  public void switchToBattle(ActionListener skillListener[], EnemyEntity e) {
 
   }
 
@@ -122,9 +129,11 @@ public class GameInterface extends JFrame {
     revalidate();
     repaint();
   }
+
   public void battleViewUpdate(EnemyEntity e) {
 
   }
+
   public void setPlayer(PlayerEntity player) {
     this.player = player;
   }

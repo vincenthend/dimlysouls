@@ -5,17 +5,31 @@ import model.entity.EnemyEntity;
 import model.entity.Entity;
 import model.map.Map;
 
+/**
+ * Class EnemyControler mengatur pergerakan musuh di map
+ *
+ * @Author Mikhael Artur Darmakesuma / 13515099
+ */
 public class EnemyController extends Thread {
   private EnemyEntity enemyEntity;
   private boolean isRunning;
   private Map map;
 
+  /**
+   * Konstruktor EnemyController.
+   *
+   * @param enemyEntity musuh yang digerakkan
+   * @param M peta yang digunakan untuk navigasi
+   */
   public EnemyController(EnemyEntity enemyEntity, Map M) {
     this.enemyEntity = enemyEntity;
     map = M;
     isRunning = true;
   }
 
+  /**
+   * Menjalankan thread EnemyController.
+   */
   public void run() {
     int move;
     Random rand = new Random();
@@ -24,7 +38,7 @@ public class EnemyController extends Thread {
     try {
       sleep(1000 / enemyEntity.getEnemy().getSpeed());
       move = -1;
-      while (move == - 1){
+      while (move == -1) {
         move = rand.nextInt(4);
         if (move == 0){
           if (map.inBounds(enemyEntity.getPosition(Entity.LEFT)) && map.getMapCell(enemyEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()){
@@ -63,7 +77,11 @@ public class EnemyController extends Thread {
       System.out.println("Interrupted");
     }
   }
-  public void kill(){
+
+  /**
+   * Mematikan thread EnemyController
+   */
+  public void kill() {
     isRunning = false;
   }
 }
