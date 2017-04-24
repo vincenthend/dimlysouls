@@ -1,9 +1,9 @@
 import model.entity.PlayerEntity;
 import model.map.Map;
-import model.player.Player;
-import model.player.Warrior;
+import model.player.*;
 import view.GameInterface;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -28,9 +28,25 @@ public class Game {
     ActionListener newGame = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
+        int playerClass;
         System.out.println("New Game Invoked");
-        //Pilih class
-        player = new Warrior("Player");
+        String name = JOptionPane.showInputDialog(null, "What's your name?");
+        System.out.println(name);
+        String[] options = new String[] {"Warrior", "Paladin", "Berserker", "Ninja"};
+        playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+        if (playerClass == 0){
+          player = new Warrior(name);
+        }
+        else if (playerClass == 1){
+          player = new Paladin(name);
+        }
+        else if (playerClass == 2){
+          player = new Berserker(name);
+        }
+        else if (playerClass == 3){
+          player = new Ninja(name);
+        }
+        System.out.println(playerClass);
 
         //Generate Map
 
