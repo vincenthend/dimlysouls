@@ -11,11 +11,14 @@ import model.entity.TerrainEntity;
 public class Map {
   private int width;
   private int height;
-  private String mapSeed;
   private Cell[][] mapCell;
+  private LinkedList<Point> mapSeed;
+
+  private final int branchChance = 95;
+  private final int offset = 40;
 
   /**
-   * Default constructor
+   * Membuat map dengan width dan height
    */
   public Map(int width, int height) {
     int i;
@@ -33,40 +36,24 @@ public class Map {
     }
   }
 
-  /**
-   *
-   */
-  public void generateMap() {
-    int rg;
+  public void generateMap(int x1, int y1){
     int x;
     int y;
-    final int branchChance = 90;
-    final int offset = 20;
-    Point branchHead;
+    int rg;
+
+    Point branchHead = new Point(x1,y1);
     LinkedList<Point> branchQueue;
-    LinkedList<Point> mapSeed;
+
+    x = x1;
+    y = y1;
 
     //Create randomizer
     Random randomGen = new Random();
     randomGen.setSeed(System.currentTimeMillis());
 
-    // Choose the starting point
-    rg = randomGen.nextInt(2);
-    branchHead = new Point();
-    if (rg == 1) {
-      branchHead.x = Math.abs((randomGen.nextInt() % (width - 1)) + 1);
-      branchHead.y = (randomGen.nextInt() % 2 == 0) ? 0 : (height - 1);
-    }
-    else {
-      branchHead.x = (randomGen.nextInt() % 2 == 0) ? 0 : (width - 1);
-      branchHead.y = Math.abs((randomGen.nextInt() % (height - 1)) + 1);
-    }
-
     //Clear starting point
-    x = branchHead.x;
-    y = branchHead.y;
     System.out.println("StartingPoint :" + x + " ," + y);
-    mapCell[y][x] = new Cell(y, x, new TerrainEntity(y, x, true));
+    mapCell[y][x] = new Cell(x, y, new TerrainEntity(x, y, true));
 
     // Add to seed
     mapSeed = new LinkedList<>();
@@ -82,7 +69,6 @@ public class Map {
     int i;
     Point tempPoint;
     LinkedList<Integer> availMove;
-    int branchCount = 0;
 
     while (!finishGenerate) {
       branchHead = branchQueue.removeFirst();
@@ -92,8 +78,8 @@ public class Map {
 
       for (i = 0; i < 4; i++) {
         tempPoint = nextNode(i, branchHead);
-        if (inBounds(tempPoint) && !(!(pathCount >= height * offset / 10) && isExit(tempPoint))
-            && mapCell[tempPoint.y][tempPoint.x].getEntity().getRenderCode() == "#") {
+        if (inBounds(tempPoint) && !(!(pathCount >= Math.max(height,width) * offset / 10) && isExit(tempPoint))
+            && mapCell[tempPoint.y][tempPoint.x].getEntity().getRenderCode().equals("#")) {
           availMove.add(i);
         }
       }
@@ -104,18 +90,17 @@ public class Map {
         tempPoint = nextNode(availMove.get(rg), branchHead);
         y = tempPoint.y;
         x = tempPoint.x;
-        mapCell[y][x] = new Cell(y, x, new TerrainEntity(y, x, true));
+        mapCell[y][x] = new Cell(x, y, new TerrainEntity(x, y, true));
+        mapSeed.add(tempPoint);
         pathCount++;
         branchHead.setLocation(x, y);
 
         if (!isExit(tempPoint)) {
           //Decide the need to branch
-          /*rg = Math.abs(randomGen.nextInt(101));
-          if (rg >= branchChance && branchCount < 4) {
-            branchCount++;
+          rg = Math.abs(randomGen.nextInt(101));
+          if (rg >= branchChance) {
             branchQueue.addLast(new Point(branchHead.x, branchHead.y));
-            System.out.println("Branch at :" + branchHead.x + " ," + branchHead.y);
-          }*/
+          }
           branchQueue.addLast(branchHead);
         }
       }
@@ -130,6 +115,35 @@ public class Map {
         finishGenerate = true;
       }
     }
+    System.out.println("Number of Path : "+pathCount);
+    System.out.println("Map Seed : ");
+    System.out.println(mapSeed.toString());
+  }
+
+  /**
+   *
+   */
+  public void generateMap() {
+    int rg;
+    int x;
+    int y;
+
+    //Create randomizer
+    Random randomGen = new Random();
+    randomGen.setSeed(System.currentTimeMillis());
+
+    // Choose the starting point
+    rg = randomGen.nextInt(2);
+    if (rg == 1) {
+      x = Math.abs((randomGen.nextInt() % (width - 1)) + 1);
+      y = (randomGen.nextInt() % 2 == 0) ? 0 : (height - 1);
+    }
+    else {
+      x = (randomGen.nextInt() % 2 == 0) ? 0 : (width - 1);
+      y = Math.abs((randomGen.nextInt() % (height - 1)) + 1);
+    }
+
+    generateMap(x,y);
   }
 
   // 0 : up
