@@ -1,7 +1,8 @@
 package model.entity;
 
-import java.awt.Point;
 import model.player.Player;
+
+import java.awt.*;
 
 /**
  *
@@ -36,11 +37,6 @@ public final class PlayerEntity extends Entity {
     for (i = 0; i < 5; i++) {
       status[i] = 0;
     }
-  }
-
-  public void move(int deltaX, int deltaY) {
-    location.x += deltaX;
-    location.y += deltaY;
   }
 
   public int getCurrentHealth() {

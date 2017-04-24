@@ -9,9 +9,14 @@ public abstract class Entity {
   protected Point location;
   protected String renderCode;
   protected int entityId;
+  public static final int LEFT = 0;
+  public static final int RIGHT = 1;
+  public static final int UP = 2;
+  public static final int DOWN = 3;
 
   /**
    * Konstruktor kelas Entity.
+   *
    * @param x absis objek entity
    * @param y absis objek entity
    */
@@ -21,6 +26,7 @@ public abstract class Entity {
 
   /**
    * Konstruktor kelas Entity.
+   *
    * @param location lokasi objek entity
    */
   public Entity(Point location) {
@@ -29,6 +35,7 @@ public abstract class Entity {
 
   /**
    * Konstruktor kelas Entity.
+   *
    * @param x absis objek entity
    * @param y absis objek entity
    * @param eId ID entity
@@ -40,6 +47,7 @@ public abstract class Entity {
 
   /**
    * Konstruktor kelas Entity.
+   *
    * @param location lokasi objek entity
    * @param eId ID entity
    */
@@ -50,6 +58,7 @@ public abstract class Entity {
 
   /**
    * Mengembalikan renderCode entity.
+   *
    * @return renderCode entity
    */
   public String getRenderCode() {
@@ -58,15 +67,48 @@ public abstract class Entity {
 
   /**
    * Mengembalikan posisi entity.
+   *
    * @return posisi entity
    */
   public Point getPosition() {
-    return (new Point(location));
+    return (location);
+  }
+
+  public Point getPosition(int i) {
+    if (i == LEFT) {
+      return (new Point(location.x, location.y - 1));
+    }
+    else if (i == RIGHT) {
+      return (new Point(location.x, location.y + 1));
+    }
+    else if (i == UP) {
+      return (new Point(location.x - 1, location.y));
+    }
+    else if (i == DOWN) {
+      return (new Point(location.x + 1, location.y));
+    }
+    else {
+      return null;
+    }
+  }
+
+  public void move(int i) {
+    if (i == LEFT) {
+      location.x = location.x - 1;
+    }
+    else if (i == RIGHT) {
+      location.x = location.x + 1;
+    }
+    else if (i == UP) {
+      location.x = location.y - 1;
+    }
+    else if (i == DOWN) {
+      location.x = location.y + 1;
+    }
   }
 
   /**
    * Mengembalikan ID entity.
-   * @return
    */
   public int getEntityId() {
     return entityId;
@@ -74,6 +116,7 @@ public abstract class Entity {
 
   /**
    * mengatur ID Entity
+   *
    * @param entityId ID Entity.
    */
   public void setEntityId(int entityId) {

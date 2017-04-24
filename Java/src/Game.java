@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.player.Berserker;
@@ -84,16 +85,16 @@ public class Game {
             key = keyEvent.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
               //if kirinya bisa
-              playerEntity.move(-1, 0);
+              playerEntity.move(Entity.LEFT);
             }
             else if (key == KeyEvent.VK_RIGHT) {
-              playerEntity.move(1, 0);
+              playerEntity.move(Entity.RIGHT);
             }
             else if (key == KeyEvent.VK_UP) {
-              playerEntity.move(0, -1);
+              playerEntity.move(Entity.UP);
             }
             else if (key == KeyEvent.VK_DOWN) {
-              playerEntity.move(0, 1);
+              playerEntity.move(Entity.DOWN);
             }
           }
 

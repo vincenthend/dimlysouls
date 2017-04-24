@@ -289,4 +289,8 @@ public class Map {
   public Cell getMapCell(int x, int y) {
     return mapCell[y][x];
   }
+
+  public Cell getMapCell(Point position) {
+    return mapCell[position.y][position.x];
+  }
 }
