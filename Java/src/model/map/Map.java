@@ -96,13 +96,13 @@ public class Map {
         tempPoint = nextNode(i, branchHead);
         if (inBounds(tempPoint) && !(!(pathCount >= height * width * offset / 100)
             && isExit(tempPoint))
-            && mapCell[tempPoint.y][tempPoint.x].getEntity().getRenderCode().equals("#")) {
+            && !(mapCell[tempPoint.y][tempPoint.x].getTerrain().isPassable())) {
           //Check near exits
           if (isExit(tempPoint)) {
             for (j = 0; j < 4; j++) {
               tempPoint2 = nextNode(j, tempPoint);
               if (isExit(tempPoint2) && inBounds(tempPoint2)) {
-                if (mapCell[tempPoint2.y][tempPoint2.x].getEntity().getRenderCode().equals(" ")) {
+                if (mapCell[tempPoint2.y][tempPoint2.x].getTerrain().isPassable()) {
                   exitsafe = false;
                 }
               }
