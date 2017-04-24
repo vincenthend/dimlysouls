@@ -15,7 +15,7 @@ public final class EnemyEntity extends Entity {
    * Default constructor
    */
   public EnemyEntity(int x, int y, Enemy e) {
-    super(x, y);
+    super(x, y,1);
     int i;
     enemy = e;
     renderCode = e.getRenderCode();

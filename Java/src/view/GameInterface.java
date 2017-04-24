@@ -100,6 +100,7 @@ public class GameInterface extends JFrame {
 
     c.gridx++;
     c.gridwidth = 1;
+    c.insets = new Insets(0,20,0,0);
     c.anchor = GridBagConstraints.LINE_END;
 
     statsInterface = new StatsInterface(player);

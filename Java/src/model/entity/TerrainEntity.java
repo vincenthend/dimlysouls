@@ -15,8 +15,10 @@ public class TerrainEntity extends Entity {
     this.isPassable = isPassable;
     if (isPassable) {
       renderCode = " ";
+      setEntityId(30);
     } else {
       renderCode = "#";
+      setEntityId(31);
     }
   }
 

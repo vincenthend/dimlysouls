@@ -15,7 +15,7 @@ public final class PlayerEntity extends Entity {
    * Default constructor
    */
   public PlayerEntity(int x, int y, Player player) {
-    super(x, y);
+    super(x, y,0);
     int i;
     this.player = player;
     currentHealth = player.getHealth();

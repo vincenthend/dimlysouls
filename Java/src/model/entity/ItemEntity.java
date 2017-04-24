@@ -13,7 +13,7 @@ public final class ItemEntity extends Entity {
    * Default constructor
    */
   public ItemEntity(int x, int y, Consumables c) {
-    super(x, y);
+    super(x, y,2);
     consumables = c;
     renderCode = "I";
   }

@@ -38,6 +38,9 @@ public class Game {
         gameInterface.setPlayer(playerEntity);
 
         //Show Interface
+        Map tempMap = new Map(41,21);
+        tempMap.generateMap();
+
         gameInterface.switchToMap(new KeyListener() {
           @Override
           public void keyTyped(KeyEvent keyEvent) {
@@ -52,7 +55,7 @@ public class Game {
           public void keyReleased(KeyEvent keyEvent) {
 
           }
-        }, null);
+        }, tempMap);
         gameInterface.updateInterface();
       }
     };
