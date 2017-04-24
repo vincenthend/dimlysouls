@@ -1,5 +1,6 @@
 package model.map;
 
+import java.awt.Point;
 import model.entity.Entity;
 
 /**
@@ -7,15 +8,18 @@ import model.entity.Entity;
  */
 public class Cell {
 
-  private int posX;
-  private int posY;
+  private Point location;
   private Entity entity;
   private Cell nextCell;
 
 
   public Cell(int x, int y, Entity e) {
-    posX = x;
-    posY = y;
+    location = new Point(x,y);
+    entity = e;
+  }
+
+  public Cell(Point location, Entity e) {
+    this.location = new Point(location);
     entity = e;
   }
 

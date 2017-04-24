@@ -7,8 +7,7 @@ import java.awt.*;
  */
 public abstract class Entity {
 
-  protected int locX;
-  protected int locY;
+  protected Point location;
   protected String renderCode;
   protected int entityId;
 
@@ -16,13 +15,19 @@ public abstract class Entity {
    * Default constructor
    */
   public Entity(int x, int y) {
-    locX = x;
-    locY = y;
+    location = new Point(x,y);
+  }
+  public Entity(Point location) {
+    this.location = new Point(location);
   }
 
   public Entity(int x, int y, int eId) {
-    locX = x;
-    locY = y;
+    location = new Point(x,y);
+    entityId = eId;
+  }
+
+  public Entity(Point location, int eId) {
+    this.location = new Point(location);
     entityId = eId;
   }
 
@@ -30,7 +35,7 @@ public abstract class Entity {
     return renderCode;
   }
   public Point getPosition(){
-    return (new Point(locX, locY));
+    return (new Point(location));
   }
   public int getEntityId(){
     return entityId;

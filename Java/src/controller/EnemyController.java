@@ -1,9 +1,8 @@
 package controller;
 
+import java.util.Random;
 import model.entity.EnemyEntity;
 import model.map.Map;
-
-import java.util.Random;
 
 public class EnemyController extends Thread {
   private EnemyEntity enemyEntity;
@@ -19,6 +18,8 @@ public class EnemyController extends Thread {
   public void run() {
     int move;
     Random rand = new Random();
+    rand.setSeed(System.currentTimeMillis());
+
     try {
       sleep(1000 / enemyEntity.getEnemy().getSpeed());
       move = -1;

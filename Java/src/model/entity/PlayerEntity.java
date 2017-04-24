@@ -1,5 +1,6 @@
 package model.entity;
 
+import java.awt.Point;
 import model.player.Player;
 
 /**
@@ -26,9 +27,21 @@ public final class PlayerEntity extends Entity {
     }
   }
 
+  public PlayerEntity(Point location, Player player) {
+    super(location,0);
+    int i;
+    this.player = player;
+    currentHealth = player.getHealth();
+    renderCode = "P";
+    status = new int [5];
+    for (i = 0; i < 5; i++){
+      status [i] = 0;
+    }
+  }
+
   public void move(int deltaX, int deltaY) {
-    locX += deltaX;
-    locX += deltaY;
+    location.x += deltaX;
+    location.y += deltaY;
   }
 
   public int getCurrentHealth() {

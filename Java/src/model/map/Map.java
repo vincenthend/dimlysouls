@@ -16,9 +16,9 @@ public class Map {
   private LinkedList<Point> mapSeed;
   private LinkedList<TransferPoint> mapExit;
   //Constants
-  private final int branchChance = 5;
+  private final int branchChance = 10;
   private final int offset = 40;
-  private final int minExit = 1;
+  private final int minExit = 3;
 
   /**
    * Membuat map dengan width dan height terspesifikasi.
@@ -65,7 +65,7 @@ public class Map {
     randomGen.setSeed(System.currentTimeMillis());
 
     //Clear starting point
-    mapCell[y][x] = new Cell(x, y, new TerrainEntity(x, y, true));
+    mapCell[y][x] = new Cell(x, y, new TerrainEntity(branchHead, true));
 
     // Add to seed
     mapSeed = new LinkedList<>();
@@ -93,7 +93,7 @@ public class Map {
       exitsafe = true;
       for (i = 0; i < 4; i++) {
         tempPoint = nextNode(i, branchHead);
-        if (inBounds(tempPoint) && !(!(pathCount >= Math.max(height, width) * offset / 10)
+        if (inBounds(tempPoint) && !(!(pathCount >= height * width * offset / 100)
             && isExit(tempPoint))
             && mapCell[tempPoint.y][tempPoint.x].getEntity().getRenderCode().equals("#")) {
           //Check near exits
@@ -120,7 +120,7 @@ public class Map {
         tempPoint = nextNode(availMove.get(rg), branchHead);
         y = tempPoint.y;
         x = tempPoint.x;
-        mapCell[y][x] = new Cell(x, y, new TerrainEntity(x, y, true));
+        mapCell[y][x] = new Cell(tempPoint, new TerrainEntity(tempPoint, true));
         mapSeed.add(tempPoint);
         pathCount++;
         branchHead.setLocation(x, y);
