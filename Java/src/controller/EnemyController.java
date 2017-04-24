@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.Point;
+import java.util.Random;
 import model.entity.EnemyEntity;
 import model.entity.Entity;
+import model.map.Cell;
 import model.map.Map;
-
-import java.util.Random;
+import model.map.Terrain;
 
 /**
  * Class EnemyControler mengatur pergerakan musuh di map
@@ -35,52 +37,79 @@ public class EnemyController extends Thread {
     int move;
     Random rand = new Random();
     rand.setSeed(System.currentTimeMillis());
+    Cell tempCell;
+    Point tempPoint;
 
     try {
-      sleep(1000 / enemyEntity.getEnemy().getSpeed());
-      move = -1;
-      while (move == -1) {
-        move = rand.nextInt(4);
-        if (move == 0){
-          if (map.inBounds(enemyEntity.getPosition(Entity.LEFT)) && map.getMapCell(enemyEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()){
-            map.setMapCell(map.getMapCell(enemyEntity.getPosition()), enemyEntity.getPosition(Entity.LEFT));
-            map.setMapCell(null, enemyEntity.getPosition());
-            enemyEntity.move(Entity.LEFT);
-          }
-          else {
-            move = -1;
+      while (isRunning) {
+        synchronized (enemyEntity) {
+          sleep(1000 / enemyEntity.getEnemy().getSpeed());
+          move = -1;
+          while (move == -1) {
+            move = rand.nextInt(4);
+            if (move == 0) {
+              if (map.inBounds(enemyEntity.getPosition(Entity.LEFT))) {
+                if (map.getMapCell(enemyEntity.getPosition(Entity.LEFT)).getTerrain()
+                    .isPassable()) {
+                  tempCell = map.getMapCell(enemyEntity.getPosition());
+                  tempPoint = enemyEntity.getPosition();
+                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.LEFT));
+                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  enemyEntity.move(Entity.LEFT);
+                }
+                else {
+                  move = -1;
+                }
+              }
+            }
+            else if (move == 1) {
+              if (map.inBounds(enemyEntity.getPosition(Entity.RIGHT))) {
+                if (map.getMapCell(enemyEntity.getPosition(Entity.RIGHT)).getTerrain()
+                    .isPassable()) {
+                  tempCell = map.getMapCell(enemyEntity.getPosition());
+                  tempPoint = enemyEntity.getPosition();
+                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.RIGHT));
+                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  enemyEntity.move(Entity.RIGHT);
+                }
+                else {
+                  move = -1;
+                }
+              }
+            }
+            else if (move == 2) {
+              if (map.inBounds(enemyEntity.getPosition(Entity.UP))) {
+                if (map.getMapCell(enemyEntity.getPosition(Entity.UP)).getTerrain().isPassable()) {
+                  tempCell = map.getMapCell(enemyEntity.getPosition());
+                  tempPoint = enemyEntity.getPosition();
+                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.UP));
+                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  enemyEntity.move(Entity.UP);
+                }
+                else {
+                  move = -1;
+                }
+              }
+            }
+            else if (move == 3) {
+              if (map.inBounds(enemyEntity.getPosition(Entity.DOWN))) {
+                if (map.getMapCell(enemyEntity.getPosition(Entity.DOWN)).getTerrain()
+                    .isPassable()) {
+                  tempCell = map.getMapCell(enemyEntity.getPosition());
+                  tempPoint = enemyEntity.getPosition();
+                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.DOWN));
+                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  enemyEntity.move(Entity.DOWN);
+                }
+                else {
+                  move = -1;
+                }
+              }
+            }
           }
         }
-        else if (move == 1){
-          if (map.inBounds(enemyEntity.getPosition(Entity.RIGHT)) && map.getMapCell(enemyEntity.getPosition(Entity.RIGHT)).getTerrain().isPassable()){
-            map.setMapCell(map.getMapCell(enemyEntity.getPosition()), enemyEntity.getPosition(Entity.RIGHT));
-            map.setMapCell(null, enemyEntity.getPosition());
-            enemyEntity.move(Entity.RIGHT);
-          }
-          else {
-            move = -1;
-          }
-        }
-        else if (move == 2){
-          if (map.inBounds(enemyEntity.getPosition(Entity.UP)) && map.getMapCell(enemyEntity.getPosition(Entity.UP)).getTerrain().isPassable()){
-            map.setMapCell(map.getMapCell(enemyEntity.getPosition()), enemyEntity.getPosition(Entity.UP));
-            map.setMapCell(null, enemyEntity.getPosition());
-            enemyEntity.move(Entity.UP);
-          }
-          else {
-            move = -1;
-          }
-        }
-        else if (move == 3){
-          if (map.inBounds(enemyEntity.getPosition(Entity.DOWN)) && map.getMapCell(enemyEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()){
-            map.setMapCell(map.getMapCell(enemyEntity.getPosition()), enemyEntity.getPosition(Entity.DOWN));
-            map.setMapCell(null, enemyEntity.getPosition());
-            enemyEntity.move(Entity.DOWN);
-          }
-          else {
-            move = -1;
-          }
-        }
+
+        System.out.println(enemyEntity.getPosition().toString());
       }
     } catch (InterruptedException e) {
       System.out.println("Interrupted");

@@ -1,9 +1,11 @@
+import controller.EnemyController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import model.entity.EnemyEntity;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
@@ -17,15 +19,16 @@ import view.GameInterface;
 public class Game {
   private Player player;
   private PlayerEntity playerEntity;
-  private LinkedList<Map> mapList;
   private GameInterface gameInterface;
-  private Map map; //sementara, buat nyimpen current map
+  private Map map;
+  private LinkedList<EnemyController> enemyControllers;
 
   /**
    * Konstruktor kelas game
    */
   public Game() {
     gameInterface = new GameInterface();
+    enemyControllers = new LinkedList<>();
   }
 
   /**
@@ -60,9 +63,10 @@ public class Game {
         gameInterface.setPlayer(playerEntity);
 
         //Generate Map
-        Map tempMap = new Map(41, 21);
-        tempMap.generateMap();
-        tempMap.putEnemy();
+        map = new Map(41, 21);
+        map.generateMap();
+        map.putEnemy();
+        attachEnemyController();
 
         //Show Interface
         gameInterface.switchToMap(new KeyListener() {
@@ -124,7 +128,7 @@ public class Game {
           public void keyReleased(KeyEvent keyEvent) {
             key = -999;
           }
-        }, tempMap);
+        }, map);
         gameInterface.updateInterface();
       }
     };
@@ -138,6 +142,17 @@ public class Game {
 
     gameInterface.switchToMainMenu(newGame, loadGame);
     gameInterface.updateInterface();
+  }
+
+  public void attachEnemyController(){
+    LinkedList<EnemyEntity> enemyList = map.getEnemyList();
+    EnemyController enemyController;
+    int i;
+    for(i = 0; i<enemyList.size();i++){
+      enemyController = new EnemyController(enemyList.get(i),map);
+      enemyControllers.addLast(enemyController);
+      enemyController.start();
+    }
   }
 
   /**
