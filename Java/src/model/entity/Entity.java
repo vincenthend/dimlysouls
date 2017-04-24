@@ -76,16 +76,16 @@ public abstract class Entity {
 
   public Point getPosition(int i) {
     if (i == LEFT) {
-      return (new Point(location.x, location.y - 1));
-    }
-    else if (i == RIGHT) {
-      return (new Point(location.x, location.y + 1));
-    }
-    else if (i == UP) {
       return (new Point(location.x - 1, location.y));
     }
-    else if (i == DOWN) {
+    else if (i == RIGHT) {
       return (new Point(location.x + 1, location.y));
+    }
+    else if (i == UP) {
+      return (new Point(location.x, location.y - 1));
+    }
+    else if (i == DOWN) {
+      return (new Point(location.x, location.y + 1));
     }
     else {
       return null;

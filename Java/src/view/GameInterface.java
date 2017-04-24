@@ -17,7 +17,7 @@ import model.map.Map;
 
 /**
  * Kelas GameInterface mengatur isi interface.
- * @author Vincent Hendryanto Halim / 13515089
+ * @author Vincent H
  */
 public class GameInterface extends JFrame {
   private ActionListener[] actionListener;

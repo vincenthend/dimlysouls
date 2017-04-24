@@ -29,38 +29,6 @@ public class Paladin implements Player {
     next = 10;
   }
 
-<<<<<<< HEAD
-    public int getHealth() {
-        return health;
-    }
-    public int getAttack() {
-        return attack;
-    }
-    public int getDefense() {
-        return defense;
-    }
-    public int getSpeed() {
-        return speed;
-    }
-    public int getLevel() {
-        return level;
-    }
-    public int getExp() {
-        return exp;
-    }
-    public int getNext() {
-        return next;
-    }
-    public String getNama() {
-        return nama;
-    }
-    public int getClassId() {
-        return classId;
-    }
-    public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
-
-    }
-=======
   /**
    * Menambah level player dan mengurangi nilai exp dengan nilai next.
    * Mengubah nilai next sesuai dengan rumus next * k + offset
@@ -120,5 +88,8 @@ public class Paladin implements Player {
   public int getClassId() {
     return classId;
   }
->>>>>>> 5876874bce183771fcf07f42c322ec596736c053
+
+  public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]) {
+
+  }
 }
