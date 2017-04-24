@@ -45,8 +45,8 @@ public class EnemyController extends Thread {
 
     try {
       while (isRunning) {
-        synchronized (enemyEntity) {
-          Thread.sleep(2000 / enemyEntity.getEnemy().getSpeed());
+        //synchronized (enemyEntity) {
+          Thread.sleep(10000 / enemyEntity.getEnemy().getSpeed());
           move = -1;
           while (move == -1) {
             move = rand.nextInt(4);
@@ -83,7 +83,7 @@ public class EnemyController extends Thread {
             else if (move == 2) {
               if (map.inBounds(enemyEntity.getPosition(Entity.UP))) {
                 if (map.getMapCell(enemyEntity.getPosition(Entity.UP)).getTerrain()
-                        .isPassable()) {
+                    .isPassable()) {
                   tempCell = map.getMapCell(enemyEntity.getPosition());
                   tempCell.setEntity(null);
                   tempCell = map.getMapCell(enemyEntity.getPosition(Entity.UP));
@@ -111,12 +111,10 @@ public class EnemyController extends Thread {
               }
             }
           }
-        }
+        //}
 
         System.out.println(enemyEntity.getPosition().toString());
-        synchronized (gui) {
-          gui.getMapInterface().updateMap(map);
-        }
+        gui.getMapInterface().updateMap(map);
         gui.updateInterface();
       }
     } catch (InterruptedException e) {
