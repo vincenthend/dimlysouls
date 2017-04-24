@@ -7,6 +7,7 @@ import model.entity.Entity;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Terrain;
+import view.GameInterface;
 
 /**
  * Class EnemyControler mengatur pergerakan musuh di map

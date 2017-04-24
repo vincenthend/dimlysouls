@@ -137,4 +137,13 @@ public class GameInterface extends JFrame {
   public void setPlayer(PlayerEntity player) {
     this.player = player;
   }
+
+  public MapInterface getMapInterface() {
+    return mapInterface;
+  }
+
+  public StatsInterface getStatsInterface() {
+
+    return statsInterface;
+  }
 }

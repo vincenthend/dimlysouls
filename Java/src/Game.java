@@ -144,12 +144,12 @@ public class Game {
     gameInterface.updateInterface();
   }
 
-  public void attachEnemyController(){
+  public void attachEnemyController() {
     LinkedList<EnemyEntity> enemyList = map.getEnemyList();
     EnemyController enemyController;
     int i;
-    for(i = 0; i<enemyList.size();i++){
-      enemyController = new EnemyController(enemyList.get(i),map);
+    for (i = 0; i < enemyList.size(); i++) {
+      enemyController = new EnemyController(enemyList.get(i), map, gameInterface);
       enemyControllers.addLast(enemyController);
       enemyController.start();
     }
@@ -159,7 +159,7 @@ public class Game {
    * @param args
    */
   public static void main(String[] args) {
-    Game game = new Game();
+    final Game game = new Game();
     game.MainMenu();
   }
 }
