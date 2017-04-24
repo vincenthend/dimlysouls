@@ -59,7 +59,8 @@ public class Game {
         }
 
         //Set Player
-        playerEntity = new PlayerEntity(0, 0, player);
+        playerEntity = new PlayerEntity(map.getMapSeed().get(map.getMapSeed().size()/2), player);
+        map.getMapCell(playerEntity.getPosition()).setEntity(playerEntity);
         gameInterface.setPlayer(playerEntity);
 
         //Generate Map
@@ -142,8 +143,6 @@ public class Game {
 
     gameInterface.switchToMainMenu(newGame, loadGame);
     gameInterface.updateInterface();
-    //GUIUpdateController gupc = new GUIUpdateController(gameInterface);
-    //gupc.start();
   }
 
   public void attachEnemyController() {

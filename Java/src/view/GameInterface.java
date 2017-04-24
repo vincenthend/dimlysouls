@@ -114,6 +114,25 @@ public class GameInterface extends JFrame {
     add(statsInterface, c);
   }
 
+  public void updateMap(Map map) {
+    removeContent();
+    setLayout(new GridBagLayout());
+    GridBagConstraints c = new GridBagConstraints();
+    c.gridx = 0;
+    c.gridy = 0;
+    c.gridwidth = 1;
+    mapInterface = new MapInterface(map);
+    add(mapInterface, c);
+
+    c.gridx++;
+    c.gridwidth = 1;
+    c.insets = new Insets(0, 20, 0, 0);
+    c.anchor = GridBagConstraints.LINE_END;
+
+    statsInterface = new StatsInterface(player);
+    add(statsInterface, c);
+  }
+
   public void switchToBattle(ActionListener skillListener[], EnemyEntity e) {
 
   }

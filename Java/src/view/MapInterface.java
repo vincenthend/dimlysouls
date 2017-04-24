@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,8 +19,11 @@ public class MapInterface extends JPanel {
    * Konstruktor MapInterface
    */
   public MapInterface(Map map) {
+    JLabel tempLabel;
+
     this.map = map;
     setLayout(new GridBagLayout());
+    setBackground(Color.lightGray);
     GridBagConstraints constraints = new GridBagConstraints();
 
     constraints.gridwidth = 1;
@@ -34,11 +38,14 @@ public class MapInterface extends JPanel {
       for (j = 0; j < map.getWidth(); j++) {
         constraints.gridx = j;
         if(map.getMapCell(j,i).getEntity() == null) {
-          add(new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode()), constraints);
+          tempLabel = new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode());
+          //add(new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode()), constraints);
         }
         else{
-          add(new JLabel(map.getMapCell(j, i).getEntity().getRenderCode()), constraints);
+          tempLabel = new JLabel(map.getMapCell(j, i).getEntity().getRenderCode());
+          //add(new JLabel(map.getMapCell(j, i).getEntity().getRenderCode()), constraints);
         }
+        add(tempLabel,constraints);
       }
     }
   }
@@ -65,12 +72,17 @@ public class MapInterface extends JPanel {
       constraints.gridy = i;
       for (j = 0; j < map.getWidth(); j++) {
         constraints.gridx = j;
+        JLabel tempLabel;
         if(map.getMapCell(j,i).getEntity() == null) {
-          add(new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode()), constraints);
+          tempLabel = new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode());
+          //add(new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode()), constraints);
         }
         else{
+          tempLabel = new JLabel(map.getMapCell(j, i).getEntity().getRenderCode());
           add(new JLabel(map.getMapCell(j, i).getEntity().getRenderCode()), constraints);
         }
+
+        add(tempLabel,constraints);
       }
     }
   }

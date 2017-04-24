@@ -104,10 +104,10 @@ public abstract class Entity {
       location.x = location.x + 1;
     }
     else if (i == UP) {
-      location.x = location.y - 1;
+      location.y = location.y - 1;
     }
     else if (i == DOWN) {
-      location.x = location.y + 1;
+      location.y = location.y + 1;
     }
   }
 

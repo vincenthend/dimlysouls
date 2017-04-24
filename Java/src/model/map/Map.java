@@ -1,11 +1,10 @@
 package model.map;
 
-import model.enemy.EnemyGenerator;
-import model.entity.EnemyEntity;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
+import model.enemy.EnemyGenerator;
+import model.entity.EnemyEntity;
 
 /**
  * Class Map, berisi peta dan semua data peta
@@ -17,11 +16,13 @@ public class Map {
   private final int branchChance = 10;
   private final int offset = 40;
   private final int minExit = 3;
-  private final int mapToEnemy = 1;
+  private final int mapToEnemy = 5;
   private int width;
   private int height;
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
+
+
   private LinkedList<TransferPoint> mapExit;
   private LinkedList<EnemyEntity> enemyList;
 
@@ -322,26 +323,37 @@ public class Map {
   public Cell getMapCell(Point position) {
     return mapCell[position.y][position.x];
   }
+
   public TransferPoint getTransferPoint(Point p) {
     int i = 0;
     boolean found = false;
     while (i < mapExit.size() && !found) {
-      if (p.x == mapExit.get(i).getEntrancePoint().x && p.y == mapExit.get(i).getEntrancePoint().y) {
+      if (p.x == mapExit.get(i).getEntrancePoint().x && p.y == mapExit.get(i)
+          .getEntrancePoint().y) {
         found = true;
-      } else {
+      }
+      else {
         i++;
       }
     }
     if (found) {
       return mapExit.get(i);
-    } else {
+    }
+    else {
       return null;
     }
   }
+
   public LinkedList<EnemyEntity> getEnemyList() {
     return enemyList;
   }
-  public boolean isInRange(Point p){
+
+  public boolean isInRange(Point p) {
     return (p.x >= 0 && p.x < width && p.y >= 0 && p.y < height);
   }
+
+  public LinkedList<Point> getMapSeed() {
+    return mapSeed;
+  }
+
 }
