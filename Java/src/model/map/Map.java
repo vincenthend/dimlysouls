@@ -3,7 +3,6 @@ package model.map;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
-import model.entity.Terrain;
 
 /**
  * Class Map, berisi peta dan semua data peta
@@ -277,6 +276,9 @@ public class Map {
    */
   public void setMapCell(Cell cell, int posX, int posY) {
     mapCell[posY][posX] = cell;
+  }
+  public void setMapCell(Cell cell, Point p) {
+    mapCell[p.y][p.x] = cell;
   }
 
   /**

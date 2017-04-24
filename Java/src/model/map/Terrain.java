@@ -1,4 +1,4 @@
-package model.entity;
+package model.map;
 
 /**
  * Kelas Terrain mengatur apakah jalan dapat dilewati

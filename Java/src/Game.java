@@ -1,24 +1,22 @@
+import model.entity.Entity;
+import model.entity.PlayerEntity;
+import model.map.Map;
+import model.player.*;
+import view.GameInterface;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
-import model.entity.Entity;
-import model.entity.PlayerEntity;
-import model.map.Map;
-import model.player.Berserker;
-import model.player.Ninja;
-import model.player.Paladin;
-import model.player.Player;
-import model.player.Warrior;
-import view.GameInterface;
 
 public class Game {
   private Player player;
   private PlayerEntity playerEntity;
   private LinkedList<Map> mapList;
   private GameInterface gameInterface;
+  private Map map; //sementara, buat nyimpen current map
 
   /**
    * Konstruktor kelas game
@@ -83,40 +81,45 @@ public class Game {
           @Override
           public void keyPressed(KeyEvent keyEvent) {
             key = keyEvent.getKeyCode();
-<<<<<<< HEAD
             if (key == KeyEvent.VK_LEFT){
-              if (map.inBounds(playerEntity.getPosition(Entity.LEFT)) && map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()){
-                playerEntity.move(Entity.LEFT);
+              if (map.inBounds(playerEntity.getPosition(Entity.LEFT))){
+                 if (map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()) {
+                     playerEntity.move(Entity.LEFT);
+                 }
+              }
+              else {
+                  //pindah map
               }
             }
             else if (key == KeyEvent.VK_RIGHT){
-              if (map.inBounds(playerEntity.getPosition(Entity.RIGHT)) && map.getMapCell(playerEntity.getPosition(Entity.RIGHT)).getTerrain().isPassable()){
-                playerEntity.move(Entity.RIGHT);
-              }
+                if (map.inBounds(playerEntity.getPosition(Entity.RIGHT))){
+                    if (map.getMapCell(playerEntity.getPosition(Entity.RIGHT)).getTerrain().isPassable()) {
+                        playerEntity.move(Entity.RIGHT);
+                    }
+                }
+                else {
+                    //pindah map
+                }
             }
             else if (key == KeyEvent.VK_UP){
-              if (map.inBounds(playerEntity.getPosition(Entity.UP)) && map.getMapCell(playerEntity.getPosition(Entity.UP)).getTerrain().isPassable()){
-                playerEntity.move(Entity.UP);
-              }
+                if (map.inBounds(playerEntity.getPosition(Entity.UP))){
+                    if (map.getMapCell(playerEntity.getPosition(Entity.UP)).getTerrain().isPassable()) {
+                        playerEntity.move(Entity.UP);
+                    }
+                }
+                else {
+                    //pindah map
+                }
             }
             else if (key == KeyEvent.VK_DOWN) {
-              if (map.inBounds(playerEntity.getPosition(Entity.DOWN)) && map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()) {
-                playerEntity.move(Entity.DOWN);
-              }
-=======
-            if (key == KeyEvent.VK_LEFT) {
-              //if kirinya bisa
-              playerEntity.move(Entity.LEFT);
-            }
-            else if (key == KeyEvent.VK_RIGHT) {
-              playerEntity.move(Entity.RIGHT);
-            }
-            else if (key == KeyEvent.VK_UP) {
-              playerEntity.move(Entity.UP);
-            }
-            else if (key == KeyEvent.VK_DOWN) {
-              playerEntity.move(Entity.DOWN);
->>>>>>> 5876874bce183771fcf07f42c322ec596736c053
+                if (map.inBounds(playerEntity.getPosition(Entity.DOWN))){
+                    if (map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()) {
+                        playerEntity.move(Entity.DOWN);
+                    }
+                }
+                else {
+                    //pindah map
+                }
             }
           }
 

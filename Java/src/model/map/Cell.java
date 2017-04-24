@@ -2,7 +2,6 @@ package model.map;
 
 import java.awt.Point;
 import model.entity.Entity;
-import model.entity.Terrain;
 
 /**
  * Kelas cell berisi entity yang ada di map
