@@ -5,8 +5,8 @@ import model.entity.EnemyEntity;
 import java.util.Random;
 
 public class EnemyController extends Thread {
-  EnemyEntity enemyEntity;
-  boolean isRunning;
+  private EnemyEntity enemyEntity;
+  private boolean isRunning;
 
   public EnemyController(EnemyEntity enemyEntity) {
     this.enemyEntity = enemyEntity;
