@@ -1,5 +1,7 @@
 package model.entity;
 
+import java.awt.*;
+
 /**
  *
  */
@@ -27,7 +29,9 @@ public abstract class Entity {
   public String getRenderCode(){
     return renderCode;
   }
-
+  public Point getPosition(){
+    return (new Point(locX, locY));
+  }
   public int getEntityId(){
     return entityId;
   }

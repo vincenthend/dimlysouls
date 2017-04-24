@@ -1,9 +1,10 @@
 package model.map;
 
-import java.awt.Point;
+import model.entity.TerrainEntity;
+
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
-import model.entity.TerrainEntity;
 
 /**
  *
@@ -198,7 +199,7 @@ public class Map {
    * @param point titik yang diuji
    * @return nilai boolean apakah titik ada di dalam map
    */
-  private boolean inBounds(Point point) {
+  public boolean inBounds(Point point) {
     boolean avail = false;
     if ((point.x == 0 || point.x == width) && (point.y == 0 || point.y == height - 1)) {
       avail = false;

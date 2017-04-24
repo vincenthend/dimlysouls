@@ -1,14 +1,18 @@
 package controller;
 
 import model.entity.EnemyEntity;
+import model.map.Map;
+
 import java.util.Random;
 
 public class EnemyController extends Thread {
   private EnemyEntity enemyEntity;
   private boolean isRunning;
+  private Map map;
 
-  public EnemyController(EnemyEntity enemyEntity) {
+  public EnemyController(EnemyEntity enemyEntity, Map M) {
     this.enemyEntity = enemyEntity;
+    map = M;
     isRunning = true;
   }
 
@@ -21,7 +25,7 @@ public class EnemyController extends Thread {
       while (move == - 1){
         move = rand.nextInt(4);
         if (move == 0){
-          if (){
+          if (map.inBounds(enemyEntity.getPosition()) && map.getMapCell()){
 
           }
           else {
