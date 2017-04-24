@@ -3,6 +3,8 @@ package model.map;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
+import model.enemy.EnemyGenerator;
+import model.entity.EnemyEntity;
 
 /**
  * Class Map, berisi peta dan semua data peta
@@ -14,11 +16,13 @@ public class Map {
   private final int branchChance = 10;
   private final int offset = 40;
   private final int minExit = 3;
+  private final int mapToEnemy = 5;
   private int width;
   private int height;
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
   private LinkedList<TransferPoint> mapExit;
+  private LinkedList<EnemyEntity> enemyList;
 
   /**
    * Membuat map dengan width dan height terspesifikasi.
@@ -40,6 +44,8 @@ public class Map {
         mapCell[i][j] = new Cell(j, i, new Terrain(false));
       }
     }
+
+    enemyList = new LinkedList<>();
   }
 
   /**
@@ -65,7 +71,7 @@ public class Map {
     randomGen.setSeed(System.currentTimeMillis());
 
     //Clear starting point
-    mapCell[y][x] = new Cell(x, y, new Terrain( true));
+    mapCell[y][x] = new Cell(x, y, new Terrain(true));
 
     // Add to seed
     mapSeed = new LinkedList<>();
@@ -250,6 +256,25 @@ public class Map {
   }
 
   /**
+   * Meletakkan enemy pada map
+   */
+  public void putEnemy() {
+    int i;
+    int rg;
+    Point randomLoc;
+    EnemyGenerator enemyGen = new EnemyGenerator();
+    Random randomGen = new Random(System.currentTimeMillis());
+    EnemyEntity enemyEntity;
+
+    for (i = 0; i < (mapSeed.size() * mapToEnemy) / 100; i++) {
+      randomLoc = mapSeed.get(randomGen.nextInt(mapSeed.size()));
+      enemyEntity = new EnemyEntity(randomLoc, enemyGen.generateEnemy(1));
+      enemyList.addLast(enemyEntity);
+      mapCell[randomLoc.y][randomLoc.x].setEntity(enemyEntity);
+    }
+  }
+
+  /**
    * Mengembalikan lebar map.
    *
    * @return lebar map
@@ -277,6 +302,7 @@ public class Map {
   public void setMapCell(Cell cell, int posX, int posY) {
     mapCell[posY][posX] = cell;
   }
+
   public void setMapCell(Cell cell, Point p) {
     mapCell[p.y][p.x] = cell;
   }
@@ -294,5 +320,9 @@ public class Map {
 
   public Cell getMapCell(Point position) {
     return mapCell[position.y][position.x];
+  }
+
+  public LinkedList<EnemyEntity> getEnemyList() {
+    return enemyList;
   }
 }

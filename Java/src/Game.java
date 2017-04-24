@@ -1,15 +1,18 @@
-import model.entity.Entity;
-import model.entity.PlayerEntity;
-import model.map.Map;
-import model.player.*;
-import view.GameInterface;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import model.entity.Entity;
+import model.entity.PlayerEntity;
+import model.map.Map;
+import model.player.Berserker;
+import model.player.Ninja;
+import model.player.Paladin;
+import model.player.Player;
+import model.player.Warrior;
+import view.GameInterface;
 
 public class Game {
   private Player player;
@@ -26,14 +29,6 @@ public class Game {
   }
 
   /**
-   * @param args
-   */
-  public static void main(String[] args) {
-    Game game = new Game();
-    game.MainMenu();
-  }
-
-  /**
    * Menampilkan Main Menu
    */
   public void MainMenu() {
@@ -43,10 +38,10 @@ public class Game {
         int playerClass;
         System.out.println("New Game Invoked");
         String name = JOptionPane.showInputDialog(null, "What's your name?");
-        System.out.println(name);
         String[] options = new String[] {"Warrior", "Paladin", "Berserker", "Ninja"};
         playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection",
             JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+
         if (playerClass == 0) {
           player = new Warrior(name);
         }
@@ -59,18 +54,17 @@ public class Game {
         else if (playerClass == 3) {
           player = new Ninja(name);
         }
-        System.out.println(playerClass);
-
-        //Generate Map
 
         //Set Player
         playerEntity = new PlayerEntity(0, 0, player);
         gameInterface.setPlayer(playerEntity);
 
-        //Show Interface
+        //Generate Map
         Map tempMap = new Map(41, 21);
         tempMap.generateMap();
+        tempMap.putEnemy();
 
+        //Show Interface
         gameInterface.switchToMap(new KeyListener() {
           int key;
 
@@ -81,45 +75,48 @@ public class Game {
           @Override
           public void keyPressed(KeyEvent keyEvent) {
             key = keyEvent.getKeyCode();
-            if (key == KeyEvent.VK_LEFT){
-              if (map.inBounds(playerEntity.getPosition(Entity.LEFT))){
-                 if (map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()) {
-                     playerEntity.move(Entity.LEFT);
-                 }
+            if (key == KeyEvent.VK_LEFT) {
+              if (map.inBounds(playerEntity.getPosition(Entity.LEFT))) {
+                if (map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain()
+                    .isPassable()) {
+                  playerEntity.move(Entity.LEFT);
+                }
               }
               else {
-                  //pindah map
+                //pindah map
               }
             }
-            else if (key == KeyEvent.VK_RIGHT){
-                if (map.inBounds(playerEntity.getPosition(Entity.RIGHT))){
-                    if (map.getMapCell(playerEntity.getPosition(Entity.RIGHT)).getTerrain().isPassable()) {
-                        playerEntity.move(Entity.RIGHT);
-                    }
+            else if (key == KeyEvent.VK_RIGHT) {
+              if (map.inBounds(playerEntity.getPosition(Entity.RIGHT))) {
+                if (map.getMapCell(playerEntity.getPosition(Entity.RIGHT)).getTerrain()
+                    .isPassable()) {
+                  playerEntity.move(Entity.RIGHT);
                 }
-                else {
-                    //pindah map
-                }
+              }
+              else {
+                //pindah map
+              }
             }
-            else if (key == KeyEvent.VK_UP){
-                if (map.inBounds(playerEntity.getPosition(Entity.UP))){
-                    if (map.getMapCell(playerEntity.getPosition(Entity.UP)).getTerrain().isPassable()) {
-                        playerEntity.move(Entity.UP);
-                    }
+            else if (key == KeyEvent.VK_UP) {
+              if (map.inBounds(playerEntity.getPosition(Entity.UP))) {
+                if (map.getMapCell(playerEntity.getPosition(Entity.UP)).getTerrain().isPassable()) {
+                  playerEntity.move(Entity.UP);
                 }
-                else {
-                    //pindah map
-                }
+              }
+              else {
+                //pindah map
+              }
             }
             else if (key == KeyEvent.VK_DOWN) {
-                if (map.inBounds(playerEntity.getPosition(Entity.DOWN))){
-                    if (map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()) {
-                        playerEntity.move(Entity.DOWN);
-                    }
+              if (map.inBounds(playerEntity.getPosition(Entity.DOWN))) {
+                if (map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain()
+                    .isPassable()) {
+                  playerEntity.move(Entity.DOWN);
                 }
-                else {
-                    //pindah map
-                }
+              }
+              else {
+                //pindah map
+              }
             }
           }
 
@@ -143,7 +140,11 @@ public class Game {
     gameInterface.updateInterface();
   }
 
-  public void Start() {
-    //Nyalain PlayerController, EnemyController (buat tiap enemy) uhh liat di notepad aja :P
+  /**
+   * @param args
+   */
+  public static void main(String[] args) {
+    Game game = new Game();
+    game.MainMenu();
   }
 }

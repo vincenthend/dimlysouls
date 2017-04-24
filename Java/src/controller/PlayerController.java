@@ -1,28 +1,46 @@
 package controller;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import model.entity.Entity;
 import model.entity.PlayerEntity;
+import view.GameInterface;
 
-public class PlayerController extends Thread {
-  private PlayerEntity player;
-  private KeyListener key;
-  private boolean isRunning;
+public class PlayerController implements KeyListener {
 
-  public PlayerController(PlayerEntity player, KeyListener keyListener) {
-    key = keyListener;
-    this.player = player;
-    isRunning = true;
+  private PlayerEntity playerEntity;
+  private GameInterface gameInterface;
+  private int key;
+
+  public PlayerController(PlayerEntity playerEntity, GameInterface gameInterface){
+    this.playerEntity = playerEntity;
+    this.gameInterface = gameInterface;
   }
 
   @Override
-  public void run() {
-    while (isRunning) {
-    }
-    //wait for keystroke
-    //jalan
+  public void keyTyped(KeyEvent keyEvent) {
   }
 
-  public void kill() {
-    isRunning = false;
+  @Override
+  public void keyPressed(KeyEvent keyEvent) {
+    key = keyEvent.getKeyCode();
+    if (key == KeyEvent.VK_LEFT) {
+      playerEntity.move(Entity.LEFT);
+    }
+    else if (key == KeyEvent.VK_RIGHT) {
+      playerEntity.move(Entity.RIGHT);
+    }
+    else if (key == KeyEvent.VK_UP) {
+      playerEntity.move(Entity.UP);
+    }
+    else if (key == KeyEvent.VK_DOWN) {
+      playerEntity.move(Entity.DOWN);
+    }
+    gameInterface.updateInterface();
+  }
+
+  @Override
+  public void keyReleased(KeyEvent keyEvent) {
+    key = -999;
   }
 }
