@@ -8,15 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import model.entity.PlayerEntity;
-import model.map.Map;
 
 /**
  *
@@ -24,11 +15,8 @@ import model.map.Map;
 public class GameInterface extends JFrame {
   private ActionListener[] actionListener;
   private PlayerEntity player;
-<<<<<<< HEAD
-=======
   private StatsInterface statsInterface;
   private MapInterface mapInterface;
->>>>>>> 91a90187d52042e2df0441a531dab191fc33857b
 
   /**
    * Default constructor
@@ -118,7 +106,7 @@ public class GameInterface extends JFrame {
     add(statsInterface, c);
   }
 
-  public void switchToBattle(MouseListener mouseListener) {
+  public void switchToBattle(ActionListener skillListener [], EnemyEntity e) {
 
   }
 
@@ -133,16 +121,9 @@ public class GameInterface extends JFrame {
     revalidate();
     repaint();
   }
-  public void createBattleInterface(PlayerEntity p, EnemyEntity e) {
-
-  }
   public void battleViewUpdate(EnemyEntity e) {
 
-<<<<<<< HEAD
   }
-
-=======
->>>>>>> 91a90187d52042e2df0441a531dab191fc33857b
   public void setPlayer(PlayerEntity player) {
     this.player = player;
   }

@@ -35,10 +35,38 @@ public class BattleController {
    */
   public void startBattle() {
     //Deklarasi MouseListener
-    ActionListener Mouse = new ActionListener() {
+    ActionListener [] skillListener = new ActionListener [2];
+    skillListener[0] = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        //isi action listenernya
+        e.setCurrentHealth (e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
+        updateBattleView();
+      }
+    };
+    skillListener[1] = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        p.setStatus(0, 1);
+        updateBattleView();
+      }
+    };
+    skillListener[3] = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        if (e.getStatus(0)){
+          e.setCurrentHealth (e.getCurrentHealth() - ((p.getPlayer().getAttack() - e.getEnemy().getDefense()) * 2));
+        }
+        else {
+          e.setCurrentHealth (e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
+        }
+        updateBattleView();
+      }
+    };
+    skillListener[4] = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        //p.getPlayer().special();
+        updateBattleView();
       }
     };
 
@@ -46,7 +74,7 @@ public class BattleController {
     EnemyBattleController EBC = new EnemyBattleController(p, e);
     PlayerBattleController PBC = new PlayerBattleController(p, e);
     //Set Battle GUI
-    g.createBattleInterface(p, e);
+    g.switchToBattle(skillListener,  e);
     //Run EBC & PBC Thread
     EBC.start();
     PBC.start();
@@ -54,10 +82,13 @@ public class BattleController {
     //While not battle end
     boolean isBattling = true;
     while (isBattling) {
-      if (){
-
-      }
+        //Button dipencet
+        PBC.calculateDamage();
+        updateBattleView();
     }
+    EBC.kill();
+    PBC.kill();
+    //g.switchToMap();
     //Kill EBC & PBC Thread
   }
 
