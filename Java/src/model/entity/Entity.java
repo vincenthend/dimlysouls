@@ -73,6 +73,10 @@ public abstract class Entity {
   public Point getPosition() {
     return (location);
   }
+  public void setPosition(Point p) {
+    location.x = p.x;
+    location.y = p.y;
+  }
 
   public Point getPosition(int i) {
     if (i == LEFT) {

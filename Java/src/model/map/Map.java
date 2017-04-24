@@ -1,10 +1,11 @@
 package model.map;
 
-import java.awt.Point;
-import java.util.LinkedList;
-import java.util.Random;
 import model.enemy.EnemyGenerator;
 import model.entity.EnemyEntity;
+
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Class Map, berisi peta dan semua data peta
@@ -321,8 +322,26 @@ public class Map {
   public Cell getMapCell(Point position) {
     return mapCell[position.y][position.x];
   }
-
+  public TransferPoint getTransferPoint(Point p) {
+    int i = 0;
+    boolean found = false;
+    while (i < mapExit.size() && !found) {
+      if (p.x == mapExit.get(i).getEntrancePoint().x && p.y == mapExit.get(i).getEntrancePoint().y) {
+        found = true;
+      } else {
+        i++;
+      }
+    }
+    if (found) {
+      return mapExit.get(i);
+    } else {
+      return null;
+    }
+  }
   public LinkedList<EnemyEntity> getEnemyList() {
     return enemyList;
+  }
+  public boolean isInRange(Point p){
+    return (p.x >= 0 && p.x < width && p.y >= 0 && p.y < height);
   }
 }

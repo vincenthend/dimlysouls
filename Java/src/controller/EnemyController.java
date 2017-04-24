@@ -7,7 +7,6 @@ import model.entity.Entity;
 import model.map.Cell;
 import model.map.Map;
 import model.map.Terrain;
-import view.GameInterface;
 
 /**
  * Class EnemyControler mengatur pergerakan musuh di map
@@ -70,9 +69,9 @@ public class EnemyController extends Thread {
                 if (map.getMapCell(enemyEntity.getPosition(Entity.RIGHT)).getTerrain()
                     .isPassable()) {
                   tempCell = map.getMapCell(enemyEntity.getPosition());
-                  tempPoint = enemyEntity.getPosition();
-                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.RIGHT));
-                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  tempCell.setEntity(null);
+                  tempCell = map.getMapCell(enemyEntity.getPosition(Entity.RIGHT));
+                  tempCell.setEntity(enemyEntity);
                   enemyEntity.move(Entity.RIGHT);
                 }
                 else {
@@ -82,11 +81,12 @@ public class EnemyController extends Thread {
             }
             else if (move == 2) {
               if (map.inBounds(enemyEntity.getPosition(Entity.UP))) {
-                if (map.getMapCell(enemyEntity.getPosition(Entity.UP)).getTerrain().isPassable()) {
+                if (map.getMapCell(enemyEntity.getPosition(Entity.UP)).getTerrain()
+                        .isPassable()) {
                   tempCell = map.getMapCell(enemyEntity.getPosition());
-                  tempPoint = enemyEntity.getPosition();
-                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.UP));
-                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  tempCell.setEntity(null);
+                  tempCell = map.getMapCell(enemyEntity.getPosition(Entity.UP));
+                  tempCell.setEntity(enemyEntity);
                   enemyEntity.move(Entity.UP);
                 }
                 else {
@@ -99,9 +99,9 @@ public class EnemyController extends Thread {
                 if (map.getMapCell(enemyEntity.getPosition(Entity.DOWN)).getTerrain()
                     .isPassable()) {
                   tempCell = map.getMapCell(enemyEntity.getPosition());
-                  tempPoint = enemyEntity.getPosition();
-                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.DOWN));
-                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  tempCell.setEntity(null);
+                  tempCell = map.getMapCell(enemyEntity.getPosition(Entity.DOWN));
+                  tempCell.setEntity(enemyEntity);
                   enemyEntity.move(Entity.DOWN);
                 }
                 else {
