@@ -77,4 +77,7 @@ public class Warrior implements Player {
   public int getClassId() {
     return classId;
   }
+  public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
+
+  }
 }

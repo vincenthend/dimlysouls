@@ -69,17 +69,24 @@ public class Game {
           public void keyPressed(KeyEvent keyEvent) {
             key = keyEvent.getKeyCode();
             if (key == KeyEvent.VK_LEFT){
-              //if kirinya bisa
-              playerEntity.move(Entity.LEFT);
+              if (map.inBounds(playerEntity.getPosition(Entity.LEFT)) && map.getMapCell(playerEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()){
+                playerEntity.move(Entity.LEFT);
+              }
             }
             else if (key == KeyEvent.VK_RIGHT){
-              playerEntity.move(Entity.RIGHT);
+              if (map.inBounds(playerEntity.getPosition(Entity.RIGHT)) && map.getMapCell(playerEntity.getPosition(Entity.RIGHT)).getTerrain().isPassable()){
+                playerEntity.move(Entity.RIGHT);
+              }
             }
             else if (key == KeyEvent.VK_UP){
-              playerEntity.move(Entity.UP);
+              if (map.inBounds(playerEntity.getPosition(Entity.UP)) && map.getMapCell(playerEntity.getPosition(Entity.UP)).getTerrain().isPassable()){
+                playerEntity.move(Entity.UP);
+              }
             }
-            else if (key == KeyEvent.VK_DOWN){
-              playerEntity.move(Entity.DOWN);
+            else if (key == KeyEvent.VK_DOWN) {
+              if (map.inBounds(playerEntity.getPosition(Entity.DOWN)) && map.getMapCell(playerEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()) {
+                playerEntity.move(Entity.DOWN);
+              }
             }
           }
 

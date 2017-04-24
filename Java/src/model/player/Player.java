@@ -8,20 +8,20 @@ public interface Player {
    * Menambah level player dan mengurangi nilai exp dengan nilai next.
    * Mengubah nilai next sesuai dengan rumus next * k + offset
    */
-  public void levelUp();
+  void levelUp();
   /**
    * Mengecek apakah player harus level up
    */
-  public boolean isLeveling();
+  boolean isLeveling();
   // Getter & Setter
-  public int getHealth();
-  public int getAttack();
-  public int getDefense();
-  public int getSpeed();
-  public int getLevel();
-  public int getExp();
-  public int getNext();
-  public String getNama();
-  public int getClassId();
-
+  int getHealth();
+  int getAttack();
+  int getDefense();
+  int getSpeed();
+  int getLevel();
+  int getExp();
+  int getNext();
+  String getNama();
+  int getClassId();
+  void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]);
 }
