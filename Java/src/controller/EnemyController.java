@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Random;
 import model.entity.EnemyEntity;
+import model.entity.Entity;
 import model.map.Map;
 
 public class EnemyController extends Thread {
@@ -26,32 +27,32 @@ public class EnemyController extends Thread {
       while (move == - 1){
         move = rand.nextInt(4);
         if (move == 0){
-          if (map.inBounds(enemyEntity.getPosition()) && map.getMapCell()){
-
+          if (map.inBounds(enemyEntity.getPosition(Entity.LEFT)) && map.getMapCell(enemyEntity.getPosition(Entity.LEFT)).getTerrain().isPassable()){
+            enemyEntity.move(Entity.LEFT);
           }
           else {
             move = -1;
           }
         }
         else if (move == 1){
-          if (){
-
+          if (map.inBounds(enemyEntity.getPosition(Entity.RIGHT)) && map.getMapCell(enemyEntity.getPosition(Entity.RIGHT)).getTerrain().isPassable()){
+            enemyEntity.move(Entity.RIGHT);
           }
           else {
             move = -1;
           }
         }
         else if (move == 2){
-          if (){
-
+          if (map.inBounds(enemyEntity.getPosition(Entity.UP)) && map.getMapCell(enemyEntity.getPosition(Entity.UP)).getTerrain().isPassable()){
+            enemyEntity.move(Entity.UP);
           }
           else {
             move = -1;
           }
         }
         else if (move == 3){
-          if (){
-
+          if (map.inBounds(enemyEntity.getPosition(Entity.DOWN)) && map.getMapCell(enemyEntity.getPosition(Entity.DOWN)).getTerrain().isPassable()){
+            enemyEntity.move(Entity.DOWN);
           }
           else {
             move = -1;
