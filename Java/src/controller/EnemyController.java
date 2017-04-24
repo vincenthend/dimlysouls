@@ -15,4 +15,7 @@ public class EnemyController extends Thread {
     //sleep for ... seconds
     //jalan
   }
+  public void kill(){
+    isRunning = false;
+  }
 }

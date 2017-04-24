@@ -3,21 +3,11 @@ package view;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
-import model.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import model.entity.PlayerEntity;
-import model.map.Map;
 
 /**
  *
@@ -116,7 +106,7 @@ public class GameInterface extends JFrame {
     add(statsInterface, c);
   }
 
-  public void switchToBattle(MouseListener mouseListener) {
+  public void switchToBattle(ActionListener skillListener [], EnemyEntity e) {
 
   }
 
@@ -131,10 +121,9 @@ public class GameInterface extends JFrame {
     revalidate();
     repaint();
   }
-  public void createBattleInterface(PlayerEntity p, EnemyEntity e) {
+  public void battleViewUpdate(EnemyEntity e) {
 
   }
-
   public void setPlayer(PlayerEntity player) {
     this.player = player;
   }

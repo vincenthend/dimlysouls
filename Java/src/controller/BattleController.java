@@ -8,8 +8,6 @@ import view.GameInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  *
@@ -37,27 +35,60 @@ public class BattleController {
    */
   public void startBattle() {
     //Deklarasi MouseListener
-    ActionListener Mouse = new ActionListener() {
+    ActionListener [] skillListener = new ActionListener [2];
+    skillListener[0] = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-
+        e.setCurrentHealth (e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
+        updateBattleView();
       }
-    }
+    };
+    skillListener[1] = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        p.setStatus(0, 1);
+        updateBattleView();
+      }
+    };
+    skillListener[3] = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        if (e.getStatus(0)){
+          e.setCurrentHealth (e.getCurrentHealth() - ((p.getPlayer().getAttack() - e.getEnemy().getDefense()) * 2));
+        }
+        else {
+          e.setCurrentHealth (e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
+        }
+        updateBattleView();
+      }
+    };
+    skillListener[4] = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        //p.getPlayer().special();
+        updateBattleView();
+      }
     };
 
     //Deklarasi EnemyBattleController & PlayerBattleController
     EnemyBattleController EBC = new EnemyBattleController(p, e);
-    EBC.start();
     PlayerBattleController PBC = new PlayerBattleController(p, e);
-
     //Set Battle GUI
-
-    g.
+    g.switchToBattle(skillListener,  e);
     //Run EBC & PBC Thread
-    //While not battle end
-      //Wait for mouse click
-      //On mouse click, update GUI
+    EBC.start();
+    PBC.start();
 
+    //While not battle end
+    boolean isBattling = true;
+    while (isBattling) {
+        //Button dipencet
+        PBC.calculateDamage();
+        updateBattleView();
+    }
+    EBC.kill();
+    PBC.kill();
+    //g.switchToMap();
     //Kill EBC & PBC Thread
   }
 
@@ -65,6 +96,6 @@ public class BattleController {
    * Memanggil method battleViewUpdate pada class gameInterface
    */
   public void updateBattleView() {
-
+    g.battleViewUpdate(e);
   }
 }
