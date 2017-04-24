@@ -295,4 +295,22 @@ public class Map {
   public Cell getMapCell(Point position) {
     return mapCell[position.y][position.x];
   }
+  public TransferPoint getTransferPoint(Point p){
+    int i = 0;
+    boolean found = false;
+    while (i < mapExit.size() && !found){
+      if (p.x == mapExit.get(i).getEntrancePoint().x && p.y == mapExit.get(i).getEntrancePoint().y){
+        found = true;
+      }
+      else {
+        i++;
+      }
+    }
+    if (found) {
+      return mapExit.get(i);
+    }
+    else {
+      return null;
+    }
+  }
 }
