@@ -13,12 +13,15 @@ public class Map {
   private int height;
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
-
+  private LinkedList<TransferPoint> mapExit;
   private final int branchChance = 95;
   private final int offset = 40;
 
   /**
-   * Membuat map dengan width dan height
+   * Membuat map dengan width dan height terspesifikasi.
+   *
+   * @param width lebar map
+   * @param height tinggi map
    */
   public Map(int width, int height) {
     int i;
@@ -36,13 +39,20 @@ public class Map {
     }
   }
 
-  public void generateMap(int x1, int y1){
+  /**
+   * Membuat map dengan titik awal x1 dan y1.
+   *
+   * @param x1 absis awal pembuatan map
+   * @param y1 ordinat awal pembuatan map
+   */
+  public void generateMap(int x1, int y1) {
     int x;
     int y;
     int rg;
 
-    Point branchHead = new Point(x1,y1);
+    Point branchHead = new Point(x1, y1);
     LinkedList<Point> branchQueue;
+    mapExit = new LinkedList<>();
 
     x = x1;
     y = y1;
@@ -58,6 +68,7 @@ public class Map {
     // Add to seed
     mapSeed = new LinkedList<>();
     mapSeed.addLast(branchHead);
+    mapExit.add(new TransferPoint(branchHead));
 
     // Add to branchQueue
     branchQueue = new LinkedList<>();
@@ -78,7 +89,8 @@ public class Map {
 
       for (i = 0; i < 4; i++) {
         tempPoint = nextNode(i, branchHead);
-        if (inBounds(tempPoint) && !(!(pathCount >= Math.max(height,width) * offset / 10) && isExit(tempPoint))
+        if (inBounds(tempPoint) && !(!(pathCount >= Math.max(height, width) * offset / 10)
+            && isExit(tempPoint))
             && mapCell[tempPoint.y][tempPoint.x].getEntity().getRenderCode().equals("#")) {
           availMove.add(i);
         }
@@ -103,6 +115,9 @@ public class Map {
           }
           branchQueue.addLast(branchHead);
         }
+        else{
+          mapExit.add(new TransferPoint(tempPoint));
+        }
       }
       else if (availMove.size() == 0) {
         //Remove the head
@@ -115,13 +130,15 @@ public class Map {
         finishGenerate = true;
       }
     }
-    System.out.println("Number of Path : "+pathCount);
+    System.out.println("Number of Path : " + pathCount);
     System.out.println("Map Seed : ");
     System.out.println(mapSeed.toString());
+    System.out.println("Exits : ");
+    System.out.println(mapExit.toString());
   }
 
   /**
-   *
+   * Membuat map dengan nilai titik awal tidak diketahui.
    */
   public void generateMap() {
     int rg;
@@ -143,13 +160,24 @@ public class Map {
       y = Math.abs((randomGen.nextInt() % (height - 1)) + 1);
     }
 
-    generateMap(x,y);
+    generateMap(x, y);
   }
 
-  // 0 : up
-  // 1 : left
-  // 2 : down
-  // 3 : right
+  /**
+   * Membuat map dengan nilai titik awal berupa Point.
+   *
+   * @param point titik awal pembuatan map
+   */
+  public void generateMap(Point point) {
+    generateMap(point.x, point.y);
+  }
+
+  /**
+   * Menguji apakah titik yang dimasukkan ada di dalam map.
+   *
+   * @param point titik yang diuji
+   * @return nilai boolean apakah titik ada di dalam map
+   */
   private boolean inBounds(Point point) {
     boolean avail = false;
     if ((point.x == 0 || point.x == width) && (point.y == 0 || point.y == height - 1)) {
@@ -161,10 +189,23 @@ public class Map {
     return avail;
   }
 
+  /**
+   * Menguji apakah titik yang dimasukkan berada di ujung map.
+   *
+   * @param point titik yang diuji
+   * @return nilai boolean apakah titik ada di ujung map
+   */
   private boolean isExit(Point point) {
     return (point.x == 0 || point.x == width - 1 || point.y == 0 || point.y == height - 1);
   }
 
+  /**
+   * Menghasilkan nilai point selanjutnya sesuai kode movement.
+   *
+   * @param movement kode pergerakan, 0 atas, 1 kiri, 2 bawah, 3 kanan
+   * @param point point lokasi sekarang
+   * @return nilai point selanjutnya
+   */
   private Point nextNode(int movement, Point point) {
     int x = point.x;
     int y = point.y;
@@ -187,21 +228,42 @@ public class Map {
     return retPoint;
   }
 
+  /**
+   * Mengembalikan lebar map.
+   *
+   * @return lebar map
+   */
   public int getWidth() {
     return width;
   }
 
+  /**
+   * Mengembalikan tinggi map.
+   *
+   * @return tinggi map
+   */
   public int getHeight() {
     return height;
   }
 
   /**
-   * Menambahkan cell pada lokasi posX dan lokasi posY
+   * Menambahkan cell pada lokasi posX dan lokasi posY.
+   *
+   * @param cell cell yang dimasukkan
+   * @param posX nilai absis cell
+   * @param posY nilai ordinat cell
    */
   public void setMapCell(Cell cell, int posX, int posY) {
     mapCell[posY][posX] = cell;
   }
 
+  /**
+   * Mengembalikan cell pada lokasi x dan y.
+   *
+   * @param x absis cell
+   * @param y ordinat cell
+   * @return cell pada (x,y)
+   */
   public Cell getMapCell(int x, int y) {
     return mapCell[y][x];
   }
