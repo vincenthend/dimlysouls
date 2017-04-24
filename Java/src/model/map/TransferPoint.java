@@ -3,7 +3,7 @@ package model.map;
 import java.awt.Point;
 
 /**
- * Transfer map digunakan untuk menghubungkan map melalui cell tertentu.
+ * TransferPoint digunakan untuk menghubungkan map melalui cell tertentu.
  *
  * @Author Vincent Hendryanto H / 13515089
  */

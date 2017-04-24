@@ -1,31 +1,38 @@
 package model.enemy;
 
 /**
- *
+ * Interface enemy, mengatur getter yang harus dimiliki enemy.
+ * @author
  */
 public interface Enemy {
   /**
-   * @return
+   * Mengembalikan nilai health.
+   * @return nilai health
    */
   public int getHealth();
   /**
-   * @return
+   * Mengembalikan nilai Attack.
+   * @return nilai Attack
    */
   public int getAttack();
   /**
-   * @return
+   * Mengembalikan nilai Defense.
+   * @return nilai Defense
    */
   public int getDefense();
   /**
-   * @return
+   * Mengembalikan nilai Speed.
+   * @return nilai speed
    */
   public int getSpeed();
   /**
-   * @return
+   * Mengembalikan nilai EXP yang didapat.
+   * @return nilai exp
    */
   public int getExp();
   /**
-   * @return
+   * Mengembalikan RenderCode.
+   * @return renderCode
    */
   public String getRenderCode();
 }

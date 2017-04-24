@@ -1,26 +1,24 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.enemy.Enemy;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.player.Player;
 import view.GameInterface;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /**
  *
  */
 public class BattleController {
-
   private EnemyEntity e;
   private PlayerEntity p;
   private GameInterface g;
 
-
   /**
    * Konstruktor battle controller, dipanggil setiap melakukan battle
+   *
    * @param enemy reference enemy yang terlibat battle
    * @param player reference player yang terlibat battle
    * @param gameInterface interface yang sedang berjalan
@@ -29,17 +27,17 @@ public class BattleController {
 
   }
 
-
   /**
    *
    */
   public void startBattle() {
     //Deklarasi MouseListener
-    ActionListener [] skillListener = new ActionListener [2];
+    ActionListener[] skillListener = new ActionListener[2];
     skillListener[0] = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        e.setCurrentHealth (e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
+        e.setCurrentHealth(
+            e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
         updateBattleView();
       }
     };
@@ -53,11 +51,13 @@ public class BattleController {
     skillListener[3] = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        if (e.getStatus(0)){
-          e.setCurrentHealth (e.getCurrentHealth() - ((p.getPlayer().getAttack() - e.getEnemy().getDefense()) * 2));
+        if (e.getStatus(0)) {
+          e.setCurrentHealth(
+              e.getCurrentHealth() - ((p.getPlayer().getAttack() - e.getEnemy().getDefense()) * 2));
         }
         else {
-          e.setCurrentHealth (e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
+          e.setCurrentHealth(
+              e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
         }
         updateBattleView();
       }
@@ -74,7 +74,7 @@ public class BattleController {
     EnemyBattleController EBC = new EnemyBattleController(p, e);
     PlayerBattleController PBC = new PlayerBattleController(p, e);
     //Set Battle GUI
-    g.switchToBattle(skillListener,  e);
+    g.switchToBattle(skillListener, e);
     //Run EBC & PBC Thread
     EBC.start();
     PBC.start();
@@ -82,9 +82,9 @@ public class BattleController {
     //While not battle end
     boolean isBattling = true;
     while (isBattling) {
-        //Button dipencet
-        PBC.calculateDamage();
-        updateBattleView();
+      //Button dipencet
+      PBC.calculateDamage();
+      updateBattleView();
     }
     EBC.kill();
     PBC.kill();

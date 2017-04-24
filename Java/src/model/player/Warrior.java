@@ -4,6 +4,7 @@ package model.player;
  *
  */
 public class Warrior implements Player {
+  private final int classId;
   private int health;
   private int attack;
   private int defense;
@@ -12,7 +13,7 @@ public class Warrior implements Player {
   private int exp;
   private int next;
   private String nama;
-  private final int classId;
+
   /**
    * Default constructor
    */
@@ -27,6 +28,7 @@ public class Warrior implements Player {
     exp = 0;
     next = 10;
   }
+
   /**
    * Menambah level player dan mengurangi nilai exp dengan nilai next.
    * Mengubah nilai next sesuai dengan rumus next * k + offset
@@ -41,6 +43,7 @@ public class Warrior implements Player {
     defense += 2;
     speed += 1;
   }
+
   /**
    * Mengecek apakah player harus level up
    */
@@ -53,27 +56,35 @@ public class Warrior implements Player {
   public int getHealth() {
     return health;
   }
+
   public int getAttack() {
     return attack;
   }
+
   public int getDefense() {
     return defense;
   }
+
   public int getSpeed() {
     return speed;
   }
+
   public int getLevel() {
     return level;
   }
+
   public int getExp() {
     return exp;
   }
+
   public int getNext() {
     return next;
   }
+
   public String getNama() {
     return nama;
   }
+
   public int getClassId() {
     return classId;
   }

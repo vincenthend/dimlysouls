@@ -1,10 +1,10 @@
 package model.enemy;
 
 /**
- *
+ * Kelas musuh slime.
+ * @author
  */
 public class Slime implements Enemy {
-
   private int health;
   private int attack;
   private int defense;
@@ -13,7 +13,7 @@ public class Slime implements Enemy {
   private String renderCode;
 
   /**
-   * Default constructor
+   * Konstruktor kelas slime.
    */
   public Slime() {
     health = 20;

@@ -23,5 +23,4 @@ public interface Player {
   public int getNext();
   public String getNama();
   public int getClassId();
-
 }

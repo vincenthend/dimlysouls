@@ -1,24 +1,25 @@
 package model.map;
 
-import model.entity.TerrainEntity;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Random;
+import model.entity.Terrain;
 
 /**
+ * Class Map, berisi peta dan semua data peta
  *
+ * @author Vincent Hendryanto Halim / 13515089
  */
 public class Map {
+  //Constants
+  private final int branchChance = 10;
+  private final int offset = 40;
+  private final int minExit = 3;
   private int width;
   private int height;
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
   private LinkedList<TransferPoint> mapExit;
-  //Constants
-  private final int branchChance = 10;
-  private final int offset = 40;
-  private final int minExit = 3;
 
   /**
    * Membuat map dengan width dan height terspesifikasi.
@@ -37,7 +38,7 @@ public class Map {
     //Init map
     for (i = 0; i < height; i++) {
       for (j = 0; j < width; j++) {
-        mapCell[i][j] = new Cell(j, i, new TerrainEntity(j, i, false));
+        mapCell[i][j] = new Cell(j, i, new Terrain(false));
       }
     }
   }
@@ -65,7 +66,7 @@ public class Map {
     randomGen.setSeed(System.currentTimeMillis());
 
     //Clear starting point
-    mapCell[y][x] = new Cell(x, y, new TerrainEntity(branchHead, true));
+    mapCell[y][x] = new Cell(x, y, new Terrain( true));
 
     // Add to seed
     mapSeed = new LinkedList<>();
@@ -120,7 +121,7 @@ public class Map {
         tempPoint = nextNode(availMove.get(rg), branchHead);
         y = tempPoint.y;
         x = tempPoint.x;
-        mapCell[y][x] = new Cell(tempPoint, new TerrainEntity(tempPoint, true));
+        mapCell[y][x] = new Cell(tempPoint, new Terrain(true));
         mapSeed.add(tempPoint);
         pathCount++;
         branchHead.setLocation(x, y);

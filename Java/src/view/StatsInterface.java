@@ -7,9 +7,19 @@ import javax.swing.JPanel;
 import model.entity.PlayerEntity;
 import model.player.Player;
 
+/**
+ * Class StatsInterface menampilkan stats player
+ *
+ * @author Vincent Hendryanto Halim / 13515089
+ */
 public class StatsInterface extends JPanel {
   private PlayerEntity playerEntity;
 
+  /**
+   * Konstruktor kelas StatsInterface
+   *
+   * @param P Player yang statsnya ditampilkan
+   */
   public StatsInterface(PlayerEntity P) {
     playerEntity = P;
     Player player = P.getPlayer();
@@ -18,6 +28,9 @@ public class StatsInterface extends JPanel {
     updateStats();
   }
 
+  /**
+   * Mengupdate isi stats
+   */
   public void updateStats() {
     removeAll();
     Player player = playerEntity.getPlayer();
