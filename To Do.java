@@ -10,9 +10,9 @@
 	e. Player							|		DONE		|
 	
 2. Controller							|					|
-	a. BattleController					|					| (termasuk EBC PBC)
-	b. PlayerController					|					|
-	c. EnemyController					|					|
+	a. BattleController					|		-PBC		| (termasuk EBC PBC)
+	b. PlayerController					|		?			|
+	c. EnemyController					|		DONE		|
 	
 3. View
 	a. Main Menu						|		DONE		|

@@ -6,7 +6,6 @@ import model.entity.EnemyEntity;
 import model.entity.Entity;
 import model.map.Cell;
 import model.map.Map;
-import model.map.Terrain;
 import view.GameInterface;
 
 /**
@@ -45,8 +44,8 @@ public class EnemyController extends Thread {
 
     try {
       while (isRunning) {
-        //synchronized (enemyEntity) {
-          Thread.sleep(10000 / enemyEntity.getEnemy().getSpeed());
+        synchronized (enemyEntity) {
+          Thread.sleep(25000 / enemyEntity.getEnemy().getSpeed());
           move = -1;
           while (move == -1) {
             move = rand.nextInt(4);
@@ -55,9 +54,9 @@ public class EnemyController extends Thread {
                 if (map.getMapCell(enemyEntity.getPosition(Entity.LEFT)).getTerrain()
                     .isPassable()) {
                   tempCell = map.getMapCell(enemyEntity.getPosition());
-                  tempPoint = enemyEntity.getPosition();
-                  map.setMapCell(tempCell, enemyEntity.getPosition(Entity.LEFT));
-                  map.setMapCell(new Cell(tempPoint, new Terrain(true)), tempPoint);
+                  tempCell.setEntity(null);
+                  tempCell = map.getMapCell(enemyEntity.getPosition(Entity.LEFT));
+                  tempCell.setEntity(enemyEntity);
                   enemyEntity.move(Entity.LEFT);
                 }
                 else {
@@ -111,7 +110,7 @@ public class EnemyController extends Thread {
               }
             }
           }
-        //}
+        }
 
         System.out.println(enemyEntity.getPosition().toString());
         gui.getMapInterface().updateMap(map);
