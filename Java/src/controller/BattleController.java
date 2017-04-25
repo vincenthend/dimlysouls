@@ -94,7 +94,7 @@ public class BattleController {
    * Memanggil method battleViewUpdate pada class gameInterface
    */
   public void updateBattleView() {
-    gameInterface.battleViewUpdate(e);
+    gameInterface.battleViewUpdate(enemyEntity);
   }
   public int calculateDamage(){return 0;}
 }
