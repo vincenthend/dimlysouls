@@ -9,7 +9,7 @@ import model.map.Map;
 /**
  * Class EnemyControler mengatur pergerakan musuh di map
  *
- * @Author Mikhael Artur Darmakesuma / 13515099
+ * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class EnemyController extends Thread {
   private EnemyEntity enemyEntity;
@@ -58,6 +58,11 @@ public class EnemyController extends Thread {
     }
   }
 
+  /**
+   * Mengembalikan nilai apakah jalan dapat dilalui
+   * @param direction
+   * @return
+   */
   private boolean isDirPassable(int direction) {
     return (map.inBounds(enemyEntity.getPosition(direction)) && map
         .getMapCell(enemyEntity.getPosition(direction)).getTerrain().isPassable() && map
@@ -65,7 +70,7 @@ public class EnemyController extends Thread {
   }
 
   /**
-   * Mematikan thread EnemyController
+   * Mematikan thread EnemyController.
    */
   public void kill() {
     isRunning = false;

@@ -6,16 +6,29 @@ import javax.swing.Timer;
 import model.map.Map;
 import view.GameInterface;
 
+/**
+ * Kelas GuiUpdateController mengatur kecepatan update GUI.
+ */
 public class GuiUpdateController {
-  public final int UPDATE_SPEED = 17;
+  public static final int FPS = 60;
+  public static final int UPDATE_SPEED = 1000 / FPS;
   private GameInterface gameInterface;
   private Map map;
 
+  /**
+   * Konstruktor kelas GuiUpdateController.
+   *
+   * @param gameInterface gameInterface yang diupdate
+   * @param map map yang digunakan sekarang
+   */
   GuiUpdateController(GameInterface gameInterface, Map map) {
     this.map = map;
     this.gameInterface = gameInterface;
   }
 
+  /**
+   * Melakukan update terhadap interface yang memiliki map.
+   */
   public void mapUpdateTimer() {
     Timer updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
       @Override
@@ -28,6 +41,10 @@ public class GuiUpdateController {
     updateTimer.start();
   }
 
+  /**
+   * Mengatur map yang digunakan saat update.
+   * @param map map yang digunakan saat update
+   */
   public void setMap(Map map){
     this.map = map;
   }

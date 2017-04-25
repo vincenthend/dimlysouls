@@ -9,15 +9,22 @@ import model.map.Map;
 import model.map.TransferPoint;
 import view.GameInterface;
 
+/**
+ * Kelas PlayerController, mengontrol pergerakan player.
+ */
 public class PlayerController implements KeyListener {
   private PlayerEntity playerEntity;
-  private GameInterface gameInterface;
   private Map map;
   private MapChangeListener mapChange;
 
+  /**
+   * Konstruktor kelas PlayerController.
+   * @param playerEntity player yang terlibat
+   * @param gameInterface gameInterface yang digunakan
+   * @param map map yang digunakan
+   */
   public PlayerController(PlayerEntity playerEntity, GameInterface gameInterface, Map map) {
     this.playerEntity = playerEntity;
-    this.gameInterface = gameInterface;
     this.map = map;
   }
 

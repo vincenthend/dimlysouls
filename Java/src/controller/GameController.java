@@ -10,16 +10,26 @@ import model.player.Player;
 import model.player.Warrior;
 import view.GameInterface;
 
+/**
+ * Kelas GameController mengatur berjalannya game.
+ */
 public class GameController extends Thread{
   private Player player;
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
   private MapController mapController;
 
+  /**
+   * Konstruktor kelas GameController.
+   * @param gameInterface Window Interface yang digunakan
+   */
   public GameController(GameInterface gameInterface) {
     this.gameInterface = gameInterface;
   }
 
+  /**
+   * Method yang digunakan untuk memulai game baru
+   */
   public void newGame() {
     int playerClass;
     String name = JOptionPane.showInputDialog(null, "What's your name?");
