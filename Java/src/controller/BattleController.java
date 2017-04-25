@@ -28,7 +28,7 @@ public class BattleController {
   }
 
   /**
-   *
+   * Memulai battle
    */
   public void startBattle() {
     //Deklarasi MouseListener

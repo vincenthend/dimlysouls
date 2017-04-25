@@ -16,7 +16,7 @@ public class Map {
   private final int branchChance = 10;
   private final int offset = 40;
   private final int minExit = 3;
-  private final int mapToEnemy = 2;
+  private final int mapToEnemy = 10;
   private int width;
   private int height;
   private Cell[][] mapCell;
@@ -270,7 +270,7 @@ public class Map {
 
     for (i = 0; i < (mapSeed.size() * mapToEnemy) / 100; i++) {
       randomLoc = mapSeed.get(randomGen.nextInt(mapSeed.size()));
-      enemyEntity = new EnemyEntity(randomLoc, enemyGen.generateEnemy(1));
+      enemyEntity = new EnemyEntity(randomLoc, enemyGen.generateEnemy());
       enemyList.addLast(enemyEntity);
       mapCell[randomLoc.y][randomLoc.x].setEntity(enemyEntity);
     }
