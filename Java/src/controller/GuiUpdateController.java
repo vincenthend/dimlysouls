@@ -15,6 +15,9 @@ public class GuiUpdateController {
   private GameInterface gameInterface;
   private Map map;
 
+  //Timers
+  private Timer updateTimer;
+
   /**
    * Konstruktor kelas GuiUpdateController.
    *
@@ -30,7 +33,7 @@ public class GuiUpdateController {
    * Melakukan update terhadap interface yang memiliki map.
    */
   public void mapUpdateTimer() {
-    Timer updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
+    updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
         gameInterface.updateMap(map);
@@ -39,6 +42,21 @@ public class GuiUpdateController {
     });
 
     updateTimer.start();
+  }
+
+  public void battleUpdateTimer(){
+    updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        gameInterface.updateInterface();
+      }
+    });
+
+    updateTimer.start();
+  }
+
+  public void stopTimer(){
+    updateTimer.stop();
   }
 
   /**

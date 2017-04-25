@@ -2,8 +2,8 @@ package controller;
 
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
-import view.BattleButton;
-import view.BattleInterface;
+import view.Battle.BattleButton;
+import view.Battle.BattleInterface;
 import view.GameInterface;
 
 import java.awt.event.ActionEvent;

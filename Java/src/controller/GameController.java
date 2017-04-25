@@ -1,5 +1,7 @@
 package controller;
 
+import controller.listener.EncounterListener;
+import controller.listener.MapChangeListener;
 import javax.swing.JOptionPane;
 import model.entity.PlayerEntity;
 import model.map.Map;
@@ -76,6 +78,23 @@ public class GameController extends Thread{
         guiUpdateController.setMap(newMap);
         mapController.stopEnemyController();
         mapController.setMap(newMap);
+      }
+    });
+
+    //Encounter detector
+    playerController.setEncounterListener(new EncounterListener() {
+      @Override
+      public void EncounterFound(int encounterType) {
+        if(encounterType == 1){
+          //Enemy Encountered
+          System.out.println("Enemy encountered");
+          guiUpdateController.stopTimer();
+          //gameInterface.switchToBattle(); //gatau diisi apa ini
+          guiUpdateController.battleUpdateTimer();
+        }
+        else if(encounterType == 2){
+          //Item Encountered
+        }
       }
     });
 
