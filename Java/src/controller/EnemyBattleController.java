@@ -33,7 +33,7 @@ public class EnemyBattleController extends Thread {
     while (isRunning) {
       try {
         sleep(1000 / enemyEntity.getEnemy().getSpeed());
-        attack = rand.nextInt(4);
+        attack = rand.nextInt(4)+1;
         if (attack == 1) {
           playerEntity.setCurrentHealth(
               playerEntity.getCurrentHealth() - (enemyEntity.getEnemy().getAttack() - playerEntity
@@ -56,13 +56,12 @@ public class EnemyBattleController extends Thread {
         else if (attack == 4) {
           //enemyEntity.getEnemy().special();
         }
+        if(playerEntity.getCurrentHealth() <= 0 || enemyEntity.getCurrentHealth() <= 0){
+          isRunning = false;
+        }
       } catch (InterruptedException e) {
-        System.out.println("Error interrupted");
       }
     }
-    //While isRunning
-    //Sleep for ... seconds
-    //Attack
   }
 
   public void kill() {

@@ -3,6 +3,8 @@ package controller;
 import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
 import javax.swing.JOptionPane;
+import model.entity.EnemyEntity;
+import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.player.Berserker;
@@ -15,7 +17,7 @@ import view.GameInterface;
 /**
  * Kelas GameController mengatur berjalannya game.
  */
-public class GameController extends Thread{
+public class GameController extends Thread {
   private Player player;
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
@@ -23,6 +25,7 @@ public class GameController extends Thread{
 
   /**
    * Konstruktor kelas GameController.
+   *
    * @param gameInterface Window Interface yang digunakan
    */
   public GameController(GameInterface gameInterface) {
@@ -84,20 +87,31 @@ public class GameController extends Thread{
     //Encounter detector
     playerController.setEncounterListener(new EncounterListener() {
       @Override
-      public void EncounterFound(int encounterType) {
-        if(encounterType == 1){
+      public void EncounterFound(Entity e) {
+        if (e.getEntityId() == 1) {
           //Enemy Encountered
           System.out.println("Enemy encountered");
+          BattleController battleController = new BattleController((EnemyEntity) e, playerEntity,
+              gameInterface);
+          mapController.stopEnemyController();
           guiUpdateController.stopTimer();
-          //gameInterface.switchToBattle(); //gatau diisi apa ini
+
           guiUpdateController.battleUpdateTimer();
+          battleController.start();
+
+          //Switch back to map
+          while (((EnemyEntity) e).getCurrentHealth() > 0) {
+
+          }
+          guiUpdateController.stopTimer();
+          mapController.attachEnemyController();
+          gameInterface.switchToMap(playerController, map);
+          guiUpdateController.mapUpdateTimer();
         }
-        else if(encounterType == 2){
+        else if (e.getEntityId() == 2) {
           //Item Encountered
         }
       }
     });
-
   }
-
 }

@@ -13,6 +13,7 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Konstruktor EnemyEntity.
+   *
    * @param x absis objek enemy
    * @param y ordinat objek enemy
    * @param e musuh di dalam entity
@@ -22,6 +23,7 @@ public final class EnemyEntity extends Entity {
     int i;
     enemy = e;
     renderCode = e.getRenderCode();
+    currentHealth = e.getHealth();
     status = new int[5];
     for (i = 0; i < 5; i++) {
       status[i] = 0;
@@ -30,14 +32,13 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Konstruktor EnemyEntity.
-   * @param location
-   * @param e
    */
   public EnemyEntity(Point location, Enemy e) {
     super(location, 1);
     int i;
     enemy = e;
     renderCode = e.getRenderCode();
+    currentHealth = e.getHealth();
     status = new int[5];
     for (i = 0; i < 5; i++) {
       status[i] = 0;
@@ -46,6 +47,7 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Mengembalikan nilai health musuh.
+   *
    * @return nilai health musuh
    */
   public int getCurrentHealth() {
@@ -54,6 +56,7 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Mengatur nilai health musuh.
+   *
    * @param h nilai health musuh
    */
   public void setCurrentHealth(int h) {
@@ -92,6 +95,7 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Mengembalikan enemy yang ada di dalam entity.
+   *
    * @return enemy di dalam entity
    */
   public Enemy getEnemy() {

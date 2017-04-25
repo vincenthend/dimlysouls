@@ -3,14 +3,10 @@ package view.Battle;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import model.enemy.Slime;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
-import model.player.Warrior;
 import view.EnemyStatsInterface;
 import view.StatsInterface;
 
@@ -73,44 +69,4 @@ public class BattleInterface extends JPanel {
     return buttonInterface;
   }
 
-  public static void main(String[] args) {
-    JFrame jframe = new JFrame();
-    jframe.setSize(800, 500);
-
-    PlayerEntity player = new PlayerEntity(0, 0, new Warrior("asd"));
-    EnemyEntity enemy = new EnemyEntity(0, 0, new Slime());
-
-    /**
-     *  INI ACTION LISTENERNYA YA MIKE~~~~~~~~~~~~~~~~~~~~~~~~`
-     */
-
-     BattleInterface battleInterface = new BattleInterface(player, enemy, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        BattleButton temp = (BattleButton) e.getSource();
-
-        int atkId = temp.getAtkId();
-        if (atkId == 0) {
-          //Attack
-          System.out.println(atkId);
-        }
-        else if (atkId == 1) {
-          //Block
-          System.out.println(atkId);
-        }
-        else if (atkId == 2) {
-          //Stab
-          System.out.println(atkId);
-        }
-        else if (atkId == 3) {
-          //Special
-          System.out.println(atkId);
-        }
-      }
-    });
-    battleInterface.setSize(jframe.getSize());
-
-    jframe.add(battleInterface);
-    jframe.setVisible(true);
-  }
 }

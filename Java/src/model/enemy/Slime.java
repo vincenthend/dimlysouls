@@ -17,8 +17,8 @@ public class Slime implements Enemy {
    */
   public Slime() {
     health = 20;
-    attack = 10;
-    defense = 10;
+    attack = 3;
+    defense = 3;
     speed = 50;
     expGet = 5;
     renderCode = "$";
