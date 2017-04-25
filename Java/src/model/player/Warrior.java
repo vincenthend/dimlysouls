@@ -19,7 +19,7 @@ public class Warrior implements Player {
    */
   public Warrior(String nama) {
     this.nama = nama;
-    classId = 1;
+    classId = 4;
     health = 150;
     attack = 10;
     defense = 10;
@@ -88,6 +88,11 @@ public class Warrior implements Player {
   public int getClassId() {
     return classId;
   }
+
+  public void setExp(int exp) {
+    this.exp = exp;
+  }
+
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
 
   }

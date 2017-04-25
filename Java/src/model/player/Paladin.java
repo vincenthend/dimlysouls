@@ -19,7 +19,7 @@ public class Paladin implements Player {
    */
   public Paladin(String nama) {
     this.nama = nama;
-    classId = 1;
+    classId = 3;
     health = 200;
     attack = 10;
     defense = 15;
@@ -87,6 +87,10 @@ public class Paladin implements Player {
 
   public int getClassId() {
     return classId;
+  }
+
+  public void setExp(int exp) {
+    this.exp = exp;
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]) {

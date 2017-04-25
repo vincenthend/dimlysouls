@@ -54,29 +54,41 @@ public class Berserker implements Player {
   public int getHealth() {
     return health;
   }
+
   public int getAttack() {
     return attack;
   }
+
   public int getDefense() {
     return defense;
   }
+
   public int getSpeed() {
     return speed;
   }
+
   public int getLevel() {
     return level;
   }
+
   public int getExp() {
     return exp;
   }
+
   public int getNext() {
     return next;
   }
+
   public String getNama() {
     return nama;
   }
+
   public int getClassId() {
     return classId;
+  }
+
+  public void setExp(int exp) {
+    this.exp = exp;
   }
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
 

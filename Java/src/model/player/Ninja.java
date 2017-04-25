@@ -19,7 +19,7 @@ public class Ninja implements Player {
    */
   public Ninja(String nama) {
     this.nama = nama;
-    classId = 1;
+    classId = 2;
     health = 100;
     attack = 5;
     defense = 7;
@@ -85,6 +85,10 @@ public class Ninja implements Player {
 
   public int getClassId() {
     return classId;
+  }
+
+  public void setExp(int exp) {
+    this.exp = exp;
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
