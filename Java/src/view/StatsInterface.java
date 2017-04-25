@@ -22,7 +22,6 @@ public class StatsInterface extends JPanel {
    */
   public StatsInterface(PlayerEntity P) {
     playerEntity = P;
-    Player player = P.getPlayer();
 
     setLayout(new GridBagLayout());
     updateStats();
