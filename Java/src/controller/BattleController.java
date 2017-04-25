@@ -1,100 +1,68 @@
 package controller;
 
-import model.entity.EnemyEntity;
-import model.entity.PlayerEntity;
-import view.Battle.BattleButton;
-import view.Battle.BattleInterface;
-import view.GameInterface;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Timer;
+import model.entity.EnemyEntity;
+import model.entity.PlayerEntity;
+import view.GameInterface;
 
 /**
  *
  */
-public class BattleController {
+public class BattleController extends Thread {
   private EnemyEntity enemyEntity;
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
 
   /**
-   * Konstruktor battle controller, dipanggil setiap melakukan battle
+   * Konstruktor battle controller, dipanggil setiap melakukan battle.
    *
    * @param enemyEntity reference enemy yang terlibat battle
    * @param playerEntity reference player yang terlibat battle
    * @param gameInterface interface yang sedang berjalan
    */
-  public BattleController(EnemyEntity enemyEntity, PlayerEntity playerEntity, GameInterface gameInterface) {
-    this.enemyEntity = enemyEntity;
+  public BattleController(EnemyEntity enemyEntity, PlayerEntity playerEntity,
+      GameInterface gameInterface) {
     this.playerEntity = playerEntity;
+    this.enemyEntity = enemyEntity;
     this.gameInterface = gameInterface;
+
   }
 
   /**
-   * Memulai battle
+   * Memulai battle.
    */
-  public void startBattle() {
-    //Deklarasi MouseListener
-    BattleInterface battleInterface = new BattleInterface(playerEntity, enemyEntity, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        BattleButton temp = (BattleButton) e.getSource();
+  public synchronized void run() {
+    //Buat Listener
+    PlayerBattleController PBC = new PlayerBattleController(playerEntity, enemyEntity);
 
-        int atkId = temp.getAtkId();
-        if (atkId == 0) {
-          enemyEntity.setCurrentHealth(
-                  enemyEntity.getCurrentHealth() - (playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()));
-          updateBattleView();
-          System.out.println(atkId);
-        }
-        else if (atkId == 1) {
-          playerEntity.setStatus(0, 1);
-          updateBattleView();
-          System.out.println(atkId);
-        }
-        else if (atkId == 2) {
-          if (enemyEntity.getStatus(0)) {
-            enemyEntity.setCurrentHealth(
-                    enemyEntity.getCurrentHealth() - ((playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()) * 2));
-          }
-          else {
-            enemyEntity.setCurrentHealth(
-                    enemyEntity.getCurrentHealth() - (playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()));
-          }
-          updateBattleView();
-          System.out.println(atkId);
-        }
-        else if (atkId == 3) {
-          //p.getPlayer().special();
-          updateBattleView();
-          System.out.println(atkId);
+    //Pindah ke battle view
+
+    Timer timer = new Timer(500, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent actionEvent) {
+        gameInterface.switchToBattle(PBC, enemyEntity);
+        gameInterface.updateInterface();
+        if(enemyEntity.getCurrentHealth() <= 0){
+          ((Timer)actionEvent.getSource()).stop();
+          notifyAll();
         }
       }
     });
-    //Deklarasi EnemyBattleController & PlayerBattleController
+
+    timer.start();
+    try {
+      wait();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    System.out.println(gameInterface.getStatus());
+
     EnemyBattleController EBC = new EnemyBattleController(playerEntity, enemyEntity);
-    PlayerBattleController PBC = new PlayerBattleController(playerEntity, enemyEntity);
-    //Set Battle GUI
     //Run EBC & PBC Thread
     EBC.start();
-    PBC.start();
-
-    //While not battle end
-    boolean isBattling = true;
-    while (isBattling) {
-      updateBattleView();
-    }
-    EBC.kill();
-    PBC.kill();
-    //gameInterface.switchToMap();
-    //Kill EBC & PBC Thread
+    //Kill EBC Thread
+    //EBC.kill();
   }
-
-  /**
-   * Memanggil method battleViewUpdate pada class gameInterface
-   */
-  public void updateBattleView() {
-    gameInterface.battleViewUpdate(enemyEntity);
-  }
-  public int calculateDamage(){return 0;}
 }
