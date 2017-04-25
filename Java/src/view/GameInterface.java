@@ -38,7 +38,7 @@ public class GameInterface extends JFrame {
    * @param m1 mouseListener for newGame
    * @param m2 mouseListener for loadGame
    */
-  public void switchToMainMenu(ActionListener m1, ActionListener m2) {
+  public void switchToMainMenu(ActionListener m1) {
     removeContent();
     JPanel menuPanel = new JPanel(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
@@ -70,15 +70,6 @@ public class GameInterface extends JFrame {
 
     //set constraints
     constraints.gridy = 2;
-
-    //Add loadGame button
-    JButton loadGame = new JButton("Load Game");
-    loadGame.addActionListener(m2);
-    newGame.setPreferredSize(new Dimension(200, 30));
-    menuPanel.add(loadGame, constraints);
-
-    //set constraints
-    constraints.gridy = 3;
 
     //Add exitGame button
     JButton exitGame = new JButton("Exit Game");
