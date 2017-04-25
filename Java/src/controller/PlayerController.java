@@ -1,19 +1,20 @@
 package controller;
 
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.map.TransferPoint;
 import view.GameInterface;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class PlayerController implements KeyListener {
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
   private int key;
-  private Map map;
+  public static Map map;
 
   public PlayerController(PlayerEntity playerEntity, GameInterface gameInterface, Map map) {
     this.playerEntity = playerEntity;

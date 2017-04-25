@@ -1,19 +1,13 @@
 package view;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 /**
  * Kelas GameInterface mengatur isi interface.
@@ -38,7 +32,7 @@ public class GameInterface extends JFrame {
    * @param m1 mouseListener for newGame
    * @param m2 mouseListener for loadGame
    */
-  public void switchToMainMenu(ActionListener m1, ActionListener m2) {
+  public void switchToMainMenu(ActionListener m1, ActionListener m2, ActionListener m3) {
     removeContent();
     JPanel menuPanel = new JPanel(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
@@ -74,7 +68,7 @@ public class GameInterface extends JFrame {
     //Add loadGame button
     JButton loadGame = new JButton("Load Game");
     loadGame.addActionListener(m2);
-    newGame.setPreferredSize(new Dimension(200, 30));
+    loadGame.setPreferredSize(new Dimension(200, 30));
     menuPanel.add(loadGame, constraints);
 
     //set constraints
@@ -82,7 +76,8 @@ public class GameInterface extends JFrame {
 
     //Add exitGame button
     JButton exitGame = new JButton("Exit Game");
-    newGame.setPreferredSize(new Dimension(200, 30));
+    exitGame.addActionListener(m3);
+    exitGame.setPreferredSize(new Dimension(200, 30));
     menuPanel.add(exitGame, constraints);
 
     setSize(800, 500);

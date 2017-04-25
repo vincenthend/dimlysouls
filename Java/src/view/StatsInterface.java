@@ -1,11 +1,10 @@
 package view;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import model.entity.PlayerEntity;
 import model.player.Player;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Class StatsInterface menampilkan stats player
@@ -49,7 +48,7 @@ public class StatsInterface extends JPanel {
     stats.weightx = 0.5;
     stats.fill = GridBagConstraints.HORIZONTAL;
 
-    add(new JLabel("Name"), label);
+    add(new JLabel("Name "), label);
     label.gridy++;
     add(new JLabel("HP"), label);
     label.gridy++;

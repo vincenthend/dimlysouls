@@ -1,11 +1,9 @@
 package controller;
 
-import java.awt.Point;
-import java.util.Random;
 import model.entity.EnemyEntity;
-import model.map.Cell;
-import model.map.Map;
 import view.GameInterface;
+
+import java.util.Random;
 
 /**
  * Class EnemyControler mengatur pergerakan musuh di map
@@ -15,18 +13,15 @@ import view.GameInterface;
 public class EnemyController extends Thread {
   private EnemyEntity enemyEntity;
   private boolean isRunning;
-  private Map map;
   private GameInterface gui;
 
   /**
    * Konstruktor EnemyController.
    *
    * @param enemyEntity musuh yang digerakkan
-   * @param M peta yang digunakan untuk navigasi
    */
-  public EnemyController(EnemyEntity enemyEntity, Map M, GameInterface gui) {
+  public EnemyController(EnemyEntity enemyEntity, GameInterface gui) {
     this.enemyEntity = enemyEntity;
-    map = M;
     isRunning = true;
     this.gui = gui;
   }
@@ -38,8 +33,6 @@ public class EnemyController extends Thread {
     int move;
     Random rand = new Random();
     rand.setSeed(System.currentTimeMillis());
-    Cell tempCell;
-    Point tempPoint;
     boolean moving;
     try {
       while (isRunning) {
@@ -49,14 +42,14 @@ public class EnemyController extends Thread {
         while (!moving) {
           move = rand.nextInt(4);
           if (isDirPassable(move)) {
-            map.getMapCell(enemyEntity.getPosition(move)).setEntity(enemyEntity);
-            map.getMapCell(enemyEntity.getPosition()).setEntity(null);
+            PlayerController.map.getMapCell(enemyEntity.getPosition(move)).setEntity(enemyEntity);
+            PlayerController.map.getMapCell(enemyEntity.getPosition()).setEntity(null);
             enemyEntity.move(move);
             moving = true;
           }
         }
 
-        gui.updateMap(map);
+        gui.updateMap(PlayerController.map);
         gui.updateInterface();
       }
     } catch (InterruptedException e) {
@@ -65,8 +58,8 @@ public class EnemyController extends Thread {
   }
 
   private boolean isDirPassable(int direction) {
-    return (map.inBounds(enemyEntity.getPosition(direction)) && map
-        .getMapCell(enemyEntity.getPosition(direction)).getTerrain().isPassable() && map
+    return (PlayerController.map.inBounds(enemyEntity.getPosition(direction)) && PlayerController.map
+        .getMapCell(enemyEntity.getPosition(direction)).getTerrain().isPassable() && PlayerController.map
         .getMapCell(enemyEntity.getPosition(direction)).getEntity() == null);
   }
 
