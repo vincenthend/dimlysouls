@@ -1,10 +1,11 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import view.Battle.BattleButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PlayerBattleController implements ActionListener {
   private PlayerEntity playerEntity;
@@ -22,8 +23,7 @@ public class PlayerBattleController implements ActionListener {
     int atkId = temp.getAtkId();
     if (atkId == 0) {
       enemyEntity.setCurrentHealth(
-          enemyEntity.getCurrentHealth() - (playerEntity.getPlayer().getAttack() - enemyEntity
-              .getEnemy().getDefense()));
+              enemyEntity.getCurrentHealth() - calculateDamage(1));
       System.out.println(atkId);
     }
     else if (atkId == 1) {
@@ -33,13 +33,11 @@ public class PlayerBattleController implements ActionListener {
     else if (atkId == 2) {
       if (enemyEntity.getStatus(0)) {
         enemyEntity.setCurrentHealth(
-            enemyEntity.getCurrentHealth() - (
-                (playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()) * 2));
+                enemyEntity.getCurrentHealth() - calculateDamage(2));
       }
       else {
         enemyEntity.setCurrentHealth(
-            enemyEntity.getCurrentHealth() - (playerEntity.getPlayer().getAttack() - enemyEntity
-                .getEnemy().getDefense()));
+                enemyEntity.getCurrentHealth() - calculateDamage(1));
       }
       System.out.println(atkId);
     }
@@ -47,5 +45,13 @@ public class PlayerBattleController implements ActionListener {
       //p.getPlayer().special();
       System.out.println(atkId);
     }
+  }
+  private int calculateDamage(int multiplier){
+    int temp;
+    temp = (playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()) * multiplier;
+    if (temp < 0){
+      temp = 0;
+    }
+    return temp;
   }
 }

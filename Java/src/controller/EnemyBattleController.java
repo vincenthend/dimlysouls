@@ -1,8 +1,9 @@
 package controller;
 
-import java.util.Random;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
+
+import java.util.Random;
 
 /**
  *
@@ -35,22 +36,18 @@ public class EnemyBattleController extends Thread {
         sleep(1000 / enemyEntity.getEnemy().getSpeed());
         attack = rand.nextInt(4)+1;
         if (attack == 1) {
-          playerEntity.setCurrentHealth(
-              playerEntity.getCurrentHealth() - (enemyEntity.getEnemy().getAttack() - playerEntity
-                  .getPlayer().getDefense()));
+          playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - calculateDamage(1));
         }
         else if (attack == 2) {
-
+          enemyEntity.setStatus(0, 1);
         }
         else if (attack == 3) {
           if (playerEntity.getStatus(0)) {
-            playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - (
-                (enemyEntity.getEnemy().getAttack() - playerEntity.getPlayer().getDefense()) * 2));
+            playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - calculateDamage(2));
           }
           else {
             playerEntity.setCurrentHealth(
-                playerEntity.getCurrentHealth() - (enemyEntity.getEnemy().getAttack() - playerEntity
-                    .getPlayer().getDefense()));
+                playerEntity.getCurrentHealth() - calculateDamage(1));
           }
         }
         else if (attack == 4) {
@@ -66,5 +63,12 @@ public class EnemyBattleController extends Thread {
 
   public void kill() {
     isRunning = false;
+  }
+  private int calculateDamage(int multiplier){
+    int temp = (enemyEntity.getEnemy().getAttack() - playerEntity.getPlayer().getDefense()) * multiplier;
+    if (temp < 0){
+      temp = 0;
+    }
+    return temp;
   }
 }

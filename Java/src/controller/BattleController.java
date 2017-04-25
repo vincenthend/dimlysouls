@@ -20,7 +20,7 @@ public class BattleController extends Thread {
    * @param gameInterface interface yang sedang berjalan
    */
   public BattleController(EnemyEntity enemyEntity, PlayerEntity playerEntity,
-      GameInterface gameInterface) {
+                          GameInterface gameInterface) {
     this.playerEntity = playerEntity;
     this.enemyEntity = enemyEntity;
     this.gameInterface = gameInterface;

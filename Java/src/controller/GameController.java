@@ -2,17 +2,14 @@ package controller;
 
 import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
-import javax.swing.JOptionPane;
 import model.entity.EnemyEntity;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
-import model.player.Berserker;
-import model.player.Ninja;
-import model.player.Paladin;
-import model.player.Player;
-import model.player.Warrior;
+import model.player.*;
 import view.GameInterface;
+
+import javax.swing.*;
 
 /**
  * Kelas GameController mengatur berjalannya game.
@@ -40,7 +37,7 @@ public class GameController extends Thread {
     String name = JOptionPane.showInputDialog(null, "What's your name?");
     String[] options = new String[] {"Warrior", "Paladin", "Berserker", "Ninja"};
     playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection",
-        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
     if (playerClass == 0) {
       player = new Warrior(name);
@@ -92,7 +89,7 @@ public class GameController extends Thread {
           //Enemy Encountered
           System.out.println("Enemy encountered");
           BattleController battleController = new BattleController((EnemyEntity) e, playerEntity,
-              gameInterface);
+                  gameInterface);
           mapController.stopEnemyController();
           guiUpdateController.stopTimer();
 
@@ -100,13 +97,9 @@ public class GameController extends Thread {
           battleController.start();
 
           //Switch back to map
-          while (((EnemyEntity) e).getCurrentHealth() > 0) {
-
-          }
-          guiUpdateController.stopTimer();
-          mapController.attachEnemyController();
-          gameInterface.switchToMap(playerController, map);
-          guiUpdateController.mapUpdateTimer();
+          playerController.setEncounterListener(null);
+          TransitionController transitionController = new TransitionController(guiUpdateController, mapController, gameInterface, (EnemyEntity) e, playerController, map, playerEntity);
+          transitionController.start();
         }
         else if (e.getEntityId() == 2) {
           //Item Encountered

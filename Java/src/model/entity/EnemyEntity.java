@@ -1,7 +1,8 @@
 package model.entity;
 
-import java.awt.Point;
 import model.enemy.Enemy;
+
+import java.awt.*;
 
 /**
  * Entity yang berisi enemy.
