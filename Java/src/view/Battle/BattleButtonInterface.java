@@ -1,4 +1,4 @@
-package view;
+package view.Battle;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;

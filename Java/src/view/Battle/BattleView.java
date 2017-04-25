@@ -1,4 +1,4 @@
-package view;
+package view.Battle;
 
 import java.awt.Color;
 import javax.swing.JPanel;

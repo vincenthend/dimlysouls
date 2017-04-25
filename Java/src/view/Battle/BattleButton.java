@@ -1,4 +1,4 @@
-package view;
+package view.Battle;
 
 import javax.swing.JButton;
 

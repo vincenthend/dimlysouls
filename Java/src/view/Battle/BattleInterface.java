@@ -1,4 +1,4 @@
-package view;
+package view.Battle;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +11,8 @@ import model.enemy.Slime;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.player.Warrior;
+import view.EnemyStatsInterface;
+import view.StatsInterface;
 
 public class BattleInterface extends JPanel {
   private BattleButtonInterface buttonInterface;
