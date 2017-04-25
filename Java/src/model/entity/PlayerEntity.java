@@ -60,8 +60,8 @@ public final class PlayerEntity extends Entity {
     return (status[n] > 0);
   }
 
-  public void setStatus(int n, int t) {
-    status[n] = t;
+  public void setStatus(int code, int cond) {
+    status[code] = cond;
   }
 
   public Player getPlayer() {

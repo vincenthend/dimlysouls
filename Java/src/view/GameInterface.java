@@ -14,16 +14,24 @@ import javax.swing.SwingConstants;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
+import view.Battle.BattleInterface;
 
 /**
  * Kelas GameInterface mengatur isi interface.
+ *
  * @author Vincent H
  */
 public class GameInterface extends JFrame {
-  private ActionListener[] actionListener;
-  private PlayerEntity player;
+  private ActionListener actionListener;
   private StatsInterface statsInterface;
+  private BattleInterface battleInterface;
   private MapInterface mapInterface;
+  private PlayerEntity player;
+  private EnemyEntity enemy;
+  private int status;
+  public static final int MAIN_MENU = 0;
+  public static final int MAP = 1;
+  public static final int BATTLE = 2;
 
   /**
    * Default constructor
@@ -32,13 +40,14 @@ public class GameInterface extends JFrame {
     super("Dimly Souls");
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    status = MAIN_MENU;
   }
 
   /**
    * @param m1 mouseListener for newGame
-   * @param m2 mouseListener for loadGame
    */
   public void switchToMainMenu(ActionListener m1) {
+    status = MAIN_MENU;
     removeContent();
     JPanel menuPanel = new JPanel(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
@@ -87,6 +96,7 @@ public class GameInterface extends JFrame {
    * @param keyListener actionListener for keyboard input
    */
   public void switchToMap(KeyListener keyListener, Map map) {
+    status = MAP;
     addKeyListener(keyListener);
     removeContent();
     setLayout(new GridBagLayout());
@@ -125,12 +135,19 @@ public class GameInterface extends JFrame {
     add(statsInterface, c);
   }
 
-  public void switchToBattle(ActionListener skillListener[], EnemyEntity e) {
-
-  }
-
-  public void removeContent() {
-    getContentPane().removeAll();
+  /**
+   * Berpindah ke BattleInterface
+   *
+   * @param a actionListener untuk menampung input serangan
+   * @param e musuh yang terlibat
+   */
+  public void switchToBattle(ActionListener a, EnemyEntity e) {
+    status = BATTLE;
+    actionListener = a;
+    enemy = e;
+    removeContent();
+    battleInterface = new BattleInterface(player, enemy, actionListener);
+    add(battleInterface);
   }
 
   /**
@@ -141,9 +158,25 @@ public class GameInterface extends JFrame {
     repaint();
   }
 
-  public void battleViewUpdate(EnemyEntity e) {
-
+  /**
+   * Melakukan update pada interface battle
+   */
+  public void updateBattle() {
+    removeContent();
+    battleInterface = new BattleInterface(player, enemy, actionListener);
+    add(battleInterface);
   }
+
+  // Misc Method
+
+  /**
+   * Menghapus semua content di dalam JFrame.
+   */
+  public void removeContent() {
+    getContentPane().removeAll();
+  }
+
+  // Setter and Getter
 
   public void setPlayer(PlayerEntity player) {
     this.player = player;
@@ -156,5 +189,13 @@ public class GameInterface extends JFrame {
   public StatsInterface getStatsInterface() {
 
     return statsInterface;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public BattleInterface getBattleInterface() {
+    return battleInterface;
   }
 }

@@ -36,7 +36,9 @@ public class GuiUpdateController {
     updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        gameInterface.updateMap(map);
+        if(gameInterface.getStatus() == GameInterface.MAP) {
+          gameInterface.updateMap(map);
+        }
         gameInterface.updateInterface();
       }
     });
@@ -44,10 +46,13 @@ public class GuiUpdateController {
     updateTimer.start();
   }
 
-  public void battleUpdateTimer(){
-    updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
+  public void battleUpdateTimer() {
+    updateTimer = new Timer(25, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
+        if(gameInterface.getStatus() == GameInterface.BATTLE) {
+          gameInterface.updateBattle();
+        }
         gameInterface.updateInterface();
       }
     });

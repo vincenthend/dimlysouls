@@ -23,7 +23,6 @@ public class Game {
       public void actionPerformed(ActionEvent actionEvent) {
         gameController = new GameController(gameInterface);
         gameController.newGame();
-        System.out.println("New Game Invoked");
       }
     });
     gameInterface.updateInterface();

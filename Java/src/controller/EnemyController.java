@@ -54,7 +54,6 @@ public class EnemyController extends Thread {
         }
       }
     } catch (InterruptedException e) {
-      System.out.println("Interrupted");
     }
   }
 

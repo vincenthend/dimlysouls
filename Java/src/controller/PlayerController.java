@@ -70,9 +70,9 @@ public class PlayerController implements KeyListener {
       if (map.inBounds(playerEntity.getPosition(move))) {
         tempCell = map.getMapCell(playerEntity.getPosition(move));
         if (tempCell.getTerrain().isPassable()) {
-          //encounter is found
+          // Encounter is found
           if (tempCell.getEntity() != null) {
-            encounterListener.EncounterFound(tempCell.getEntity().getEntityId());
+            encounterListener.EncounterFound(tempCell.getEntity());
           }
           map.getMapCell(playerEntity.getPosition(move)).setEntity(playerEntity);
           map.getMapCell(playerEntity.getPosition()).setEntity(null);
