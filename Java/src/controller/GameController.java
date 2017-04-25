@@ -1,8 +1,6 @@
 package controller;
 
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
-import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.player.Berserker;
@@ -12,16 +10,14 @@ import model.player.Player;
 import model.player.Warrior;
 import view.GameInterface;
 
-public class GameController {
+public class GameController extends Thread{
   private Player player;
   private PlayerEntity playerEntity;
-  private Map map;
   private GameInterface gameInterface;
-  private LinkedList<EnemyController> enemyControllers;
+  private MapController mapController;
 
   public GameController(GameInterface gameInterface) {
     this.gameInterface = gameInterface;
-    enemyControllers = new LinkedList<>();
   }
 
   public void newGame() {
@@ -45,11 +41,9 @@ public class GameController {
     }
 
     //Nyalain map controller
-    //Generate Map
-    map = new Map(41, 21);
-    map.generateMap();
-    map.putEnemy();
-    attachEnemyController();
+    mapController = new MapController();
+
+    Map map = mapController.getMap();
 
     //New Player
     playerEntity = new PlayerEntity(map.getMapSeed().get(map.getMapSeed().size() / 2), player);
@@ -57,19 +51,24 @@ public class GameController {
     gameInterface.setPlayer(playerEntity);
 
     //Run Map Controller
-    gameInterface.switchToMap(new PlayerController(playerEntity, gameInterface, map), map);
+    PlayerController playerController = new PlayerController(playerEntity, gameInterface, map);
+
+    gameInterface.switchToMap(playerController, map);
     gameInterface.updateInterface();
+
+    GuiUpdateController guiUpdateController = new GuiUpdateController(gameInterface, map);
+    guiUpdateController.mapUpdateTimer();
+
+    //Map Change Detector
+    playerController.setMapChange(new MapChangeListener() {
+      @Override
+      public void mapChanged(Map newMap) {
+        guiUpdateController.setMap(newMap);
+        mapController.stopEnemyController();
+        mapController.setMap(newMap);
+      }
+    });
+
   }
 
-  public void attachEnemyController() {
-    LinkedList<EnemyEntity> enemyList = map.getEnemyList();
-    EnemyController enemyController;
-    int i;
-    System.out.println(enemyList.size());
-    for (i = 0; i < enemyList.size(); i++) {
-      enemyController = new EnemyController(enemyList.get(i), map, gameInterface);
-      enemyControllers.addLast(enemyController);
-      enemyController.start();
-    }
-  }
 }

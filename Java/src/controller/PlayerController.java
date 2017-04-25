@@ -12,8 +12,8 @@ import view.GameInterface;
 public class PlayerController implements KeyListener {
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
-  private int key;
   private Map map;
+  private MapChangeListener mapChange;
 
   public PlayerController(PlayerEntity playerEntity, GameInterface gameInterface, Map map) {
     this.playerEntity = playerEntity;
@@ -33,8 +33,8 @@ public class PlayerController implements KeyListener {
   @Override
   public synchronized void keyReleased(KeyEvent keyEvent) {
     int move = -1;
+    int key = keyEvent.getKeyCode();
 
-    key = keyEvent.getKeyCode();
     if (key == KeyEvent.VK_LEFT) {
       move = Entity.LEFT;
     }
@@ -63,29 +63,33 @@ public class PlayerController implements KeyListener {
       }
       else {
         //Find exit point
-          tp = map.getTransferPoint(playerEntity.getPosition());
-          if (tp.getNextMap() == null) {
-            playerEntity.move(move);
-            x = (playerEntity.getPosition().x + map.getWidth()) % map.getWidth();
-            y = (playerEntity.getPosition().y + map.getHeight()) % map.getHeight();
-            playerEntity.setPosition(new Point(x, y));
-            tp.setEntrancePoint(new Point(x, y));
+        tp = map.getTransferPoint(playerEntity.getPosition());
+        if (tp.getNextMap() == null) {
+          playerEntity.move(move);
+          x = (playerEntity.getPosition().x + map.getWidth()) % map.getWidth();
+          y = (playerEntity.getPosition().y + map.getHeight()) % map.getHeight();
+          playerEntity.setPosition(new Point(x, y));
+          tp.setEntrancePoint(new Point(x, y));
 
-            tempMap = new Map(map.getWidth(), map.getHeight());
-            tempMap.generateMap(tp.getEntrancePoint());
-            tp.setNextMap(tempMap);
+          tempMap = new Map(map.getWidth(), map.getHeight());
+          tempMap.generateMap(tp.getEntrancePoint());
+          tempMap.putEnemy();
+          tp.setNextMap(tempMap);
 
-            tpTemp = tempMap.getTransferPoint(tp.getEntrancePoint());
-            tpTemp.setNextMap(map);
-            tpTemp.setEntrancePoint(tp.getExitPoint());
-          }
-          map.getMapCell(tp.getExitPoint()).setEntity(null);
-          map = tp.getNextMap();
-          map.getMapCell(tp.getEntrancePoint()).setEntity(playerEntity);
-          playerEntity.setPosition(tp.getEntrancePoint());
+          tpTemp = tempMap.getTransferPoint(tp.getEntrancePoint());
+          tpTemp.setNextMap(map);
+          tpTemp.setEntrancePoint(tp.getExitPoint());
+        }
+        map.getMapCell(tp.getExitPoint()).setEntity(null);
+        map = tp.getNextMap();
+        map.getMapCell(tp.getEntrancePoint()).setEntity(playerEntity);
+        mapChange.mapChanged(map);
+        playerEntity.setPosition(tp.getEntrancePoint());
       }
-      gameInterface.updateMap(map);
-      gameInterface.updateInterface();
     }
+  }
+
+  public void setMapChange(MapChangeListener mapChange) {
+    this.mapChange = mapChange;
   }
 }
