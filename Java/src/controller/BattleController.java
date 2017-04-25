@@ -1,30 +1,33 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import model.enemy.Enemy;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
-import model.player.Player;
+import view.BattleButton;
+import view.BattleInterface;
 import view.GameInterface;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  */
 public class BattleController {
-  private EnemyEntity e;
-  private PlayerEntity p;
-  private GameInterface g;
+  private EnemyEntity enemyEntity;
+  private PlayerEntity playerEntity;
+  private GameInterface gameInterface;
 
   /**
    * Konstruktor battle controller, dipanggil setiap melakukan battle
    *
-   * @param enemy reference enemy yang terlibat battle
-   * @param player reference player yang terlibat battle
+   * @param enemyEntity reference enemy yang terlibat battle
+   * @param playerEntity reference player yang terlibat battle
    * @param gameInterface interface yang sedang berjalan
    */
-  public BattleController(Enemy enemy, Player player, GameInterface gameInterface) {
-
+  public BattleController(EnemyEntity enemyEntity, PlayerEntity playerEntity, GameInterface gameInterface) {
+    this.enemyEntity = enemyEntity;
+    this.playerEntity = playerEntity;
+    this.gameInterface = gameInterface;
   }
 
   /**
@@ -32,49 +35,46 @@ public class BattleController {
    */
   public void startBattle() {
     //Deklarasi MouseListener
-    ActionListener[] skillListener = new ActionListener[2];
-    skillListener[0] = new ActionListener() {
+    BattleInterface battleInterface = new BattleInterface(playerEntity, enemyEntity, new ActionListener() {
       @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        e.setCurrentHealth(
-            e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
-        updateBattleView();
-      }
-    };
-    skillListener[1] = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        p.setStatus(0, 1);
-        updateBattleView();
-      }
-    };
-    skillListener[3] = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        if (e.getStatus(0)) {
-          e.setCurrentHealth(
-              e.getCurrentHealth() - ((p.getPlayer().getAttack() - e.getEnemy().getDefense()) * 2));
-        }
-        else {
-          e.setCurrentHealth(
-              e.getCurrentHealth() - (p.getPlayer().getAttack() - e.getEnemy().getDefense()));
-        }
-        updateBattleView();
-      }
-    };
-    skillListener[4] = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent actionEvent) {
-        //p.getPlayer().special();
-        updateBattleView();
-      }
-    };
+      public void actionPerformed(ActionEvent e) {
+        BattleButton temp = (BattleButton) e.getSource();
 
+        int atkId = temp.getAtkId();
+        if (atkId == 0) {
+          enemyEntity.setCurrentHealth(
+                  enemyEntity.getCurrentHealth() - (playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()));
+          updateBattleView();
+          System.out.println(atkId);
+        }
+        else if (atkId == 1) {
+          playerEntity.setStatus(0, 1);
+          updateBattleView();
+          System.out.println(atkId);
+        }
+        else if (atkId == 2) {
+          if (enemyEntity.getStatus(0)) {
+            enemyEntity.setCurrentHealth(
+                    enemyEntity.getCurrentHealth() - ((playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()) * 2));
+          }
+          else {
+            enemyEntity.setCurrentHealth(
+                    enemyEntity.getCurrentHealth() - (playerEntity.getPlayer().getAttack() - enemyEntity.getEnemy().getDefense()));
+          }
+          updateBattleView();
+          System.out.println(atkId);
+        }
+        else if (atkId == 3) {
+          //p.getPlayer().special();
+          updateBattleView();
+          System.out.println(atkId);
+        }
+      }
+    });
     //Deklarasi EnemyBattleController & PlayerBattleController
-    EnemyBattleController EBC = new EnemyBattleController(p, e);
-    PlayerBattleController PBC = new PlayerBattleController(p, e);
+    EnemyBattleController EBC = new EnemyBattleController(playerEntity, enemyEntity);
+    PlayerBattleController PBC = new PlayerBattleController(playerEntity, enemyEntity);
     //Set Battle GUI
-    g.switchToBattle(skillListener, e);
     //Run EBC & PBC Thread
     EBC.start();
     PBC.start();
@@ -82,13 +82,11 @@ public class BattleController {
     //While not battle end
     boolean isBattling = true;
     while (isBattling) {
-      //Button dipencet
-      PBC.calculateDamage();
       updateBattleView();
     }
     EBC.kill();
     PBC.kill();
-    //g.switchToMap();
+    //gameInterface.switchToMap();
     //Kill EBC & PBC Thread
   }
 
@@ -96,6 +94,7 @@ public class BattleController {
    * Memanggil method battleViewUpdate pada class gameInterface
    */
   public void updateBattleView() {
-    g.battleViewUpdate(e);
+    gameInterface.battleViewUpdate(e);
   }
+  public int calculateDamage(){return 0;}
 }
