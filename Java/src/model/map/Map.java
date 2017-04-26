@@ -1,10 +1,13 @@
 package model.map;
 
-import java.awt.Point;
-import java.util.LinkedList;
-import java.util.Random;
 import model.enemy.EnemyGenerator;
 import model.entity.EnemyEntity;
+import model.entity.ItemEntity;
+import model.item.ConsumablesGenerator;
+
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Class Map, berisi peta dan semua data peta.
@@ -254,15 +257,14 @@ public class Map {
     int i;
     int rg;
     Point randomLoc;
-    EnemyGenerator enemyGen = new EnemyGenerator();
+    ConsumablesGenerator enemyGen = new ConsumablesGenerator();
     Random randomGen = new Random(System.currentTimeMillis());
-    EnemyEntity enemyEntity;
+    ItemEntity consumables;
 
     for (i = 0; i < (mapSeed.size() * mapToEnemy) / 100; i++) {
       randomLoc = mapSeed.get(randomGen.nextInt(mapSeed.size()));
-      enemyEntity = new EnemyEntity(randomLoc, enemyGen.generateEnemy());
-      enemyList.addLast(enemyEntity);
-      mapCell[randomLoc.y][randomLoc.x].setEntity(enemyEntity);
+      consumables = new ItemEntity(randomLoc, enemyGen.generateConsumables());
+      mapCell[randomLoc.y][randomLoc.x].setEntity(consumables);
     }
   }
 
@@ -370,4 +372,25 @@ public class Map {
   public LinkedList<Point> getMapSeed() {
     return mapSeed;
   }
+<<<<<<< HEAD
+  /**
+   * Meletakkan enemy pada map
+   */
+  public void putItem() {
+    int i;
+    int rg;
+    Point randomLoc;
+    EnemyGenerator enemyGen = new EnemyGenerator();
+    Random randomGen = new Random(System.currentTimeMillis());
+    EnemyEntity enemyEntity;
+
+    for (i = 0; i < (mapSeed.size() * mapToEnemy) / 100; i++) {
+      randomLoc = mapSeed.get(randomGen.nextInt(mapSeed.size()));
+      enemyEntity = new EnemyEntity(randomLoc, enemyGen.generateEnemy());
+      enemyList.addLast(enemyEntity);
+      mapCell[randomLoc.y][randomLoc.x].setEntity(enemyEntity);
+    }
+  }
+=======
+>>>>>>> 5c3ff9772b6c6eb50cc5a977f26623889ef9b357
 }

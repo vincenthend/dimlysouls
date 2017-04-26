@@ -8,8 +8,7 @@ import java.util.Random;
  * @author Vincent Hendryanto Halim / 13515089
  */
 public class EnemyGenerator {
-
-  public static final int countEnemy = 1;
+  public static final int countEnemy = 4;
 
   /**
    * Melakukan generate pada musuh secara random.

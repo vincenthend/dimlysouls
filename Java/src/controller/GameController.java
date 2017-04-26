@@ -3,18 +3,14 @@ package controller;
 import controller.listener.BattleListener;
 import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import model.entity.EnemyEntity;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
-import model.player.Berserker;
-import model.player.Ninja;
-import model.player.Paladin;
-import model.player.Player;
-import model.player.Warrior;
+import model.player.*;
 import view.GameInterface;
+
+import javax.swing.*;
 
 /**
  * Kelas GameController mengatur berjalannya game.
@@ -45,7 +41,7 @@ public class GameController extends Thread {
     String name = JOptionPane.showInputDialog(null, "What's your name?");
     String[] options = new String[]{"Warrior", "Paladin", "Berserker", "Ninja"};
     playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection",
-        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
     if (playerClass == 0) {
       player = new Warrior(name);
@@ -61,6 +57,7 @@ public class GameController extends Thread {
     mapController = new MapController();
 
     Map map = mapController.getMap();
+    mapController.attachEnemyController();
 
     //New Player
     playerEntity = new PlayerEntity(map.getMapSeed().get(map.getMapSeed().size() / 2), player);
@@ -91,6 +88,7 @@ public class GameController extends Thread {
       @Override
       public void encounterFound(Entity e) {
         if (e.getEntityId() == 1) {
+          gameInterface.removeKeyListener(playerController);
           //Enemy Encountered
           System.out.println("Enemy encountered");
           mapController.stopEnemyController();
@@ -104,7 +102,7 @@ public class GameController extends Thread {
 
           guiUpdateController.battleUpdateTimer();
           BattleController battleController = new BattleController((EnemyEntity) e, playerEntity,
-              gameInterface);
+                  gameInterface);
           battleController.start();
           battleController.setBattleListener(new BattleListener() {
             @Override

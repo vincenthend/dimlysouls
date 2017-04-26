@@ -1,10 +1,11 @@
 package controller;
 
-import java.awt.Point;
-import java.util.Random;
 import model.entity.EnemyEntity;
 import model.map.Cell;
 import model.map.Map;
+
+import java.awt.*;
+import java.util.Random;
 
 /**
  * Class EnemyControler mengatur pergerakan musuh di map.
@@ -40,7 +41,7 @@ public class EnemyController extends Thread {
     boolean moving;
     try {
       while (isRunning) {
-        Thread.sleep(10000 / enemyEntity.getEnemy().getSpeed());
+        Thread.sleep(15000 / enemyEntity.getEnemy().getSpeed());
         move = -1;
         moving = false;
         while (!moving) {

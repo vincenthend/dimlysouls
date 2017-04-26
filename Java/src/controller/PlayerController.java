@@ -2,15 +2,16 @@ package controller;
 
 import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Cell;
 import model.map.Map;
 import model.map.TransferPoint;
 import view.GameInterface;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Kelas PlayerController, mengontrol pergerakan player.
