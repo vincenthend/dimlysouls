@@ -8,6 +8,7 @@ import model.entity.Entity;
  * @author Mikhael Artur Darmakesuma / 13515099
  */
 public interface EncounterListener {
+
   /**
    * Menemukan entity pada map.
    *

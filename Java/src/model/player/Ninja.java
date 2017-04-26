@@ -6,6 +6,7 @@ package model.player;
  * @author Mikhael A D/ 13515099
  */
 public class Ninja implements Player {
+
   private final int classId;
   private int health;
   private int attack;

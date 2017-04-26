@@ -8,6 +8,7 @@ import model.player.Player;
  * @author Vincent Hendryanto H / 13515089
  */
 public class Potion implements Consumables {
+
   private int effectValue;
   private int statAffected;
 

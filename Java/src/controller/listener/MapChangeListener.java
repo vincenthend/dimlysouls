@@ -8,6 +8,7 @@ import model.map.Map;
  * @author Mikhael Artur Darmakesuma / 13515099
  */
 public interface MapChangeListener {
+
   /**
    * melakukan aksi ketika map yang digunakan berubah.
    *

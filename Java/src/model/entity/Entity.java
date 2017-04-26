@@ -68,16 +68,6 @@ public abstract class Entity {
     return renderCode;
   }
 
-
-  /**
-   * Setter posisi entity.
-   * @param p posisi entity
-   */
-  public void setPosition(Point p) {
-    location.x = p.x;
-    location.y = p.y;
-  }
-
   /**
    * Mengembalikan posisi entity.
    *
@@ -109,6 +99,7 @@ public abstract class Entity {
 
   /**
    * Menggerakkan entity.
+   *
    * @param i arah gerak
    */
   public void move(int i) {
@@ -121,6 +112,16 @@ public abstract class Entity {
     } else if (i == DOWN) {
       location.y = location.y + 1;
     }
+  }
+
+  /**
+   * Setter posisi entity.
+   *
+   * @param p posisi entity
+   */
+  public void setPosition(Point p) {
+    location.x = p.x;
+    location.y = p.y;
   }
 
   /**

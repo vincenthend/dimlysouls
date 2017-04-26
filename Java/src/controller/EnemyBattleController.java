@@ -36,7 +36,7 @@ public class EnemyBattleController extends Thread {
     int attack;
     while (isRunning) {
       try {
-        sleep(1000 / enemyEntity.getEnemy().getSpeed());
+        sleep(10000 / enemyEntity.getEnemy().getSpeed());
         attack = rand.nextInt(4) + 1;
         if (attack == 1) {
           playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - calculateDamage(1));

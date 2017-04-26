@@ -9,6 +9,7 @@ import model.enemy.Enemy;
  * @author Vincent Hendryanto H/ 13515089
  */
 public final class EnemyEntity extends Entity {
+
   private Enemy enemy;
   private int currentHealth;
   private int[] status;
@@ -80,6 +81,7 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Mengembalikan status ke n dari player.
+   *
    * @param n status yang dicari
    * @return nilai status n
    */

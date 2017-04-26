@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import view.GameInterface;
 
 public class Game {
+
   private GameInterface gameInterface;
   private GameController gameController;
 
@@ -16,6 +17,7 @@ public class Game {
 
   /**
    * Main method.
+   *
    * @param args argumen
    */
   public static void main(String[] args) {

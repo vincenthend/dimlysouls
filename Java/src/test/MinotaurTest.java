@@ -8,6 +8,7 @@ import model.enemy.Minotaur;
  * Created by Aspire V5 on 4/26/2017.
  */
 public class MinotaurTest {
+
   @org.junit.Test
   public void getAssertions() throws Exception {
     Minotaur M = new Minotaur();
