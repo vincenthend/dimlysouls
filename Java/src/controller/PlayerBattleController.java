@@ -69,7 +69,7 @@ public class PlayerBattleController implements ActionListener {
     gameInterface.getBattleInterface().getButtonInterface().setVisible(false);
   }
 
-  private void enableButton(){
+  private void enableButton() {
     gameInterface.getBattleInterface().getButtonInterface().setVisible(true);
   }
 
