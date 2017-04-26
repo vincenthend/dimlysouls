@@ -40,7 +40,7 @@ public class WarriorTest {
     System.out.println("Creating a new Warrior...");
     Warrior w = new Warrior("Davion");
     System.out.println("Setting player Exp to 35...");
-    w.setExp(35);
+    w.setExp(15);
     assertTrue(w.isLeveling());
     System.out.println("Leveling Up...");
     w.levelUp();
@@ -50,7 +50,7 @@ public class WarriorTest {
     assertEquals(12, w.getDefense());
     assertEquals(5, w.getSpeed());
     assertEquals(2, w.getLevel());
-    assertEquals(25, w.getExp());
+    assertEquals(5, w.getExp());
     assertEquals(20, w.getNext());
   }
 }

@@ -40,7 +40,7 @@ public class BerserkerTest {
     System.out.println("Creating a new Berserker...");
     Berserker b = new Berserker("Gopnik");
     System.out.println("Setting player Exp to 35...");
-    b.setExp(35);
+    b.setExp(15);
     assertTrue(b.isLeveling());
     System.out.println("Leveling Up...");
     b.levelUp();
@@ -50,7 +50,7 @@ public class BerserkerTest {
     assertEquals(9, b.getDefense());
     assertEquals(2, b.getSpeed());
     assertEquals(2, b.getLevel());
-    assertEquals(25, b.getExp());
+    assertEquals(5, b.getExp());
     assertEquals(20, b.getNext());
   }
 }

@@ -18,7 +18,7 @@ public class Skeleton implements Enemy {
    * Konstruktor kelas skeleton.
    */
   public Skeleton() {
-    health = 5000;
+    health = 50;
     attack = 25;
     defense = 15;
     speed = 35;

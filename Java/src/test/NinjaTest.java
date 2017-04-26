@@ -40,7 +40,7 @@ public class NinjaTest {
     System.out.println("Creating a new Ninja...");
     Ninja n = new Ninja("Hatori");
     System.out.println("Setting player Exp to 35...");
-    n.setExp(35);
+    n.setExp(15);
     assertTrue(n.isLeveling());
     System.out.println("Leveling Up...");
     n.levelUp();
@@ -50,7 +50,7 @@ public class NinjaTest {
     assertEquals(8, n.getDefense());
     assertEquals(13, n.getSpeed());
     assertEquals(2, n.getLevel());
-    assertEquals(25, n.getExp());
+    assertEquals(5, n.getExp());
     assertEquals(20, n.getNext());
   }
 }

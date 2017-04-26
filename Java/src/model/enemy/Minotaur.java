@@ -18,7 +18,7 @@ public class Minotaur implements Enemy {
    * Konstruktor kelas minotaur.
    */
   public Minotaur() {
-    health = 10000;
+    health = 100;
     attack = 20;
     defense = 10;
     speed = 15;
