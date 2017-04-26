@@ -1,12 +1,13 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import view.GameInterface;
 import view.battle.BattleButton;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Kelas PlayerBattleController, menerima aksi player saat battle.
@@ -59,8 +60,9 @@ public class PlayerBattleController implements ActionListener {
       int [] enemyStatus = new int [5];
       playerEntity.getPlayer().special(selfDamage, enemyDamage, selfStatus, enemyStatus);
     }
+    playerEntity.turn();
     disableButton();
-    Timer t = new Timer(1000, new ActionListener() {
+    Timer t = new Timer(10000, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
         enableButton();

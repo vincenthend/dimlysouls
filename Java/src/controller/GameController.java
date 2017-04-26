@@ -5,6 +5,7 @@ import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
 import model.entity.EnemyEntity;
 import model.entity.Entity;
+import model.entity.ItemEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.player.*;
@@ -128,7 +129,7 @@ public class GameController extends Thread {
             }
           });
         } else if (e.getEntityId() == 2) {
-          //Item Encountered
+          ((ItemEntity) e).getConsumables().use(playerEntity);
         }
       }
     };

@@ -1,6 +1,6 @@
 package model.item;
 
-import model.player.Player;
+import model.entity.PlayerEntity;
 
 /**
  * Kelas potion, implemen consumables.
@@ -16,15 +16,21 @@ public class Potion implements Consumables {
    * Konstruktor kelas potion.
    */
   public Potion() {
+    effectValue = 100;
+    statAffected = HEALTH;
   }
 
   /**
    * Menggunakan potion.
    *
-   * @param player player yang terkena efek
+   * @param playerEntity player yang terkena efek
    */
-  public void use(Player player) {
-    // TODO implement here
+  public void use(PlayerEntity playerEntity) {
+    if (getStatAffected() == 0){
+      playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() + getEffectValue());
+    } else if (getStatAffected() == 1){
+      playerEntity.getPlayer().setExp(playerEntity.getPlayer().getExp() + getEffectValue());
+    }
   }
 
   /**
@@ -33,8 +39,7 @@ public class Potion implements Consumables {
    * @return nilai effect potion
    */
   public int getEffectValue() {
-    // TODO implement here
-    return 0;
+    return effectValue;
   }
 
   /**
@@ -43,7 +48,6 @@ public class Potion implements Consumables {
    * @return kode stats yang terkena efek.
    */
   public int getStatAffected() {
-    // TODO implement here
-    return 0;
+    return statAffected;
   }
 }

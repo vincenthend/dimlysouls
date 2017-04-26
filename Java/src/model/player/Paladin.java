@@ -99,6 +99,8 @@ public class Paladin implements Player {
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
-
+    selfDamage = -attack;
+    enemyDamage = attack;
+    selfStatus[2] = 3;
   }
 }

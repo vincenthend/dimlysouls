@@ -1,6 +1,6 @@
 package model.item;
 
-import model.player.Player;
+import model.entity.PlayerEntity;
 
 /**
  * Interface Consumables, berisi benda consumables.
@@ -8,6 +8,8 @@ import model.player.Player;
  * @author Vincent Hendryanto H / 13515089
  */
 public interface Consumables {
+  final int HEALTH = 0;
+  final int EXP = 1;
 
   /**
    * Mengambil nilai efek.
@@ -26,5 +28,5 @@ public interface Consumables {
   /**
    * Menggunakan consumables.
    */
-  public void use(Player player);
+  public void use(PlayerEntity playerEntity);
 }

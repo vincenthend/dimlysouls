@@ -97,6 +97,8 @@ public class Berserker implements Player {
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
-
+    selfDamage = attack;
+    enemyDamage = attack * 2;
+    selfStatus[1] = 3;
   }
 }

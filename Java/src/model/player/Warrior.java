@@ -1,5 +1,7 @@
 package model.player;
 
+import java.util.Random;
+
 /**
  * Kelas Warrior.
  *
@@ -99,6 +101,14 @@ public class Warrior implements Player {
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
-
+    Random rand = new Random();
+    int i = rand.nextInt(10);
+    if (i > 5){
+      enemyDamage = attack * 2;
+      enemyStatus[4] = 3;
+    }
+    else {
+      enemyDamage = attack;
+    }
   }
 }
