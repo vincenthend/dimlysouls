@@ -1,31 +1,34 @@
 package controller;
 
+import java.util.Random;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 
-import java.util.Random;
-
 /**
+ * Kelas EnemyBattleController, mengatur aksi musuh pada saat battle.
  *
+ * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class EnemyBattleController extends Thread {
+
   private PlayerEntity playerEntity;
   private EnemyEntity enemyEntity;
   private boolean isRunning;
 
   /**
+   * Konstruktor kelas EnemyBattleController.
    *
-   * @param P
-   * @param E
+   * @param p player yang terlibat
+   * @param e musuh yang terlibat
    */
-  public EnemyBattleController(PlayerEntity P, EnemyEntity E) {
-    playerEntity = P;
-    enemyEntity = E;
+  public EnemyBattleController(PlayerEntity p, EnemyEntity e) {
+    playerEntity = p;
+    enemyEntity = e;
     isRunning = true;
   }
 
   /**
-   * Menyerang thread jika HP > 0 tiap (600/speed) detik
+   * Menyerang thread jika HP > 0 tiap (600/speed) detik.
    */
   @Override
   public void run() {
@@ -34,39 +37,47 @@ public class EnemyBattleController extends Thread {
     while (isRunning) {
       try {
         sleep(1000 / enemyEntity.getEnemy().getSpeed());
-        attack = rand.nextInt(4)+1;
+        attack = rand.nextInt(4) + 1;
         if (attack == 1) {
           playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - calculateDamage(1));
-        }
-        else if (attack == 2) {
+        } else if (attack == 2) {
           enemyEntity.setStatus(0, 1);
-        }
-        else if (attack == 3) {
+        } else if (attack == 3) {
           if (playerEntity.getStatus(0)) {
             playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - calculateDamage(2));
-          }
-          else {
+          } else {
             playerEntity.setCurrentHealth(
                 playerEntity.getCurrentHealth() - calculateDamage(1));
           }
-        }
-        else if (attack == 4) {
+        } else if (attack == 4) {
           //enemyEntity.getEnemy().special();
         }
-        if(playerEntity.getCurrentHealth() <= 0 || enemyEntity.getCurrentHealth() <= 0){
+        if (playerEntity.getCurrentHealth() <= 0 || enemyEntity.getCurrentHealth() <= 0) {
           isRunning = false;
         }
       } catch (InterruptedException e) {
+        System.out.print("Intterupted");
       }
     }
   }
 
+  /**
+   * Mematikan EBC.
+   */
   public void kill() {
     isRunning = false;
   }
-  private int calculateDamage(int multiplier){
-    int temp = (enemyEntity.getEnemy().getAttack() - playerEntity.getPlayer().getDefense()) * multiplier;
-    if (temp < 0){
+
+  /**
+   * Menghitung damage.
+   *
+   * @param multiplier pengali damage
+   * @return nilai damage yang dihasilkan.
+   */
+  private int calculateDamage(int multiplier) {
+    int temp =
+        (enemyEntity.getEnemy().getAttack() - playerEntity.getPlayer().getDefense()) * multiplier;
+    if (temp < 0) {
       temp = 0;
     }
     return temp;

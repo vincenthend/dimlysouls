@@ -8,13 +8,14 @@ import view.GameInterface;
 
 /**
  * Kelas GuiUpdateController mengatur kecepatan update GUI.
+ *
+ * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class GuiUpdateController {
   public static final int FPS = 60;
   public static final int UPDATE_SPEED = 1000 / FPS;
   private GameInterface gameInterface;
   private Map map;
-
   //Timers
   private Timer updateTimer;
 
@@ -36,7 +37,7 @@ public class GuiUpdateController {
     updateTimer = new Timer(UPDATE_SPEED, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        if(gameInterface.getStatus() == GameInterface.MAP) {
+        if (gameInterface.getStatus() == GameInterface.MAP) {
           gameInterface.updateMap(map);
         }
         gameInterface.updateInterface();
@@ -46,11 +47,14 @@ public class GuiUpdateController {
     updateTimer.start();
   }
 
+  /**
+   * Melakukan update terhadap layar battle.
+   */
   public void battleUpdateTimer() {
     updateTimer = new Timer(25, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        if(gameInterface.getStatus() == GameInterface.BATTLE) {
+        if (gameInterface.getStatus() == GameInterface.BATTLE) {
           gameInterface.updateBattle();
         }
         gameInterface.updateInterface();
@@ -60,15 +64,19 @@ public class GuiUpdateController {
     updateTimer.start();
   }
 
-  public void stopTimer(){
+  /**
+   * Menghentikan update yang berjalan.
+   */
+  public void stopTimer() {
     updateTimer.stop();
   }
 
   /**
    * Mengatur map yang digunakan saat update.
+   *
    * @param map map yang digunakan saat update
    */
-  public void setMap(Map map){
+  public void setMap(Map map) {
     this.map = map;
   }
 }

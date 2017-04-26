@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
-import view.Battle.BattleInterface;
+import view.battle.BattleInterface;
 
 /**
  * Kelas GameInterface mengatur isi interface.
@@ -23,6 +23,9 @@ import view.Battle.BattleInterface;
  * @author Vincent H
  */
 public class GameInterface extends JFrame {
+  public static final int MAIN_MENU = 0;
+  public static final int MAP = 1;
+  public static final int BATTLE = 2;
   private ActionListener actionListener;
   private StatsInterface statsInterface;
   private BattleInterface battleInterface;
@@ -30,12 +33,9 @@ public class GameInterface extends JFrame {
   private PlayerEntity player;
   private EnemyEntity enemy;
   private int status;
-  public static final int MAIN_MENU = 0;
-  public static final int MAP = 1;
-  public static final int BATTLE = 2;
 
   /**
-   * Default constructor
+   * Konstruktor kelas GameInterface.
    */
   public GameInterface() {
     super("Dimly Souls");
@@ -45,6 +45,8 @@ public class GameInterface extends JFrame {
   }
 
   /**
+   * Beripindah menuju mainmenu.
+   *
    * @param m1 mouseListener for newGame
    */
   public void switchToMainMenu(ActionListener m1) {
@@ -92,7 +94,7 @@ public class GameInterface extends JFrame {
   }
 
   /**
-   * Switch the GUI to Map Layout.
+   * Mengubah GUI menjadi Map Layout.
    *
    * @param keyListener actionListener for keyboard input
    */
@@ -119,6 +121,11 @@ public class GameInterface extends JFrame {
     add(statsInterface, c);
   }
 
+  /**
+   * Melakukan update pada isi map.
+   *
+   * @param map map baru
+   */
   public void updateMap(Map map) {
     removeContent();
     setLayout(new GridBagLayout());
@@ -139,7 +146,7 @@ public class GameInterface extends JFrame {
   }
 
   /**
-   * Berpindah ke BattleInterface
+   * Mengubah GUI ke BattleInterface.
    *
    * @param a actionListener untuk menampung input serangan
    * @param e musuh yang terlibat
@@ -162,7 +169,7 @@ public class GameInterface extends JFrame {
   }
 
   /**
-   * Melakukan update pada interface battle
+   * Melakukan update pada interface battle.
    */
   public void updateBattle() {
     removeContent();
@@ -181,23 +188,28 @@ public class GameInterface extends JFrame {
 
   // Setter and Getter
 
+  /**
+   * Setter player pada interface.
+   *
+   * @param player player yang terlibat
+   */
   public void setPlayer(PlayerEntity player) {
     this.player = player;
   }
 
-  public MapInterface getMapInterface() {
-    return mapInterface;
-  }
-
-  public StatsInterface getStatsInterface() {
-
-    return statsInterface;
-  }
-
+  /**
+   * Mengembalikan status layar.
+   *
+   * @return nilai status layar
+   */
   public int getStatus() {
     return status;
   }
 
+  /**
+   * Getter battle interface.
+   * @return battle interface pada layar
+   */
   public BattleInterface getBattleInterface() {
     return battleInterface;
   }

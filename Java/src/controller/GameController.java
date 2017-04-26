@@ -14,8 +14,11 @@ import javax.swing.*;
 
 /**
  * Kelas GameController mengatur berjalannya game.
+ *
+ * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class GameController extends Thread {
+
   private Player player;
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
@@ -31,25 +34,22 @@ public class GameController extends Thread {
   }
 
   /**
-   * Method yang digunakan untuk memulai game baru
+   * Method yang digunakan untuk memulai game baru.
    */
   public void newGame() {
     int playerClass;
     String name = JOptionPane.showInputDialog(null, "What's your name?");
-    String[] options = new String[] {"Warrior", "Paladin", "Berserker", "Ninja"};
+    String[] options = new String[]{"Warrior", "Paladin", "Berserker", "Ninja"};
     playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection",
             JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
     if (playerClass == 0) {
       player = new Warrior(name);
-    }
-    else if (playerClass == 1) {
+    } else if (playerClass == 1) {
       player = new Paladin(name);
-    }
-    else if (playerClass == 2) {
+    } else if (playerClass == 2) {
       player = new Berserker(name);
-    }
-    else if (playerClass == 3) {
+    } else if (playerClass == 3) {
       player = new Ninja(name);
     }
 
@@ -86,7 +86,7 @@ public class GameController extends Thread {
     //Encounter detector
     EncounterListener encounterListener = new EncounterListener() {
       @Override
-      public void EncounterFound(Entity e) {
+      public void encounterFound(Entity e) {
         if (e.getEntityId() == 1) {
           gameInterface.removeKeyListener(playerController);
           //Enemy Encountered
@@ -94,8 +94,9 @@ public class GameController extends Thread {
           mapController.stopEnemyController();
           guiUpdateController.stopTimer();
 
-          PlayerBattleController PBC = new PlayerBattleController(playerEntity, (EnemyEntity) e);
-          gameInterface.switchToBattle(PBC, (EnemyEntity) e);
+          PlayerBattleController pbc = new PlayerBattleController(playerEntity, (EnemyEntity) e, gameInterface);
+
+          gameInterface.switchToBattle(pbc, (EnemyEntity) e);
           gameInterface.updateInterface();
 
           guiUpdateController.battleUpdateTimer();
@@ -112,12 +113,12 @@ public class GameController extends Thread {
                 @Override
                 public void run() {
                   gameInterface.switchToMap(playerController, map);
+                  gameInterface.setFocusable(true);
                 }
               });
             }
           });
-        }
-        else if (e.getEntityId() == 2) {
+        } else if (e.getEntityId() == 2) {
           //Item Encountered
         }
       }

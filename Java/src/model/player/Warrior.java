@@ -1,9 +1,12 @@
 package model.player;
 
 /**
+ * Kelas Warrior.
  *
+ * @author Mikhael A D/ 13515099
  */
 public class Warrior implements Player {
+
   private final int classId;
   private int health;
   private int attack;
@@ -15,7 +18,9 @@ public class Warrior implements Player {
   private String nama;
 
   /**
-   * Default constructor
+   * Konstruktor kelas Warrior.
+   *
+   * @param nama nama pemain
    */
   public Warrior(String nama) {
     this.nama = nama;
@@ -31,7 +36,7 @@ public class Warrior implements Player {
 
   /**
    * Menambah level player dan mengurangi nilai exp dengan nilai next.
-   * Mengubah nilai next sesuai dengan rumus next * k + offset
+   * Mengubah nilai next sesuai dengan rumus next * k + offset.
    */
   @Override
   public void levelUp() {
@@ -45,7 +50,7 @@ public class Warrior implements Player {
   }
 
   /**
-   * Mengecek apakah player harus level up
+   * Mengecek apakah player harus level up.
    */
   public boolean isLeveling() {
     return exp >= next;
@@ -77,6 +82,10 @@ public class Warrior implements Player {
     return exp;
   }
 
+  public void setExp(int exp) {
+    this.exp = exp;
+  }
+
   public int getNext() {
     return next;
   }
@@ -89,11 +98,7 @@ public class Warrior implements Player {
     return classId;
   }
 
-  public void setExp(int exp) {
-    this.exp = exp;
-  }
-
-  public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
+  public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
 
   }
 }

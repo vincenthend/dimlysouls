@@ -4,7 +4,7 @@ import java.awt.Point;
 import model.entity.Entity;
 
 /**
- * Kelas cell berisi entity yang ada di map
+ * Kelas cell berisi entity yang ada di map.
  *
  * @author Vincent Hendryanto Halim / 13515089
  */
@@ -14,7 +14,7 @@ public class Cell {
   private Terrain terrain;
 
   /**
-   * Konstruktor kelas cell
+   * Konstruktor kelas cell.
    *
    * @param location lokasi objek cell
    * @param terrain terrain di cell
@@ -25,20 +25,19 @@ public class Cell {
   }
 
   /**
-   * Konstruktor kelas cell
+   * Konstruktor kelas cell.
    *
    * @param x absis objek cell
    * @param y ordinat objek cell
    * @param terrain terrain di cell
    */
   public Cell(int x, int y, Terrain terrain) {
-    this.location = new Point(x,y);
+    this.location = new Point(x, y);
     this.terrain = terrain;
   }
 
-
   /**
-   * Konstruktor kelas cell
+   * Konstruktor kelas cell.
    *
    * @param location lokasi objek cell
    * @param terrain terrain di cell
@@ -51,7 +50,7 @@ public class Cell {
   }
 
   /**
-   * Konstruktor kelas cell
+   * Konstruktor kelas cell.
    *
    * @param x absis objek cell
    * @param y ordinat objek cell
@@ -59,13 +58,13 @@ public class Cell {
    * @param entity entity di dalam cell
    */
   public Cell(int x, int y, Terrain terrain, Entity entity) {
-    this.location = new Point(x,y);
+    this.location = new Point(x, y);
     this.terrain = terrain;
     this.entity = entity;
   }
 
   /**
-   * Mengembalikan entitas di dalam cell
+   * Mengembalikan entitas di dalam cell.
    *
    * @return entitas di dalam cell
    */
@@ -74,15 +73,15 @@ public class Cell {
   }
 
   /**
-   * Mengatur entity di dalam cell
-   * @param entity
+   * Mengatur entity di dalam cell.
    */
   public void setEntity(Entity entity) {
     this.entity = entity;
   }
 
   /**
-   * Mengembalikan nilai terrain di dalam cell
+   * Mengembalikan nilai terrain di dalam cell.
+   *
    * @return terrain di dalam cell
    */
   public Terrain getTerrain() {
@@ -90,8 +89,7 @@ public class Cell {
   }
 
   /**
-   * Mengaturn nilai terrain di dalam cell
-   * @param terrain
+   * Mengaturn nilai terrain di dalam cell.
    */
   public void setTerrain(Terrain terrain) {
     this.terrain = terrain;

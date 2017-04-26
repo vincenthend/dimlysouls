@@ -2,7 +2,8 @@ package model.enemy;
 
 /**
  * Kelas musuh goblin.
- * @author
+ *
+ * @author Adrian Mulyana / 13515075
  */
 public class Goblin implements Enemy {
   private int health;

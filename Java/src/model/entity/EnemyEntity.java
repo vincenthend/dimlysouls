@@ -1,11 +1,12 @@
 package model.entity;
 
+import java.awt.Point;
 import model.enemy.Enemy;
-
-import java.awt.*;
 
 /**
  * Entity yang berisi enemy.
+ *
+ * @author Vincent Hendryanto H/ 13515089
  */
 public final class EnemyEntity extends Entity {
   private Enemy enemy;
@@ -21,11 +22,11 @@ public final class EnemyEntity extends Entity {
    */
   public EnemyEntity(int x, int y, Enemy e) {
     super(x, y, 1);
-    int i;
     enemy = e;
     renderCode = e.getRenderCode();
     currentHealth = e.getHealth();
     status = new int[5];
+    int i;
     for (i = 0; i < 5; i++) {
       status[i] = 0;
     }
@@ -36,11 +37,12 @@ public final class EnemyEntity extends Entity {
    */
   public EnemyEntity(Point location, Enemy e) {
     super(location, 1);
-    int i;
+
     enemy = e;
     renderCode = e.getRenderCode();
     currentHealth = e.getHealth();
     status = new int[5];
+    int i;
     for (i = 0; i < 5; i++) {
       status[i] = 0;
     }
@@ -65,7 +67,7 @@ public final class EnemyEntity extends Entity {
   }
 
   /**
-   *
+   * Menghitung turn.
    */
   public void turn() {
     int i;
@@ -77,18 +79,19 @@ public final class EnemyEntity extends Entity {
   }
 
   /**
-   *
-   * @param n
-   * @return
+   * Mengembalikan status ke n dari player.
+   * @param n status yang dicari
+   * @return nilai status n
    */
   public boolean getStatus(int n) {
     return (status[n] > 0);
   }
 
   /**
+   * Memasangkan status player.
    *
-   * @param n
-   * @param t
+   * @param n kode status
+   * @param t nilai status
    */
   public void setStatus(int n, int t) {
     status[n] = t;

@@ -14,6 +14,11 @@ import model.entity.EnemyEntity;
 public class EnemyStatsInterface extends JPanel {
   private EnemyEntity enemyEntity;
 
+  /**
+   * Konstruktor kelas EnemyStatsInterface.
+   *
+   * @param enemy musuh yang terlibat
+   */
   public EnemyStatsInterface(EnemyEntity enemy) {
     enemyEntity = enemy;
 
@@ -21,9 +26,11 @@ public class EnemyStatsInterface extends JPanel {
     updateStats();
   }
 
+  /**
+   * Melakukan update pada tampilan.
+   */
   public void updateStats() {
     removeAll();
-    Enemy enemy = enemyEntity.getEnemy();
 
     GridBagConstraints label = new GridBagConstraints();
     label.gridx = 0;
@@ -50,6 +57,7 @@ public class EnemyStatsInterface extends JPanel {
     add(new JLabel("DEF"), label);
     label.gridy++;
 
+    Enemy enemy = enemyEntity.getEnemy();
     add(new JLabel(enemy.getClass().getSimpleName()), stats);
     stats.gridy++;
     add(new JLabel(

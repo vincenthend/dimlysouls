@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * Class EnemyControler mengatur pergerakan musuh di map
+ * Class EnemyControler mengatur pergerakan musuh di map.
  *
  * @author Mikhael Artur Darmakesuma / 13515099
  */
@@ -21,11 +21,11 @@ public class EnemyController extends Thread {
    * Konstruktor EnemyController.
    *
    * @param enemyEntity musuh yang digerakkan
-   * @param M peta yang digunakan untuk navigasi
+   * @param map peta yang digunakan untuk navigasi
    */
-  public EnemyController(EnemyEntity enemyEntity, Map M) {
+  public EnemyController(EnemyEntity enemyEntity, Map map) {
     this.enemyEntity = enemyEntity;
-    map = M;
+    this.map = map;
     isRunning = true;
   }
 
@@ -55,13 +55,15 @@ public class EnemyController extends Thread {
         }
       }
     } catch (InterruptedException e) {
+      System.out.println("Intterupted");
     }
   }
 
   /**
-   * Mengembalikan nilai apakah jalan dapat dilalui
-   * @param direction
-   * @return
+   * Mengembalikan nilai apakah jalan dapat dilalui.
+   *
+   * @param direction arah yang dilewati
+   * @return nilai boolean jalan bisa dilalui
    */
   private boolean isDirPassable(int direction) {
     return (map.inBounds(enemyEntity.getPosition(direction)) && map

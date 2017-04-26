@@ -63,7 +63,7 @@ public class TransferPoint {
   }
 
   /**
-   * Mengembalikan titik masuk pada map selanjutnya
+   * Mengembalikan titik masuk pada map selanjutnya.
    *
    * @return titik masuk pada map selanjutnya
    */
@@ -71,8 +71,8 @@ public class TransferPoint {
     return entrancePoint;
   }
 
-  /**
-   * Memasang nilai entrancePoint pada nextmap
+  /*
+   * Memasang nilai entrancePoint pada nextmap.
    * @param entrancePoint point pertama masuk pada nextmap
    */
   public void setEntrancePoint(Point entrancePoint) {
@@ -81,10 +81,11 @@ public class TransferPoint {
 
   /**
    * Mengembalikan nilai indeks transfer point
-   * @param location
+   *
+   * @param location lokasi transferPoint.
    * @return indeks transfer point
    */
-  public boolean equals(Point location){
+  public boolean equals(Point location) {
     return (getExitPoint().equals(location));
   }
 }

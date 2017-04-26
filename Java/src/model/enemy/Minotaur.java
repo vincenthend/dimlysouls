@@ -2,7 +2,8 @@ package model.enemy;
 
 /**
  * Kelas musuh minotaur.
- * @author
+ *
+ * @author Adrian Mulyana / 13515075
  */
 public class Minotaur implements Enemy {
   private int health;

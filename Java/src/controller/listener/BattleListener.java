@@ -1,8 +1,13 @@
 package controller.listener;
 
 /**
- * Created by vince on 26/04/2017.
+ * interface battleListener, melakukan aksi setelah battle berakhir.
+ *
+ * @author Mikhael Artur Darmakesuma / 13515099
  */
 public interface BattleListener {
+  /**
+   * Aksi yang dilakukan setelah battle berakhir.
+   */
   void onBattleEnd();
 }

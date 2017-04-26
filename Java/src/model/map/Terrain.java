@@ -1,14 +1,15 @@
 package model.map;
 
 /**
- * Kelas Terrain mengatur apakah jalan dapat dilewati
+ * Kelas Terrain mengatur apakah jalan dapat dilewati.
  */
-public class Terrain{
+public class Terrain {
+
   private boolean passable;
   private String renderCode;
 
   /**
-   * Konstruktor kelas terrain
+   * Konstruktor kelas terrain.
    *
    * @param passable nilai passable
    */
@@ -16,14 +17,14 @@ public class Terrain{
     this.passable = passable;
     if (passable) {
       renderCode = " ";
-    }
-    else {
+    } else {
       renderCode = "#";
     }
   }
 
   /**
-   * Mengembalikan nilai passable (jalan dapat dilalui)
+   * Mengembalikan nilai passable (jalan dapat dilalui).
+   *
    * @return nilai passable
    */
   public boolean isPassable() {
@@ -31,7 +32,8 @@ public class Terrain{
   }
 
   /**
-   * Mengembalikan renderCode terrain
+   * Mengembalikan renderCode terrain.
+   *
    * @return renderCode terrain
    */
   public String getRenderCode() {
