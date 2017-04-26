@@ -6,6 +6,7 @@ package model.enemy;
  * @author Vincent Hendryanto Halim / 13515089
  */
 public interface Enemy {
+
   /**
    * Mengembalikan nilai health.
    *
