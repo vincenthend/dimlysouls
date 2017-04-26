@@ -1,7 +1,9 @@
 package model.player;
 
 /**
+ * Kelas berserker.
  *
+ * @author Mikhael A D / 13515099
  */
 public class Berserker implements Player {
   private final int classId;
@@ -15,7 +17,9 @@ public class Berserker implements Player {
   private String nama;
 
   /**
-   * Default constructor
+   * Konstruktor kelas berserker.
+   *
+   * @param nama nama pemain
    */
   public Berserker(String nama) {
     this.nama = nama;
@@ -45,7 +49,7 @@ public class Berserker implements Player {
   }
 
   /**
-   * Mengecek apakah player harus level up
+   * Mengecek apakah player harus level up.
    */
   public boolean isLeveling() {
     return exp >= next;
@@ -75,6 +79,10 @@ public class Berserker implements Player {
     return exp;
   }
 
+  public void setExp(int exp) {
+    this.exp = exp;
+  }
+
   public int getNext() {
     return next;
   }
@@ -87,10 +95,7 @@ public class Berserker implements Player {
     return classId;
   }
 
-  public void setExp(int exp) {
-    this.exp = exp;
-  }
-  public void special(int selfDamage, int enemyDamage, int[] selfStatus, int enemyStatus[]){
+  public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
 
   }
 }

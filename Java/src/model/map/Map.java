@@ -7,11 +7,12 @@ import model.enemy.EnemyGenerator;
 import model.entity.EnemyEntity;
 
 /**
- * Class Map, berisi peta dan semua data peta
+ * Class Map, berisi peta dan semua data peta.
  *
  * @author Vincent Hendryanto Halim / 13515089
  */
 public class Map {
+
   //Constants
   private final int branchChance = 10;
   private final int offset = 40;
@@ -21,8 +22,6 @@ public class Map {
   private int height;
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
-
-
   private LinkedList<TransferPoint> mapExit;
   private LinkedList<EnemyEntity> enemyList;
 
@@ -33,13 +32,13 @@ public class Map {
    * @param height tinggi map
    */
   public Map(int width, int height) {
-    int i;
-    int j;
     this.width = width;
     this.height = height;
 
     mapCell = new Cell[height][width];
 
+    int i;
+    int j;
     //Init map
     for (i = 0; i < height; i++) {
       for (j = 0; j < width; j++) {
@@ -61,8 +60,6 @@ public class Map {
     int y;
     int rg;
 
-    Point branchHead = new Point(x1, y1);
-    LinkedList<Point> branchQueue;
     mapExit = new LinkedList<>();
 
     x = x1;
@@ -76,11 +73,13 @@ public class Map {
     mapCell[y][x] = new Cell(x, y, new Terrain(true));
 
     // Add to seed
+    Point branchHead = new Point(x1, y1);
     mapSeed = new LinkedList<>();
     mapSeed.addLast(branchHead);
     mapExit.add(new TransferPoint(branchHead));
 
     // Add to branchQueue
+    LinkedList<Point> branchQueue;
     branchQueue = new LinkedList<>();
     branchQueue.addLast(new Point(x, y));
 
@@ -140,23 +139,19 @@ public class Map {
             branchQueue.addLast(new Point(branchHead.x, branchHead.y));
           }
           branchQueue.addLast(branchHead);
-        }
-        else {
+        } else {
           mapExit.add(new TransferPoint(tempPoint));
         }
-      }
-      else if (availMove.size() == 0) {
+      } else if (availMove.size() == 0) {
         //Remove the head
-      }
-      else {
+      } else {
         branchQueue.addLast(branchHead);
       }
 
       if (branchQueue.isEmpty()) {
         if (mapExit.size() > minExit) {
           finishGenerate = true;
-        }
-        else {
+        } else {
           do {
             rg = randomGen.nextInt(mapSeed.size());
             branchQueue.addLast(mapSeed.get(rg));
@@ -183,8 +178,7 @@ public class Map {
     if (rg == 1) {
       x = Math.abs((randomGen.nextInt() % (width - 1)) + 1);
       y = (randomGen.nextInt() % 2 == 0) ? 0 : (height - 1);
-    }
-    else {
+    } else {
       x = (randomGen.nextInt() % 2 == 0) ? 0 : (width - 1);
       y = Math.abs((randomGen.nextInt() % (height - 1)) + 1);
     }
@@ -211,8 +205,7 @@ public class Map {
     boolean avail = false;
     if ((point.x == 0 || point.x == width) && (point.y == 0 || point.y == height - 1)) {
       avail = false;
-    }
-    else if (point.y >= 0 && point.y < height && point.x >= 0 && point.x < width) {
+    } else if (point.y >= 0 && point.y < height && point.x >= 0 && point.x < width) {
       avail = true;
     }
     return avail;
@@ -242,14 +235,11 @@ public class Map {
 
     if (movement == 0) {
       y = y - 1;
-    }
-    else if (movement == 1) {
+    } else if (movement == 1) {
       x = x - 1;
-    }
-    else if (movement == 2) {
+    } else if (movement == 2) {
       y = y + 1;
-    }
-    else if (movement == 3) {
+    } else if (movement == 3) {
       x = x + 1;
     }
     retPoint.setLocation(x, y);
@@ -258,7 +248,7 @@ public class Map {
   }
 
   /**
-   * Meletakkan enemy pada map
+   * Meletakkan enemy pada map.
    */
   public void putEnemy() {
     int i;
@@ -320,39 +310,64 @@ public class Map {
     return mapCell[y][x];
   }
 
+  /**
+   * Mengembalikan cell pada posisi tertentu.
+   *
+   * @param position posisi cell
+   * @return cell pada posisi
+   */
   public Cell getMapCell(Point position) {
     return mapCell[position.y][position.x];
   }
 
+  /**
+   * Mengembalikan transferpoint pada posisi p.
+   *
+   * @param p lokasi transfer point
+   * @return transfer point pada lokasi
+   */
   public TransferPoint getTransferPoint(Point p) {
     int i = 0;
     boolean found = false;
     while (i < mapExit.size() && !found) {
       if (mapExit.get(i).getExitPoint().equals(p)) {
         found = true;
-      }
-      else {
+      } else {
         i++;
       }
     }
     if (found) {
       return mapExit.get(i);
-    }
-    else {
+    } else {
       return null;
     }
   }
 
+  /**
+   * Mengembalikan list enemy.
+   *
+   * @return list enemy
+   */
   public LinkedList<EnemyEntity> getEnemyList() {
     return enemyList;
   }
 
+  /**
+   * Mengembalikan nilai apakah titik ada di dalam range.
+   *
+   * @param p posisi
+   * @return nilai apakah titik ada di dalam range
+   */
   public boolean isInRange(Point p) {
     return (p.x >= 0 && p.x < width && p.y >= 0 && p.y < height);
   }
 
+  /**
+   * Mengembalikan seed map.
+   *
+   * @return List berisi titik kosong pada map
+   */
   public LinkedList<Point> getMapSeed() {
     return mapSeed;
   }
-
 }

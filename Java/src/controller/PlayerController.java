@@ -16,6 +16,7 @@ import view.GameInterface;
  * Kelas PlayerController, mengontrol pergerakan player.
  */
 public class PlayerController implements KeyListener {
+
   private PlayerEntity playerEntity;
   private Map map;
   private MapChangeListener mapChange;
@@ -33,15 +34,28 @@ public class PlayerController implements KeyListener {
     this.map = map;
   }
 
+  /**
+   * Tombol yang diketik (tidak dipakai).
+   *
+   * @param keyEvent keyEvent
+   */
   @Override
   public void keyTyped(KeyEvent keyEvent) {
   }
 
+  /**
+   * Tombol yang diketik (tidak dipakai).
+   */
   @Override
   public void keyPressed(KeyEvent keyEvent) {
 
   }
 
+  /**
+   * Tombol yang dilepas.
+   *
+   * @param keyEvent tombol yang dilepas
+   */
   @Override
   public synchronized void keyReleased(KeyEvent keyEvent) {
     int move = -1;
@@ -49,8 +63,7 @@ public class PlayerController implements KeyListener {
 
     if (key == KeyEvent.VK_LEFT) {
       move = Entity.LEFT;
-    }
-    else if (key == KeyEvent.VK_RIGHT) {
+    } else if (key == KeyEvent.VK_RIGHT) {
       move = Entity.RIGHT;
     }
     if (key == KeyEvent.VK_UP) {
@@ -72,14 +85,13 @@ public class PlayerController implements KeyListener {
         if (tempCell.getTerrain().isPassable()) {
           // Encounter is found
           if (tempCell.getEntity() != null) {
-            encounterListener.EncounterFound(tempCell.getEntity());
+            encounterListener.encounterFound(tempCell.getEntity());
           }
           map.getMapCell(playerEntity.getPosition(move)).setEntity(playerEntity);
           map.getMapCell(playerEntity.getPosition()).setEntity(null);
           playerEntity.move(move);
         }
-      }
-      else {
+      } else {
         //Player goes to the next map, count exit point and change map
         tp = map.getTransferPoint(playerEntity.getPosition());
         if (tp.getNextMap() == null) {
@@ -108,10 +120,20 @@ public class PlayerController implements KeyListener {
     }
   }
 
+  /**
+   * Memasangkan MapChangeListener.
+   *
+   * @param mapChange MapChangeListener yang dipakai
+   */
   public void setMapChange(MapChangeListener mapChange) {
     this.mapChange = mapChange;
   }
 
+  /**
+   * Memasangkan EncounterListener.
+   *
+   * @param encounterListener EncounterListener yang dipakai
+   */
   public void setEncounterListener(EncounterListener encounterListener) {
     this.encounterListener = encounterListener;
   }

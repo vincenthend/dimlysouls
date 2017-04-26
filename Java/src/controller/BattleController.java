@@ -6,7 +6,9 @@ import model.entity.PlayerEntity;
 import view.GameInterface;
 
 /**
+ * Kelas battleController, mengatur battle.
  *
+ * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class BattleController extends Thread {
   private EnemyEntity enemyEntity;
@@ -22,12 +24,10 @@ public class BattleController extends Thread {
    * @param gameInterface interface yang sedang berjalan
    */
   public BattleController(EnemyEntity enemyEntity, PlayerEntity playerEntity,
-                          GameInterface gameInterface) {
+      GameInterface gameInterface) {
     this.playerEntity = playerEntity;
     this.enemyEntity = enemyEntity;
     this.gameInterface = gameInterface;
-
-
   }
 
   /**
@@ -35,16 +35,21 @@ public class BattleController extends Thread {
    */
   public void run() {
     //Buat Listener
-    EnemyBattleController EBC = new EnemyBattleController(playerEntity, enemyEntity);
+    EnemyBattleController ebc = new EnemyBattleController(playerEntity, enemyEntity);
 
     //Run EBC & PBC Thread
-    EBC.start();
+    ebc.start();
     while (enemyEntity.getCurrentHealth() > 0) {
       System.out.println();
     }
     battleListener.onBattleEnd();
   }
 
+  /**
+   * Menambahkan battle listener untuk melakukan aksi setelah battle berakhir.
+   *
+   * @param battleListener BattleListener yang digunakan
+   */
   public void setBattleListener(BattleListener battleListener) {
     this.battleListener = battleListener;
   }

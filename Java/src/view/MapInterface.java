@@ -9,14 +9,16 @@ import javax.swing.JPanel;
 import model.map.Map;
 
 /**
- * Class MapInterface, membuat interface berisi peta
+ * Class MapInterface, membuat interface berisi peta.
+ *
  * @author Vincent Hendryanto Halim / 13515089
  */
 public class MapInterface extends JPanel {
+
   private Map map;
 
   /**
-   * Konstruktor MapInterface
+   * Konstruktor MapInterface.
    */
   public MapInterface(Map map) {
     JLabel tempLabel;
@@ -37,21 +39,20 @@ public class MapInterface extends JPanel {
       constraints.gridy = i;
       for (j = 0; j < map.getWidth(); j++) {
         constraints.gridx = j;
-        if(map.getMapCell(j,i).getEntity() == null) {
+        if (map.getMapCell(j, i).getEntity() == null) {
           tempLabel = new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode());
           //add(new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode()), constraints);
-        }
-        else{
+        } else {
           tempLabel = new JLabel(map.getMapCell(j, i).getEntity().getRenderCode());
           //add(new JLabel(map.getMapCell(j, i).getEntity().getRenderCode()), constraints);
         }
-        add(tempLabel,constraints);
+        add(tempLabel, constraints);
       }
     }
   }
 
   /**
-   * Setter untuk map
+   * Setter untuk map.
    *
    * @param map mengatur peta yang digunakan
    */
@@ -73,16 +74,15 @@ public class MapInterface extends JPanel {
       for (j = 0; j < map.getWidth(); j++) {
         constraints.gridx = j;
         JLabel tempLabel;
-        if(map.getMapCell(j,i).getEntity() == null) {
+        if (map.getMapCell(j, i).getEntity() == null) {
           tempLabel = new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode());
           //add(new JLabel(map.getMapCell(j, i).getTerrain().getRenderCode()), constraints);
-        }
-        else{
+        } else {
           tempLabel = new JLabel(map.getMapCell(j, i).getEntity().getRenderCode());
           add(new JLabel(map.getMapCell(j, i).getEntity().getRenderCode()), constraints);
         }
 
-        add(tempLabel,constraints);
+        add(tempLabel, constraints);
       }
     }
   }

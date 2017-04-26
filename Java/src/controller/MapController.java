@@ -12,7 +12,7 @@ public class MapController {
   private LinkedList<EnemyController> enemyControllers;
 
   /**
-   * Konstruktor kelas MapController
+   * Konstruktor kelas MapController.
    */
   public MapController() {
     //Generate Map
@@ -26,7 +26,7 @@ public class MapController {
   }
 
   /**
-   * Melakukan penambahan EnemyController pada tiap enemy
+   * Melakukan penambahan EnemyController pada tiap enemy.
    */
   public void attachEnemyController() {
     enemyControllers = new LinkedList<>();
@@ -41,7 +41,7 @@ public class MapController {
   }
 
   /**
-   * Menghentikan semua EnemyController yang berjalan
+   * Menghentikan semua EnemyController yang berjalan.
    */
   public void stopEnemyController() {
     int i;
@@ -51,21 +51,23 @@ public class MapController {
   }
 
   /**
-   * Melakukan inisialisasi pada current map
+   * Mengembalikan map yang berjalan sekarang.
+   *
+   * @return map yang berjalan saat ini
+   */
+  public Map getMap() {
+    return map;
+  }
+
+  /**
+   * Melakukan inisialisasi pada current map.
+   *
    * @param map map yang digunakan sekarang
    */
   public void setMap(Map map) {
     this.map = map;
     enemyControllers = new LinkedList<>();
     attachEnemyController();
-  }
-
-  /**
-   * Mengembalikan map yang berjalan sekarang
-   * @return
-   */
-  public Map getMap() {
-    return map;
   }
 }
 

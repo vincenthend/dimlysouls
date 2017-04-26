@@ -1,15 +1,20 @@
-package view.Battle;
+package view.battle;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import model.entity.PlayerEntity;
 
+/**
+ * Kelas BattleButtonInterface, tempat meletakkan BattleButton.
+ */
 public class BattleButtonInterface extends JPanel {
-  private PlayerEntity playerEntity;
-
-  public BattleButtonInterface(PlayerEntity playerEntity, ActionListener buttonSel){
-    setLayout(new GridLayout(2,2));
+  /**
+   * Konstruktor kelas BattleButtonInterface.
+   *
+   * @param buttonSel ActionListener untuk menangkap tombol yang ditekan
+   */
+  public BattleButtonInterface(ActionListener buttonSel) {
+    setLayout(new GridLayout(2, 2));
     BattleButton battleButton = new BattleButton(0, "Attack");
     battleButton.addActionListener(buttonSel);
     add(battleButton);

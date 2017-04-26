@@ -3,16 +3,19 @@ package model.entity;
 import java.awt.Point;
 
 /**
+ * Kelas Abstrak Entity untuk diletakkan di cell.
  *
+ * @author Vincent Hendryanto H/ 13515089
  */
 public abstract class Entity {
-  protected Point location;
-  protected String renderCode;
-  protected int entityId;
+
   public static final int LEFT = 0;
   public static final int RIGHT = 1;
   public static final int UP = 2;
   public static final int DOWN = 3;
+  protected Point location;
+  protected String renderCode;
+  protected int entityId;
 
   /**
    * Konstruktor kelas Entity.
@@ -38,22 +41,22 @@ public abstract class Entity {
    *
    * @param x absis objek entity
    * @param y absis objek entity
-   * @param eId ID entity
+   * @param eid ID entity
    */
-  public Entity(int x, int y, int eId) {
+  public Entity(int x, int y, int eid) {
     location = new Point(x, y);
-    entityId = eId;
+    entityId = eid;
   }
 
   /**
    * Konstruktor kelas Entity.
    *
    * @param location lokasi objek entity
-   * @param eId ID entity
+   * @param eid ID entity
    */
-  public Entity(Point location, int eId) {
+  public Entity(Point location, int eid) {
     this.location = new Point(location);
-    entityId = eId;
+    entityId = eid;
   }
 
   /**
@@ -65,6 +68,16 @@ public abstract class Entity {
     return renderCode;
   }
 
+
+  /**
+   * Setter posisi entity.
+   * @param p posisi entity
+   */
+  public void setPosition(Point p) {
+    location.x = p.x;
+    location.y = p.y;
+  }
+
   /**
    * Mengembalikan posisi entity.
    *
@@ -73,40 +86,39 @@ public abstract class Entity {
   public Point getPosition() {
     return (location);
   }
-  public void setPosition(Point p) {
-    location.x = p.x;
-    location.y = p.y;
-  }
 
+  /**
+   * Mengembalikan posisi entity setelah bergerak.
+   *
+   * @param i arah gerak
+   * @return posisi entity
+   */
   public Point getPosition(int i) {
     if (i == LEFT) {
       return (new Point(location.x - 1, location.y));
-    }
-    else if (i == RIGHT) {
+    } else if (i == RIGHT) {
       return (new Point(location.x + 1, location.y));
-    }
-    else if (i == UP) {
+    } else if (i == UP) {
       return (new Point(location.x, location.y - 1));
-    }
-    else if (i == DOWN) {
+    } else if (i == DOWN) {
       return (new Point(location.x, location.y + 1));
-    }
-    else {
+    } else {
       return null;
     }
   }
 
+  /**
+   * Menggerakkan entity.
+   * @param i arah gerak
+   */
   public void move(int i) {
     if (i == LEFT) {
       location.x = location.x - 1;
-    }
-    else if (i == RIGHT) {
+    } else if (i == RIGHT) {
       location.x = location.x + 1;
-    }
-    else if (i == UP) {
+    } else if (i == UP) {
       location.y = location.y - 1;
-    }
-    else if (i == DOWN) {
+    } else if (i == DOWN) {
       location.y = location.y + 1;
     }
   }

@@ -2,7 +2,8 @@ package model.enemy;
 
 /**
  * Kelas musuh slime.
- * @author
+ *
+ * @author Adrian Mulyana / 13515075
  */
 public class Slime implements Enemy {
   private int health;

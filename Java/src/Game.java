@@ -8,16 +8,25 @@ public class Game {
   private GameController gameController;
 
   /**
-   * Konstruktor kelas game
+   * Konstruktor kelas game.
    */
   public Game() {
     gameInterface = new GameInterface();
   }
 
   /**
-   * Menampilkan Main Menu
+   * Main method.
+   * @param args argumen
    */
-  public void MainMenu() {
+  public static void main(String[] args) {
+    final Game game = new Game();
+    game.mainMenu();
+  }
+
+  /**
+   * Menampilkan Main Menu.
+   */
+  public void mainMenu() {
     gameInterface.switchToMainMenu(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
@@ -26,13 +35,5 @@ public class Game {
       }
     });
     gameInterface.updateInterface();
-  }
-
-  /**
-   * @param args
-   */
-  public static void main(String[] args) {
-    final Game game = new Game();
-    game.MainMenu();
   }
 }
