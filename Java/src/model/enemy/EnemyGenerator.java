@@ -6,7 +6,7 @@ import java.util.Random;
  * Class EnemyGenerator generates a random enemy.
  */
 public class EnemyGenerator {
-  public static final int countEnemy = 1;
+  public static final int countEnemy = 4;
 
   /**
    * Melakukan generate pada musuh secara random.

@@ -1,7 +1,8 @@
 package model.entity;
 
-import java.awt.Point;
 import model.item.Consumables;
+
+import java.awt.*;
 
 /**
  *
