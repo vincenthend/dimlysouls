@@ -21,6 +21,17 @@ public class EnemyGenerator {
     if(i == 0){
       e = new Slime();
     }
+    else if(i == 1){
+      e = new Goblin();
+    }
+
+    else if(i == 2){
+      e = new Minotaur();
+    }
+    else if(i == 3){
+      e = new Skeleton();
+    }
+
 
     return e;
   }

@@ -29,6 +29,7 @@ public class MapController {
    * Melakukan penambahan EnemyController pada tiap enemy
    */
   public void attachEnemyController() {
+    enemyControllers = new LinkedList<>();
     LinkedList<EnemyEntity> enemyList = map.getEnemyList();
     EnemyController enemyController;
     int i;

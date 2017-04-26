@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
@@ -98,6 +99,8 @@ public class GameInterface extends JFrame {
   public void switchToMap(KeyListener keyListener, Map map) {
     status = MAP;
     addKeyListener(keyListener);
+
+    System.out.println(SwingUtilities.isEventDispatchThread());
     removeContent();
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();

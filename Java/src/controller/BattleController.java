@@ -1,5 +1,6 @@
 package controller;
 
+import controller.listener.BattleListener;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import view.GameInterface;
@@ -11,6 +12,7 @@ public class BattleController extends Thread {
   private EnemyEntity enemyEntity;
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
+  private BattleListener battleListener;
 
   /**
    * Konstruktor battle controller, dipanggil setiap melakukan battle.
@@ -33,15 +35,17 @@ public class BattleController extends Thread {
    */
   public void run() {
     //Buat Listener
-    PlayerBattleController PBC = new PlayerBattleController(playerEntity, enemyEntity);
-
-    gameInterface.switchToBattle(PBC, enemyEntity);
-    gameInterface.updateInterface();
-
     EnemyBattleController EBC = new EnemyBattleController(playerEntity, enemyEntity);
+
     //Run EBC & PBC Thread
     EBC.start();
-    //Kill EBC Thread
-    //EBC.kill();
+    while (enemyEntity.getCurrentHealth() > 0) {
+      System.out.println();
+    }
+    battleListener.onBattleEnd();
+  }
+
+  public void setBattleListener(BattleListener battleListener) {
+    this.battleListener = battleListener;
   }
 }

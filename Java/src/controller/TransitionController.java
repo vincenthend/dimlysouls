@@ -40,7 +40,6 @@ public class TransitionController extends Thread {
      */
     public synchronized void run() {
         while (enemyEntity.getCurrentHealth() > 0) {
-            System.out.println("CEK");
         }
         guiUpdateController.stopTimer();
         mapController.attachEnemyController();
@@ -69,6 +68,5 @@ public class TransitionController extends Thread {
             }
         });
         guiUpdateController.mapUpdateTimer();
-        System.out.println("CEKs");
     }
 }

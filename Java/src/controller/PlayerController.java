@@ -2,16 +2,15 @@ package controller;
 
 import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
+import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Cell;
 import model.map.Map;
 import model.map.TransferPoint;
 import view.GameInterface;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Kelas PlayerController, mengontrol pergerakan player.
@@ -50,19 +49,15 @@ public class PlayerController implements KeyListener {
 
     if (key == KeyEvent.VK_LEFT) {
       move = Entity.LEFT;
-      System.out.println("CEK1");
     }
     else if (key == KeyEvent.VK_RIGHT) {
       move = Entity.RIGHT;
-      System.out.println("CEK2");
     }
     if (key == KeyEvent.VK_UP) {
       move = Entity.UP;
-      System.out.println("CEK3");
     }
     if (key == KeyEvent.VK_DOWN) {
       move = Entity.DOWN;
-      System.out.println("CEK4");
     }
 
     TransferPoint tp;

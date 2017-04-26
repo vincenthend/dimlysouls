@@ -21,7 +21,7 @@ public class Goblin implements Enemy {
     defense = 15;
     speed = 70;
     expGet = 20;
-    renderCode = "#";
+    renderCode = "@";
   }
 
   @Override
