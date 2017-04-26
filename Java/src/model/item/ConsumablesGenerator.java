@@ -21,7 +21,7 @@ public class ConsumablesGenerator {
     i = rand.nextInt(countItem);
 
     if (i == 0) {
-      consumables = new ExpBook();
+      consumables = new Potion();
     } else if (i == 1){
       consumables = new ExpBook();
     }
