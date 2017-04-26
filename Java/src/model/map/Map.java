@@ -372,7 +372,6 @@ public class Map {
   public LinkedList<Point> getMapSeed() {
     return mapSeed;
   }
-<<<<<<< HEAD
   /**
    * Meletakkan enemy pada map
    */
@@ -391,6 +390,4 @@ public class Map {
       mapCell[randomLoc.y][randomLoc.x].setEntity(enemyEntity);
     }
   }
-=======
->>>>>>> 5c3ff9772b6c6eb50cc5a977f26623889ef9b357
 }
