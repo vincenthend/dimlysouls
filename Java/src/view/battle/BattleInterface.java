@@ -14,6 +14,7 @@ import view.StatsInterface;
  * Kelas BattleInterface menampilkan info saat battle.
  */
 public class BattleInterface extends JPanel {
+
   private BattleButtonInterface buttonInterface;
   private BattleView battleView;
   private StatsInterface statsInterface;
@@ -75,6 +76,7 @@ public class BattleInterface extends JPanel {
 
   /**
    * Getter BattleButtonInterface pada BattleInterface.
+   *
    * @return BattleButtonInterface pada BattleInterface
    */
   public BattleButtonInterface getButtonInterface() {

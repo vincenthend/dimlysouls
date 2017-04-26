@@ -6,6 +6,7 @@ package controller.listener;
  * @author Mikhael Artur Darmakesuma / 13515099
  */
 public interface BattleListener {
+
   /**
    * Aksi yang dilakukan setelah battle berakhir.
    */

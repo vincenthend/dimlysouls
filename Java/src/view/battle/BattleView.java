@@ -9,6 +9,7 @@ import model.entity.PlayerEntity;
  * Kelas BattleView, berisi layar tempat musuh diletakkan.
  */
 public class BattleView extends JPanel {
+
   private PlayerEntity playerEntity;
   private EnemyEntity enemyEntity;
 

@@ -6,6 +6,7 @@ package model.enemy;
  * @author Adrian Mulyana / 13515075
  */
 public class Goblin implements Enemy {
+
   private int health;
   private int attack;
   private int defense;
@@ -17,7 +18,7 @@ public class Goblin implements Enemy {
    * Konstruktor kelas goblin.
    */
   public Goblin() {
-    health = 35;
+    health = 3500;
     attack = 15;
     defense = 15;
     speed = 70;

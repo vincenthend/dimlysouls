@@ -41,7 +41,7 @@ public class GameController extends Thread {
     String name = JOptionPane.showInputDialog(null, "What's your name?");
     String[] options = new String[]{"Warrior", "Paladin", "Berserker", "Ninja"};
     playerClass = JOptionPane.showOptionDialog(null, "Choose your class", "Class Selection",
-            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
     if (playerClass == 0) {
       player = new Warrior(name);
@@ -102,11 +102,19 @@ public class GameController extends Thread {
 
           guiUpdateController.battleUpdateTimer();
           BattleController battleController = new BattleController((EnemyEntity) e, playerEntity,
-                  gameInterface);
+              gameInterface);
           battleController.start();
           battleController.setBattleListener(new BattleListener() {
             @Override
             public void onBattleEnd() {
+              playerEntity.getPlayer().setExp(playerEntity.getPlayer().getExp() + ((EnemyEntity) e).getEnemy().getExp());
+              if(playerEntity.getPlayer().isLeveling()){
+                playerEntity.getPlayer().levelUp();
+              }
+              System.out.println("EXP = " + playerEntity.getPlayer().getExp());
+              map.getEnemyList().remove(map.getEnemyList().indexOf(e));
+              map.getMapCell(e.getPosition()).setEntity(null);
+              map.getMapCell(playerEntity.getPosition()).setEntity(playerEntity);
               guiUpdateController.stopTimer();
               guiUpdateController.mapUpdateTimer();
               mapController.attachEnemyController();
@@ -114,7 +122,7 @@ public class GameController extends Thread {
                 @Override
                 public void run() {
                   gameInterface.switchToMap(playerController, map);
-                  gameInterface.setFocusable(true);
+                  gameInterface.requestFocus();
                 }
               });
             }

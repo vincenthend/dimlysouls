@@ -8,6 +8,7 @@ import model.enemy.Skeleton;
  * Created by Aspire V5 on 4/26/2017.
  */
 public class SkeletonTest {
+
   @org.junit.Test
   public void getAssertions() throws Exception {
     Skeleton S = new Skeleton();

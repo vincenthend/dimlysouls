@@ -8,6 +8,7 @@ import java.awt.Point;
  * @Author Vincent Hendryanto H / 13515089
  */
 public class TransferPoint {
+
   private Point exitPoint;
   private Map nextMap;
   private Point entrancePoint;

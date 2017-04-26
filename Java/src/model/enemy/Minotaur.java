@@ -6,6 +6,7 @@ package model.enemy;
  * @author Adrian Mulyana / 13515075
  */
 public class Minotaur implements Enemy {
+
   private int health;
   private int attack;
   private int defense;
@@ -17,9 +18,9 @@ public class Minotaur implements Enemy {
    * Konstruktor kelas minotaur.
    */
   public Minotaur() {
-    health = 100;
-    attack = 45;
-    defense = 60;
+    health = 10000;
+    attack = 20;
+    defense = 10;
     speed = 15;
     expGet = 100;
     renderCode = "!";

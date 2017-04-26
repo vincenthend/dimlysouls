@@ -31,6 +31,8 @@ public interface Player {
 
   int getExp();
 
+  void setExp(int exp);
+
   int getNext();
 
   String getNama();

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import view.GameInterface;
@@ -58,23 +59,35 @@ public class PlayerBattleController implements ActionListener {
       int [] enemyStatus = new int [5];
       playerEntity.getPlayer().special(selfDamage, enemyDamage, selfStatus, enemyStatus);
     }
-    /*disableButton();
-    Timer t = new Timer( new ActionListener() {
+    disableButton();
+    Timer t = new Timer(1000, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
         enableButton();
       }
-    });//ANGKA 10 diganti waktu tunggu
-    // Buat Timer nunggu dulu baru launch
-    t.setInitialDelay(1000);*/
+    });
+    t.setRepeats(false);
+    t.setInitialDelay(10000);
   }
 
   private void disableButton() {
-    gameInterface.getBattleInterface().getButtonInterface().setVisible(false);
+    BattleButton[] battleButtons = gameInterface.getBattleInterface().getButtonInterface()
+        .getBattleButton();
+
+    battleButtons[0].setEnabled(false);
+    battleButtons[1].setEnabled(false);
+    battleButtons[2].setEnabled(false);
+    battleButtons[3].setEnabled(false);
   }
 
   private void enableButton() {
-    gameInterface.getBattleInterface().getButtonInterface().setVisible(true);
+    BattleButton[] battleButtons = gameInterface.getBattleInterface().getButtonInterface()
+        .getBattleButton();
+
+    battleButtons[0].setEnabled(true);
+    battleButtons[1].setEnabled(true);
+    battleButtons[2].setEnabled(true);
+    battleButtons[3].setEnabled(true);
   }
 
   /**

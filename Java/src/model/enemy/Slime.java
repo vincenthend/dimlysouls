@@ -6,6 +6,7 @@ package model.enemy;
  * @author Adrian Mulyana / 13515075
  */
 public class Slime implements Enemy {
+
   private int health;
   private int attack;
   private int defense;
@@ -17,8 +18,8 @@ public class Slime implements Enemy {
    * Konstruktor kelas slime.
    */
   public Slime() {
-    health = 20;
-    attack = 3;
+    health = 100;
+    attack = 11;
     defense = 3;
     speed = 50;
     expGet = 5;

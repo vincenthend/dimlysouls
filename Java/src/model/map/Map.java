@@ -1,13 +1,12 @@
 package model.map;
 
+import java.awt.Point;
+import java.util.LinkedList;
+import java.util.Random;
 import model.enemy.EnemyGenerator;
 import model.entity.EnemyEntity;
 import model.entity.ItemEntity;
 import model.item.ConsumablesGenerator;
-
-import java.awt.*;
-import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * Class Map, berisi peta dan semua data peta.
@@ -21,12 +20,14 @@ public class Map {
   private final int offset = 40;
   private final int minExit = 3;
   private final int mapToEnemy = 2;
+  private final int mapToItem = 1;
   private int width;
   private int height;
   private Cell[][] mapCell;
   private LinkedList<Point> mapSeed;
   private LinkedList<TransferPoint> mapExit;
   private LinkedList<EnemyEntity> enemyList;
+
 
   /**
    * Membuat map dengan width dan height terspesifikasi.
@@ -250,23 +251,6 @@ public class Map {
     return retPoint;
   }
 
-  /**
-   * Meletakkan enemy pada map.
-   */
-  public void putEnemy() {
-    int i;
-    int rg;
-    Point randomLoc;
-    ConsumablesGenerator enemyGen = new ConsumablesGenerator();
-    Random randomGen = new Random(System.currentTimeMillis());
-    ItemEntity consumables;
-
-    for (i = 0; i < (mapSeed.size() * mapToEnemy) / 100; i++) {
-      randomLoc = mapSeed.get(randomGen.nextInt(mapSeed.size()));
-      consumables = new ItemEntity(randomLoc, enemyGen.generateConsumables());
-      mapCell[randomLoc.y][randomLoc.x].setEntity(consumables);
-    }
-  }
 
   /**
    * Mengembalikan lebar map.
@@ -372,10 +356,11 @@ public class Map {
   public LinkedList<Point> getMapSeed() {
     return mapSeed;
   }
+
   /**
-   * Meletakkan enemy pada map
+   * Meletakkan item pada map.
    */
-  public void putItem() {
+  public void putEnemy() {
     int i;
     int rg;
     Point randomLoc;
@@ -388,6 +373,24 @@ public class Map {
       enemyEntity = new EnemyEntity(randomLoc, enemyGen.generateEnemy());
       enemyList.addLast(enemyEntity);
       mapCell[randomLoc.y][randomLoc.x].setEntity(enemyEntity);
+    }
+  }
+
+  /**
+   * Meletakkan enemy pada map.
+   */
+  public void putItem() {
+    int i;
+    int rg;
+    Point randomLoc;
+    ConsumablesGenerator consumGen = new ConsumablesGenerator();
+    Random randomGen = new Random(System.currentTimeMillis());
+    ItemEntity consumables;
+
+    for (i = 0; i < (mapSeed.size() * mapToItem) / 100; i++) {
+      randomLoc = mapSeed.get(randomGen.nextInt(mapSeed.size()));
+      consumables = new ItemEntity(randomLoc, consumGen.generateConsumables());
+      mapCell[randomLoc.y][randomLoc.x].setEntity(consumables);
     }
   }
 }

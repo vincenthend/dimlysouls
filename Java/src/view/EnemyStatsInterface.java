@@ -12,6 +12,7 @@ import model.entity.EnemyEntity;
  * Class EnemyStatsInterface menampilkan stats dari enemy.
  */
 public class EnemyStatsInterface extends JPanel {
+
   private EnemyEntity enemyEntity;
 
   /**

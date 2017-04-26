@@ -23,6 +23,7 @@ import view.battle.BattleInterface;
  * @author Vincent H
  */
 public class GameInterface extends JFrame {
+
   public static final int MAIN_MENU = 0;
   public static final int MAP = 1;
   public static final int BATTLE = 2;
@@ -208,6 +209,7 @@ public class GameInterface extends JFrame {
 
   /**
    * Getter battle interface.
+   *
    * @return battle interface pada layar
    */
   public BattleInterface getBattleInterface() {

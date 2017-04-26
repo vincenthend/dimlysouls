@@ -9,6 +9,7 @@ import model.entity.Entity;
  * @author Vincent Hendryanto Halim / 13515089
  */
 public class Cell {
+
   private Point location;
   private Entity entity;
   private Terrain terrain;

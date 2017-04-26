@@ -6,6 +6,7 @@ package model.enemy;
  * @author Adrian Mulyana / 13515075
  */
 public class Skeleton implements Enemy {
+
   private int health;
   private int attack;
   private int defense;
@@ -17,7 +18,7 @@ public class Skeleton implements Enemy {
    * Konstruktor kelas skeleton.
    */
   public Skeleton() {
-    health = 50;
+    health = 5000;
     attack = 25;
     defense = 15;
     speed = 35;

@@ -8,6 +8,7 @@ import model.player.Player;
  * @author Vincent Hendryanto H / 13515089
  */
 public interface Consumables {
+
   /**
    * Mengambil nilai efek.
    *

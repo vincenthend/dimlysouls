@@ -8,6 +8,7 @@ import model.enemy.Goblin;
  * @author Adrian Mulyana / 13515075
  */
 public class GoblinTest {
+
   @org.junit.Test
   public void getAssertions() throws Exception {
     Goblin G = new Goblin();

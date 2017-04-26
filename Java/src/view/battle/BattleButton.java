@@ -7,6 +7,7 @@ import javax.swing.JButton;
  * Digunakan untuk membuat button yang menandai attack player.
  */
 public class BattleButton extends JButton {
+
   private int atkId;
 
   /**

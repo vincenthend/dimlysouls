@@ -1,14 +1,14 @@
 package controller;
 
+import java.util.LinkedList;
 import model.entity.EnemyEntity;
 import model.map.Map;
-
-import java.util.LinkedList;
 
 /**
  * Kelas MapController, mengatur pembuatan dan generasi map beserta isinya.
  */
 public class MapController {
+
   private Map map;
   private LinkedList<EnemyController> enemyControllers;
 
@@ -20,6 +20,7 @@ public class MapController {
     map = new Map(41, 21);
     map.generateMap();
     map.putEnemy();
+    map.putItem();
 
   }
 

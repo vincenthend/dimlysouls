@@ -8,6 +8,7 @@ import model.enemy.Slime;
  * Created by Aspire V5 on 4/26/2017.
  */
 public class SlimeTest {
+
   @org.junit.Test
   public void getAssertions() throws Exception {
     Slime L = new Slime();

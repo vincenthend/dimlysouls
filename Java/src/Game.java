@@ -1,9 +1,11 @@
 import controller.GameController;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import view.GameInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Game {
+
   private GameInterface gameInterface;
   private GameController gameController;
 
@@ -16,6 +18,7 @@ public class Game {
 
   /**
    * Main method.
+   *
    * @param args argumen
    */
   public static void main(String[] args) {

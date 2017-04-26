@@ -11,6 +11,7 @@ import view.GameInterface;
  * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class BattleController extends Thread {
+
   private EnemyEntity enemyEntity;
   private PlayerEntity playerEntity;
   private GameInterface gameInterface;
@@ -42,6 +43,7 @@ public class BattleController extends Thread {
     while (enemyEntity.getCurrentHealth() > 0) {
       System.out.println();
     }
+    enemyEntity = null;
     battleListener.onBattleEnd();
   }
 
