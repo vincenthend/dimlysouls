@@ -97,7 +97,6 @@ public class GameController extends Thread {
           battleController.start();
 
           //Switch back to map
-          playerController.setEncounterListener(null);
           TransitionController transitionController = new TransitionController(guiUpdateController, mapController, gameInterface, (EnemyEntity) e, playerController, map, playerEntity);
           transitionController.start();
         }
