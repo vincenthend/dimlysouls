@@ -18,7 +18,7 @@ public class Goblin implements Enemy {
    * Konstruktor kelas goblin.
    */
   public Goblin() {
-    health = 3500;
+    health = 150;
     attack = 15;
     defense = 15;
     speed = 70;

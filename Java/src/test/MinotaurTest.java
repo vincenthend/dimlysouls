@@ -13,8 +13,8 @@ public class MinotaurTest {
   public void getAssertions() throws Exception {
     Minotaur M = new Minotaur();
     assertEquals(100, M.getHealth());
-    assertEquals(45, M.getAttack());
-    assertEquals(60, M.getDefense());
+    assertEquals(20, M.getAttack());
+    assertEquals(10, M.getDefense());
     assertEquals(15, M.getSpeed());
     assertEquals(100, M.getExp());
     assertEquals("!", M.getRenderCode());

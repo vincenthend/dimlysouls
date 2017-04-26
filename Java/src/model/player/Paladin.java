@@ -40,13 +40,15 @@ public class Paladin implements Player {
    */
   @Override
   public void levelUp() {
-    exp -= next;
-    next = next * 3 / 2 + 5;
-    level++;
-    health += 20;
-    attack += 2;
-    defense += 1;
-    speed += 1;
+    while (isLeveling()){
+      exp -= next;
+      next = next * 3 / 2 + 5;
+      level++;
+      health += 20;
+      attack += 2;
+      defense += 1;
+      speed += 1;
+    }
   }
 
   /**
@@ -99,6 +101,8 @@ public class Paladin implements Player {
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
-
+    selfDamage = -attack;
+    enemyDamage = attack;
+    selfStatus[2] = 3;
   }
 }

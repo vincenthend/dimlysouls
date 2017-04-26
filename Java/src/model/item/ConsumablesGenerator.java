@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class ConsumablesGenerator {
 
-  public static final int countItem = 1;
+  public static final int countItem = 2;
 
   /**
    * Melakukan generate pada item secara random.
@@ -22,6 +22,8 @@ public class ConsumablesGenerator {
 
     if (i == 0) {
       consumables = new Potion();
+    } else if (i == 1){
+      consumables = new ExpBook();
     }
 
     return consumables;

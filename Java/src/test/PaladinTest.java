@@ -40,7 +40,7 @@ public class PaladinTest {
     System.out.println("Creating a new PaladiP...");
     Paladin p = new Paladin("Purist");
     System.out.println("Setting player Exp to 35...");
-    p.setExp(35);
+    p.setExp(15);
     assertTrue(p.isLeveling());
     System.out.println("Leveling Up...");
     p.levelUp();
@@ -50,7 +50,7 @@ public class PaladinTest {
     assertEquals(16, p.getDefense());
     assertEquals(3, p.getSpeed());
     assertEquals(2, p.getLevel());
-    assertEquals(25, p.getExp());
+    assertEquals(5, p.getExp());
     assertEquals(20, p.getNext());
   }
 }

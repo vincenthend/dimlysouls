@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import model.entity.EnemyEntity;
 import model.entity.Entity;
+import model.entity.ItemEntity;
 import model.entity.PlayerEntity;
 import model.map.Map;
 import model.player.Berserker;
@@ -133,7 +134,7 @@ public class GameController extends Thread {
             }
           });
         } else if (e.getEntityId() == 2) {
-          //Item Encountered
+          ((ItemEntity) e).getConsumables().use(playerEntity);
         }
       }
     };

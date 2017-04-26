@@ -1,7 +1,8 @@
 package model.entity;
 
-import java.awt.Point;
 import model.item.Consumables;
+
+import java.awt.*;
 
 /**
  * ItemEntity, berisi item.
@@ -34,5 +35,14 @@ public final class ItemEntity extends Entity {
     super(location, 2);
     consumables = c;
     renderCode = "I";
+  }
+
+  /**
+   * Getter player terkait.
+   *
+   * @return player terkait
+   */
+  public Consumables getConsumables() {
+    return consumables;
   }
 }

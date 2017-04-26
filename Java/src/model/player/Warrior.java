@@ -1,5 +1,7 @@
 package model.player;
 
+import java.util.Random;
+
 /**
  * Kelas Warrior.
  *
@@ -40,13 +42,15 @@ public class Warrior implements Player {
    */
   @Override
   public void levelUp() {
-    exp -= next;
-    next = next * 3 / 2 + 5;
-    level++;
-    health += 15;
-    attack += 2;
-    defense += 2;
-    speed += 1;
+    while (isLeveling()){
+      exp -= next;
+      next = next * 3 / 2 + 5;
+      level++;
+      health += 15;
+      attack += 2;
+      defense += 2;
+      speed += 1;
+    }
   }
 
   /**
@@ -99,6 +103,14 @@ public class Warrior implements Player {
   }
 
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
-
+    Random rand = new Random();
+    int i = rand.nextInt(10);
+    if (i > 5){
+      enemyDamage = attack * 2;
+      enemyStatus[4] = 3;
+    }
+    else {
+      enemyDamage = attack;
+    }
   }
 }
