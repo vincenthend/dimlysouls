@@ -59,6 +59,8 @@ public class PlayerBattleController implements ActionListener {
       int [] selfStatus = new int [5];
       int [] enemyStatus = new int [5];
       playerEntity.getPlayer().special(selfDamage, enemyDamage, selfStatus, enemyStatus);
+      playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - selfDamage);
+      enemyEntity.setCurrentHealth(enemyEntity.getCurrentHealth() - enemyDamage);
     }
     playerEntity.turn();
     disableButton();
