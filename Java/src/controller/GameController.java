@@ -94,7 +94,8 @@ public class GameController extends Thread {
           mapController.stopEnemyController();
           guiUpdateController.stopTimer();
 
-          PlayerBattleController pbc = new PlayerBattleController(playerEntity, (EnemyEntity) e, gameInterface);
+          PlayerBattleController pbc = new PlayerBattleController(playerEntity, (EnemyEntity) e,
+              gameInterface);
 
           gameInterface.switchToBattle(pbc, (EnemyEntity) e);
           gameInterface.updateInterface();

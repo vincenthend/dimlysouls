@@ -12,6 +12,7 @@ import view.GameInterface;
  * @author Mikhael Artur Darmakesuma / 13515099
  */
 public class GuiUpdateController {
+
   public static final int FPS = 60;
   public static final int UPDATE_SPEED = 1000 / FPS;
   private GameInterface gameInterface;
