@@ -1,8 +1,7 @@
 import controller.GameController;
-import view.GameInterface;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.GameInterface;
 
 public class Game {
 

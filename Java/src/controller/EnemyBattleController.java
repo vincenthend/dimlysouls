@@ -1,9 +1,8 @@
 package controller;
 
+import java.util.Random;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
-
-import java.util.Random;
 
 /**
  * Kelas EnemyBattleController, mengatur aksi musuh pada saat battle.
@@ -29,7 +28,7 @@ public class EnemyBattleController extends Thread {
   }
 
   /**
-   * Menyerang thread jika HP > 0 tiap (600/speed) detik.
+   * Menyerang thread jika HP lebih dari 0 tiap (600/speed) detik.
    */
   @Override
   public void run() {

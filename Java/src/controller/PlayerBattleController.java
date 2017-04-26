@@ -22,6 +22,7 @@ public class PlayerBattleController implements ActionListener {
    *
    * @param p player yang terlibat
    * @param e musuh yang terlibat
+   * @param g interface yang digunakan
    */
   public PlayerBattleController(PlayerEntity p, EnemyEntity e, GameInterface g) {
     playerEntity = p;

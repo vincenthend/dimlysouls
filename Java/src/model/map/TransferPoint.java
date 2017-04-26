@@ -5,7 +5,7 @@ import java.awt.Point;
 /**
  * TransferPoint digunakan untuk menghubungkan map melalui cell tertentu.
  *
- * @Author Vincent Hendryanto H / 13515089
+ * @author Vincent Hendryanto H / 13515089
  */
 public class TransferPoint {
 

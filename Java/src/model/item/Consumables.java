@@ -25,6 +25,7 @@ public interface Consumables {
 
   /**
    * Menggunakan consumables.
+   * @param player Player yang terkena efek
    */
   public void use(Player player);
 }

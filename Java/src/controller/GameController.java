@@ -3,14 +3,18 @@ package controller;
 import controller.listener.BattleListener;
 import controller.listener.EncounterListener;
 import controller.listener.MapChangeListener;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import model.entity.EnemyEntity;
 import model.entity.Entity;
 import model.entity.PlayerEntity;
 import model.map.Map;
-import model.player.*;
+import model.player.Berserker;
+import model.player.Ninja;
+import model.player.Paladin;
+import model.player.Player;
+import model.player.Warrior;
 import view.GameInterface;
-
-import javax.swing.*;
 
 /**
  * Kelas GameController mengatur berjalannya game.
@@ -107,8 +111,9 @@ public class GameController extends Thread {
           battleController.setBattleListener(new BattleListener() {
             @Override
             public void onBattleEnd() {
-              playerEntity.getPlayer().setExp(playerEntity.getPlayer().getExp() + ((EnemyEntity) e).getEnemy().getExp());
-              if(playerEntity.getPlayer().isLeveling()){
+              playerEntity.getPlayer().setExp(
+                  playerEntity.getPlayer().getExp() + ((EnemyEntity) e).getEnemy().getExp());
+              if (playerEntity.getPlayer().isLeveling()) {
                 playerEntity.getPlayer().levelUp();
               }
               System.out.println("EXP = " + playerEntity.getPlayer().getExp());

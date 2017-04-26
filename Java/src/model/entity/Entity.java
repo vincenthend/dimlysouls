@@ -126,6 +126,7 @@ public abstract class Entity {
 
   /**
    * Mengembalikan ID entity.
+   * @return nilai ID Entity
    */
   public int getEntityId() {
     return entityId;

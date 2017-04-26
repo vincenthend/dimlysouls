@@ -14,6 +14,9 @@ public final class ItemEntity extends Entity {
 
   /**
    * Default constructor.
+   * @param x absis lokasi objek
+   * @param y ordinat lokasi objek
+   * @param c objek consumables
    */
   public ItemEntity(int x, int y, Consumables c) {
     super(x, y, 2);

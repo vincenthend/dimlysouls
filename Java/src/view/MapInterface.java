@@ -19,6 +19,7 @@ public class MapInterface extends JPanel {
 
   /**
    * Konstruktor MapInterface.
+   * @param map map yang digunakan
    */
   public MapInterface(Map map) {
     JLabel tempLabel;

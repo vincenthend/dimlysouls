@@ -98,6 +98,7 @@ public class GameInterface extends JFrame {
    * Mengubah GUI menjadi Map Layout.
    *
    * @param keyListener actionListener for keyboard input
+   * @param map peta yang digunakan
    */
   public void switchToMap(KeyListener keyListener, Map map) {
     status = MAP;
