@@ -1,8 +1,9 @@
 package controller;
 
-import java.util.Random;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
+
+import java.util.Random;
 
 /**
  * Kelas EnemyBattleController, mengatur aksi musuh pada saat battle.
@@ -36,8 +37,8 @@ public class EnemyBattleController extends Thread {
     int attack;
     while (isRunning) {
       try {
-        sleep(1000 / enemyEntity.getEnemy().getSpeed());
-        attack = rand.nextInt(4) + 1;
+        sleep(10000 / enemyEntity.getEnemy().getSpeed());
+        attack = rand.nextInt(3) + 1;
         if (attack == 1) {
           playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - calculateDamage(1));
         } else if (attack == 2) {
@@ -49,8 +50,6 @@ public class EnemyBattleController extends Thread {
             playerEntity.setCurrentHealth(
                 playerEntity.getCurrentHealth() - calculateDamage(1));
           }
-        } else if (attack == 4) {
-          //enemyEntity.getEnemy().special();
         }
         if (playerEntity.getCurrentHealth() <= 0 || enemyEntity.getCurrentHealth() <= 0) {
           isRunning = false;

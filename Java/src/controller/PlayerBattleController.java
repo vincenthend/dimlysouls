@@ -52,7 +52,11 @@ public class PlayerBattleController implements ActionListener {
             enemyEntity.getCurrentHealth() - calculateDamage(1));
       }
     } else if (atkId == 3) {
-      //p.getPlayer().special();
+      int selfDamage = 0;
+      int enemyDamage = 0;
+      int [] selfStatus = new int [5];
+      int [] enemyStatus = new int [5];
+      playerEntity.getPlayer().special(selfDamage, enemyDamage, selfStatus, enemyStatus);
     }
     /*disableButton();
     Timer t = new Timer( new ActionListener() {
