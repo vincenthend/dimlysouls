@@ -15,6 +15,7 @@ public interface Player {
 
   /**
    * Mengecek apakah player harus level up.
+   *
    * @return nilai apakah player harus level up
    */
   boolean isLeveling();

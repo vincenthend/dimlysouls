@@ -22,7 +22,7 @@ public class ConsumablesGenerator {
 
     if (i == 0) {
       consumables = new Potion();
-    } else if (i == 1){
+    } else if (i == 1) {
       consumables = new ExpBook();
     }
 

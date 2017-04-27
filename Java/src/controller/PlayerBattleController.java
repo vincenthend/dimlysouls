@@ -1,13 +1,12 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import model.entity.EnemyEntity;
 import model.entity.PlayerEntity;
 import view.GameInterface;
 import view.battle.BattleButton;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Kelas PlayerBattleController, menerima aksi player saat battle.
@@ -57,8 +56,8 @@ public class PlayerBattleController implements ActionListener {
     } else if (atkId == 3) {
       int selfDamage = 0;
       int enemyDamage = 0;
-      int [] selfStatus = new int [5];
-      int [] enemyStatus = new int [5];
+      int[] selfStatus = new int[5];
+      int[] enemyStatus = new int[5];
       playerEntity.getPlayer().special(selfDamage, enemyDamage, selfStatus, enemyStatus);
       playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() - selfDamage);
       enemyEntity.setCurrentHealth(enemyEntity.getCurrentHealth() - enemyDamage);

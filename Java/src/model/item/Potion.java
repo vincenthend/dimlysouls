@@ -26,9 +26,9 @@ public class Potion implements Consumables {
    * @param playerEntity player yang terkena efek
    */
   public void use(PlayerEntity playerEntity) {
-    if (getStatAffected() == 0){
+    if (getStatAffected() == 0) {
       playerEntity.setCurrentHealth(playerEntity.getCurrentHealth() + getEffectValue());
-    } else if (getStatAffected() == 1){
+    } else if (getStatAffected() == 1) {
       playerEntity.getPlayer().setExp(playerEntity.getPlayer().getExp() + getEffectValue());
     }
   }

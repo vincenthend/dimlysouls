@@ -40,7 +40,7 @@ public class Berserker implements Player {
    */
   @Override
   public void levelUp() {
-    while (isLeveling()){
+    while (isLeveling()) {
       exp -= next;
       next = next * 3 / 2 + 5;
       level++;
@@ -98,6 +98,13 @@ public class Berserker implements Player {
     return classId;
   }
 
+  /**
+   * Special attack.
+   * @param selfDamage damage ke diri sendiri
+   * @param enemyDamage damage ke musuh
+   * @param selfStatus status diri sendiri
+   * @param enemyStatus status musuh
+   */
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
     selfDamage = attack;
     enemyDamage = attack * 2;

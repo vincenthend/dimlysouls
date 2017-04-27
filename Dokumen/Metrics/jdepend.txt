@@ -1,0 +1,448 @@
+
+--------------------------------------------------
+- Package: Default
+--------------------------------------------------
+
+Stats:
+    Total Classes: 1
+    Concrete Classes: 1
+    Abstract Classes: 0
+
+    Ca: 0
+    Ce: 3
+
+    A: 0
+    I: 1
+    D: 0
+
+Abstract Classes:
+
+Concrete Classes:
+    Game
+
+Depends Upon:
+    controller
+    java.lang
+    view
+
+Used By:
+    Not used by any packages.
+
+--------------------------------------------------
+- Package: controller
+--------------------------------------------------
+
+Stats:
+    Total Classes: 15
+    Concrete Classes: 15
+    Abstract Classes: 0
+
+    Ca: 1
+    Ce: 13
+
+    A: 0
+    I: 0,93
+    D: 0,07
+
+Abstract Classes:
+
+Concrete Classes:
+    controller.BattleController
+    controller.EnemyBattleController
+    controller.EnemyController
+    controller.GameController
+    controller.GameController$1
+    controller.GameController$2
+    controller.GameController$2$1
+    controller.GameController$2$1$1
+    controller.GuiUpdateController
+    controller.GuiUpdateController$1
+    controller.GuiUpdateController$2
+    controller.MapController
+    controller.PlayerBattleController
+    controller.PlayerBattleController$1
+    controller.PlayerController
+
+Depends Upon:
+    controller.listener
+    java.awt
+    java.awt.event
+    java.io
+    java.lang
+    java.util
+    javax.swing
+    model.enemy
+    model.entity
+    model.map
+    model.player
+    view
+    view.battle
+
+Used By:
+    Default
+
+--------------------------------------------------
+- Package: controller.listener
+--------------------------------------------------
+
+Stats:
+    Total Classes: 3
+    Concrete Classes: 0
+    Abstract Classes: 3
+
+    Ca: 1
+    Ce: 3
+
+    A: 1
+    I: 0,75
+    D: 0,75
+
+Abstract Classes:
+    controller.listener.BattleListener
+    controller.listener.EncounterListener
+    controller.listener.MapChangeListener
+
+Concrete Classes:
+
+Depends Upon:
+    java.lang
+    model.entity
+    model.map
+
+Used By:
+    controller
+
+--------------------------------------------------
+- Package: java.awt
+--------------------------------------------------
+No stats available: package referenced, but not analyzed.
+
+--------------------------------------------------
+- Package: java.awt.event
+--------------------------------------------------
+No stats available: package referenced, but not analyzed.
+
+--------------------------------------------------
+- Package: java.io
+--------------------------------------------------
+No stats available: package referenced, but not analyzed.
+
+--------------------------------------------------
+- Package: java.lang
+--------------------------------------------------
+No stats available: package referenced, but not analyzed.
+
+--------------------------------------------------
+- Package: java.util
+--------------------------------------------------
+No stats available: package referenced, but not analyzed.
+
+--------------------------------------------------
+- Package: javax.swing
+--------------------------------------------------
+No stats available: package referenced, but not analyzed.
+
+--------------------------------------------------
+- Package: model.enemy
+--------------------------------------------------
+
+Stats:
+    Total Classes: 6
+    Concrete Classes: 5
+    Abstract Classes: 1
+
+    Ca: 4
+    Ce: 2
+
+    A: 0,17
+    I: 0,33
+    D: 0,5
+
+Abstract Classes:
+    model.enemy.Enemy
+
+Concrete Classes:
+    model.enemy.EnemyGenerator
+    model.enemy.Goblin
+    model.enemy.Minotaur
+    model.enemy.Skeleton
+    model.enemy.Slime
+
+Depends Upon:
+    java.lang
+    java.util
+
+Used By:
+    controller
+    model.entity
+    model.map
+    view
+
+--------------------------------------------------
+- Package: model.entity
+--------------------------------------------------
+
+Stats:
+    Total Classes: 4
+    Concrete Classes: 3
+    Abstract Classes: 1
+
+    Ca: 5
+    Ce: 5
+
+    A: 0,25
+    I: 0,5
+    D: 0,25
+
+Abstract Classes:
+    model.entity.Entity
+
+Concrete Classes:
+    model.entity.EnemyEntity
+    model.entity.ItemEntity
+    model.entity.PlayerEntity
+
+Depends Upon:
+    java.awt
+    java.lang
+    model.enemy
+    model.item
+    model.player
+
+Used By:
+    controller
+    controller.listener
+    model.map
+    view
+    view.battle
+
+--------------------------------------------------
+- Package: model.item
+--------------------------------------------------
+
+Stats:
+    Total Classes: 3
+    Concrete Classes: 2
+    Abstract Classes: 1
+
+    Ca: 2
+    Ce: 3
+
+    A: 0,33
+    I: 0,6
+    D: 0,07
+
+Abstract Classes:
+    model.item.Consumables
+
+Concrete Classes:
+    model.item.ConsumablesGenerator
+    model.item.Potion
+
+Depends Upon:
+    java.lang
+    java.util
+    model.player
+
+Used By:
+    model.entity
+    model.map
+
+--------------------------------------------------
+- Package: model.map
+--------------------------------------------------
+
+Stats:
+    Total Classes: 4
+    Concrete Classes: 4
+    Abstract Classes: 0
+
+    Ca: 3
+    Ce: 6
+
+    A: 0
+    I: 0,67
+    D: 0,33
+
+Abstract Classes:
+
+Concrete Classes:
+    model.map.Cell
+    model.map.Map
+    model.map.Terrain
+    model.map.TransferPoint
+
+Depends Upon:
+    java.awt
+    java.lang
+    java.util
+    model.enemy
+    model.entity
+    model.item
+
+Used By:
+    controller
+    controller.listener
+    view
+
+--------------------------------------------------
+- Package: model.player
+--------------------------------------------------
+
+Stats:
+    Total Classes: 5
+    Concrete Classes: 4
+    Abstract Classes: 1
+
+    Ca: 4
+    Ce: 1
+
+    A: 0,2
+    I: 0,2
+    D: 0,6
+
+Abstract Classes:
+    model.player.Player
+
+Concrete Classes:
+    model.player.Berserker
+    model.player.Ninja
+    model.player.Paladin
+    model.player.Warrior
+
+Depends Upon:
+    java.lang
+
+Used By:
+    controller
+    model.entity
+    model.item
+    view
+
+--------------------------------------------------
+- Package: view
+--------------------------------------------------
+
+Stats:
+    Total Classes: 4
+    Concrete Classes: 4
+    Abstract Classes: 0
+
+    Ca: 3
+    Ce: 10
+
+    A: 0
+    I: 0,77
+    D: 0,23
+
+Abstract Classes:
+
+Concrete Classes:
+    view.EnemyStatsInterface
+    view.GameInterface
+    view.MapInterface
+    view.StatsInterface
+
+Depends Upon:
+    java.awt
+    java.awt.event
+    java.io
+    java.lang
+    javax.swing
+    model.enemy
+    model.entity
+    model.map
+    model.player
+    view.battle
+
+Used By:
+    Default
+    controller
+    view.battle
+
+--------------------------------------------------
+- Package: view.battle
+--------------------------------------------------
+
+Stats:
+    Total Classes: 4
+    Concrete Classes: 4
+    Abstract Classes: 0
+
+    Ca: 2
+    Ce: 6
+
+    A: 0
+    I: 0,75
+    D: 0,25
+
+Abstract Classes:
+
+Concrete Classes:
+    view.battle.BattleButton
+    view.battle.BattleButtonInterface
+    view.battle.BattleInterface
+    view.battle.BattleView
+
+Depends Upon:
+    java.awt
+    java.awt.event
+    java.lang
+    javax.swing
+    model.entity
+    view
+
+Used By:
+    controller
+    view
+
+
+--------------------------------------------------
+- Package Dependency Cycles:
+--------------------------------------------------
+
+Default
+    |
+    |-> view
+    |   view.battle
+    |-> view
+
+controller
+    |
+    |-> view
+    |   view.battle
+    |-> view
+
+view
+    |
+    |   view.battle
+    |-> view
+
+view.battle
+    |
+    |   view
+    |-> view.battle
+
+
+--------------------------------------------------
+- Summary:
+--------------------------------------------------
+
+Name, Class Count, Abstract Class Count, Ca, Ce, A, I, D, V:
+
+Default,1,0,0,3,0,1,0,1
+controller,15,0,1,13,0,0,93,0,07,1
+controller.listener,3,3,1,3,1,0,75,0,75,1
+java.awt,0,0,5,0,0,0,1,1
+java.awt.event,0,0,3,0,0,0,1,1
+java.io,0,0,2,0,0,0,1,1
+java.lang,0,0,10,0,0,0,1,1
+java.util,0,0,4,0,0,0,1,1
+javax.swing,0,0,3,0,0,0,1,1
+model.enemy,6,1,4,2,0,17,0,33,0,5,1
+model.entity,4,1,5,5,0,25,0,5,0,25,1
+model.item,3,1,2,3,0,33,0,6,0,07,1
+model.map,4,0,3,6,0,0,67,0,33,1
+model.player,5,1,4,1,0,2,0,2,0,6,1
+view,4,0,3,10,0,0,77,0,23,1
+view.battle,4,0,2,6,0,0,75,0,25,1

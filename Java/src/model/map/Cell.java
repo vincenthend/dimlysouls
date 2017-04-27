@@ -75,6 +75,7 @@ public class Cell {
 
   /**
    * Mengatur entity di dalam cell.
+   *
    * @param entity entity di dalam cell
    */
   public void setEntity(Entity entity) {
@@ -92,6 +93,7 @@ public class Cell {
 
   /**
    * Mengaturn nilai terrain di dalam cell.
+   *
    * @param terrain terrain di dalam cell
    */
   public void setTerrain(Terrain terrain) {

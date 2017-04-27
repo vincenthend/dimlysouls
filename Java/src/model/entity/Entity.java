@@ -77,6 +77,7 @@ public abstract class Entity {
     return (location);
   }
 
+
   /**
    * Mengembalikan posisi entity setelah bergerak.
    *
@@ -115,17 +116,8 @@ public abstract class Entity {
   }
 
   /**
-   * Setter posisi entity.
-   *
-   * @param p posisi entity
-   */
-  public void setPosition(Point p) {
-    location.x = p.x;
-    location.y = p.y;
-  }
-
-  /**
    * Mengembalikan ID entity.
+   *
    * @return nilai ID Entity
    */
   public int getEntityId() {
@@ -139,5 +131,15 @@ public abstract class Entity {
    */
   public void setEntityId(int entityId) {
     this.entityId = entityId;
+  }
+
+  /**
+   * Setter posisi entity.
+   *
+   * @param p posisi entity
+   */
+  public void setPosition(Point p) {
+    location.x = p.x;
+    location.y = p.y;
   }
 }

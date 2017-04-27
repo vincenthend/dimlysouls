@@ -98,14 +98,20 @@ public class Ninja implements Player {
     return classId;
   }
 
+  /**
+   * Special attack.
+   * @param selfDamage damage ke diri sendiri
+   * @param enemyDamage damage ke musuh
+   * @param selfStatus status diri sendiri
+   * @param enemyStatus status musuh
+   */
   public void special(int selfDamage, int enemyDamage, int[] selfStatus, int[] enemyStatus) {
     Random rand = new Random();
     int i = rand.nextInt(10);
-    if (i > 5){
+    if (i > 5) {
       enemyDamage = attack * 2;
       enemyStatus[3] = 3;
-    }
-    else {
+    } else {
       enemyDamage = attack;
     }
   }

@@ -10,18 +10,22 @@
 	e. Player							|		DONE		|
 	
 2. Controller							|					|
-	a. BattleController					|		-PBC		| (termasuk EBC PBC)
+	a. BattleController					|					| (termasuk EBC PBC)
 	b. PlayerController					|		DONE		|
 	c. EnemyController					|		DONE		|
 	
 3. View
 	a. Main Menu						|		DONE		|
-	b. Overworld 						|		DONE?		|
-	c. Battle							|					|
+	b. Overworld 						|		DONE		|
+	c. Battle							|		DONE		|
 	
 4. Main									|					|
+	a. Jalan Jalan						|		DONE		|
+	b. Battle							|					|
+	c. Ganti pake Sprite				|					|
+	
 5. Unit Test							|					|
 6. CheckStyle							|					|
 7. JDepend								|					|
 8. JavaDocs								|					|
-9. Dokumentasi Utama					|					|
+9. Dokumentasi Utama					|					| in progress

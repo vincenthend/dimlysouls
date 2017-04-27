@@ -8,6 +8,7 @@ import model.entity.PlayerEntity;
  * @author Vincent Hendryanto H / 13515089
  */
 public interface Consumables {
+
   final int HEALTH = 0;
   final int EXP = 1;
 
@@ -27,7 +28,8 @@ public interface Consumables {
 
   /**
    * Menggunakan consumables.
-   * @param player Player yang terkena efek
+   *
+   * @param playerEntity Player yang terkena efek
    */
   public void use(PlayerEntity playerEntity);
 }

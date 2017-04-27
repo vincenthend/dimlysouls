@@ -35,6 +35,7 @@ public class BattleButtonInterface extends JPanel {
 
   /**
    * Mengembalikan array berisi tombol yang digunakan.
+   *
    * @return array battle button
    */
   public BattleButton[] getBattleButton() {

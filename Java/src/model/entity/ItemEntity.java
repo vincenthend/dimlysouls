@@ -1,8 +1,7 @@
 package model.entity;
 
+import java.awt.Point;
 import model.item.Consumables;
-
-import java.awt.*;
 
 /**
  * ItemEntity, berisi item.
@@ -15,6 +14,7 @@ public final class ItemEntity extends Entity {
 
   /**
    * Default constructor.
+   *
    * @param x absis lokasi objek
    * @param y ordinat lokasi objek
    * @param c objek consumables

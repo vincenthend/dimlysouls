@@ -35,6 +35,7 @@ public final class EnemyEntity extends Entity {
 
   /**
    * Konstruktor EnemyEntity.
+   *
    * @param location lokasi musuh
    * @param e musuh yang terlibat
    */

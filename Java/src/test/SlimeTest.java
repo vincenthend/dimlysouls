@@ -1,8 +1,8 @@
 package test;
 
-import model.enemy.Slime;
-
 import static org.junit.Assert.assertEquals;
+
+import model.enemy.Slime;
 
 /**
  * Created by Aspire V5 on 4/26/2017.
